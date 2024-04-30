@@ -15,6 +15,9 @@ import Dashboard from './dashboard/Dashboard';
 import PlaygroundPage from './dashboard/PlaygroundPage';
 import PaymentHistoryPage from './dashboard/FinancePaymentHistoryPage';
 import WalletPage from './dashboard/FinanceWalletPage';
+import PendingsPage from './dashboard/OrdersPendingsPage';
+import WaitingsPage from './dashboard/OrdersWaitingsPage';
+import DeliveredsPage from './dashboard/OrdersDeliveredsPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,6 +31,9 @@ root.render(
         <Route path="/dashboard/playground/" Component={PlaygroundPage} />
         <Route path="/dashboard/finance/" Component={PaymentHistoryPage} />
         <Route path="/dashboard/finance/wallet/" Component={WalletPage} />
+        <Route path="/dashboard/orders/" Component={PendingsPage} />
+        <Route path="/dashboard/orders/waiting/" Component={WaitingsPage} />
+        <Route path="/dashboard/orders/delivered/" Component={DeliveredsPage} />
 
         <Route path="*" Component={NotFound} />
       </Routes>

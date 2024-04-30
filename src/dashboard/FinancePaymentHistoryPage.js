@@ -6,19 +6,19 @@ import '../css/finance.css';
 const PaymentHistoryPage = () => {
     return (
         <Layout>
-            <div class="payment-history" id="payment-history">
+            <div className="payment-history" id="payment-history">
                 <nav>
-                    <button class="btn md ghost gray active">Payment History</button>
-                    <a href="/dashboard/finance/wallet"><button class="btn md text gray">Wallet</button></a>
+                    <button className="btn md ghost gray active">Payment History</button>
+                    <a href="/dashboard/finance/wallet"><button className="btn md text gray">Wallet</button></a>
                 </nav>
-                <div class="export">
+                <div className="export">
                     <p>Lorem ipsum is simply dummy text of the ...</p>
-                    <button class="btn lg ghost">Export</button>
-                    <button class="btn lg icon gary">
+                    <button className="btn lg ghost">Export</button>
+                    <button className="btn lg icon gary">
                         <img src="/images/icons/icon.finance.svg" alt="" />
                     </button>
                 </div>
-                <div class="records">
+                <div className="records">
                     <table cellspacing="0" cellpadding="0">
                         <tr>
                             <th>Order</th>
@@ -33,7 +33,7 @@ const PaymentHistoryPage = () => {
                             <td>Wallet</td>
                             <td>$3.00</td>
                             <td>
-                                <span class="badge red">Expired</span>
+                                <span className="badge red">Expired</span>
                             </td>
                             <td></td>
                             <td>2023-05-21 10:23:14</td>
@@ -43,7 +43,7 @@ const PaymentHistoryPage = () => {
                             <td>Paypall</td>
                             <td>$10.00</td>
                             <td>
-                                <span class="badge green">Completed</span>
+                                <span className="badge green">Completed</span>
                             </td>
                             <td></td>
                             <td>2023-05-21 10:23:14</td>
@@ -53,9 +53,9 @@ const PaymentHistoryPage = () => {
                             <td>Credit Card</td>
                             <td>$30.00</td>
                             <td>
-                                <span class="badge red">Expired</span>
+                                <span className="badge red">Expired</span>
                             </td>
-                            <td><span class="badge gray">NFT</span></td>
+                            <td><span className="badge gray">NFT</span></td>
                             <td>2023-05-21 10:23:14</td>
                         </tr>
                         <tr>
@@ -63,7 +63,7 @@ const PaymentHistoryPage = () => {
                             <td>Wallet</td>
                             <td>$3.00</td>
                             <td>
-                                <span class="badge red">Expired</span>
+                                <span className="badge red">Expired</span>
                             </td>
                             <td></td>
                             <td>2023-05-21 10:23:14</td>
