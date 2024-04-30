@@ -1,0 +1,411 @@
+.btn {
+    outline: none;
+    border: none;
+    background: none;
+    text-decoration: none;
+
+    border-radius: 12px;
+
+    font-family: 'Hubot Sans';
+    font-style: normal;
+    font-weight: 600;
+    color: #FFFFFF;
+
+    &.sm {
+        padding: 8px 12px;
+        gap: 4px;
+
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    &.md {
+        padding: 10px 14px;
+        gap: 4px;
+
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    &.lg {
+        padding: 10px 16px;
+        gap: 6px;
+
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &.xl {
+        padding: 12px 18px;
+        gap: 6px;
+
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &.xxl {
+        padding: 16px 22px;
+        gap: 10px;
+
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    &.cta {
+        background: #189A8A;
+        border: 1px solid #189A8A;
+        /* Shadows/shadow-xs */
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+
+        &:hover {
+            background: #12786C;
+            border: 1px solid #12786C;
+            /* Shadows/shadow-xs */
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+        }
+
+        &:focus {
+            background: #189A8A;
+            border: 1px solid #189A8A;
+            /* Focus rings/ring-brand-shadow-xs */
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px rgba(119, 237, 187, 0.24);
+        }
+
+        &:disabled {
+            background: #F2F4F7;
+            border: 1px solid #EAECF0;
+            /* Shadows/shadow-xs */
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+        }
+    }
+
+    &.ghost {
+        background: transparent;
+        border: 1px solid #66C5BA;
+        /* Shadows/shadow-xs */
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+
+        color: #12786C;
+
+        &:hover {
+            background: #E8F6F5;
+            border: 1px solid #66C5BA;
+            /* Shadows/shadow-xs */
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+
+            color: #0E5D54;
+        }
+
+        &:focus {
+            background: #FFFFFF;
+            border: 1px solid #66C5BA;
+            /* Focus rings/ring-brand-shadow-xs */
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px rgba(119, 237, 187, 0.24);
+
+            color: #12786C;
+        }
+
+        &:disabled {
+            background: transparent;
+            border: 1px solid #EAECF0;
+            /* Shadows/shadow-xs */
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+
+            color: #98A2B3;
+        }
+
+        &.gray {
+            background: transparent;
+            border: 1px solid #D0D5DD;
+            /* Shadows/shadow-xs */
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+
+            color: #FFFFFF;
+
+            &:hover {
+                background: #F9FAFB;
+                border: 1px solid #D0D5DD;
+                /* Shadows/shadow-xs */
+                box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+
+                color: #182230;
+            }
+
+            &.active,
+            &:focus {
+                background: #FFFFFF;
+                border: 1px solid #D0D5DD;
+                /* Focus rings/ring-gray-shadow-xs */
+                box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px rgba(152, 162, 179, 0.14);
+
+                color: #344054;
+            }
+
+            &:disabled {
+                background: transparent;
+                border: 1px solid #EAECF0;
+                /* Shadows/shadow-xs */
+                box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+
+                color: #98A2B3;
+            }
+        }
+    }
+
+    &.text {
+        color: #12786C;
+
+        &:hover {
+            background: #E8F6F5;
+
+            color: #0E5D54;
+        }
+
+        &:focus {
+            color: #12786C;
+        }
+
+        &:disabled {
+            color: #98A2B3;
+        }
+
+        &.gray {
+            color: #475467;
+
+            &:hover {
+                background: #F9FAFB;
+
+                color: #344054;
+            }
+
+            &:focus {
+                color: #475467;
+            }
+
+            &:disabled {
+                color: #98A2B3;
+            }
+        }
+    }
+}
+
+.destruction {
+    outline: none;
+    border: none;
+    background: none;
+    text-decoration: none;
+
+    border-radius: 12px;
+
+    font-family: 'Hubot Sans';
+    font-style: normal;
+    font-weight: 600;
+    color: #FFFFFF;
+
+    &.sm {
+        padding: 8px 12px;
+        gap: 4px;
+
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    &.md {
+        padding: 10px 14px;
+        gap: 4px;
+
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    &.lg {
+        padding: 10px 16px;
+        gap: 6px;
+
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &.xl {
+        padding: 12px 18px;
+        gap: 6px;
+
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &.xxl {
+        padding: 16px 22px;
+        gap: 10px;
+
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    &.cta {
+        background: #D92D20;
+        border: 1px solid #D92D20;
+        /* Shadows/shadow-xs */
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+
+        &:hover {
+            background: #B42318;
+            border: 1px solid #B42318;
+            /* Shadows/shadow-xs */
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+        }
+
+        &:focus {
+            background: #D92D20;
+            border: 1px solid #D92D20;
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px rgba(240, 68, 56, 0.24);
+        }
+
+        &:disabled {
+            background: #F2F4F7;
+            border: 1px solid #EAECF0;
+            /* Shadows/shadow-xs */
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+        }
+    }
+
+    &.ghost {
+        background: transparent;
+        border: 1px solid #FDA29B;
+        /* Shadows/shadow-xs */
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+
+        color: #B42318;
+
+        &:hover {
+            background: #FEF3F2;
+            border: 1px solid #FDA29B;
+            /* Shadows/shadow-xs */
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+
+            color: #912018;
+        }
+
+        &:focus {
+            background: #FFFFFF;
+            border: 1px solid #FDA29B;
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px rgba(240, 68, 56, 0.24);
+
+            color: #B42318;
+        }
+
+        &:disabled {
+            background: transparent;
+            border: 1px solid #EAECF0;
+            /* Shadows/shadow-xs */
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+
+            color: #98A2B3;
+        }
+    }
+
+    &.text {
+        color: #B42318;
+
+        &:hover {
+            background: #FEF3F2;
+            color: #912018;
+        }
+
+        &:focus {
+            color: #B42318;
+        }
+
+        &:disabled {
+            color: #98A2B3;
+        }
+    }
+}
+
+.lnk {
+    padding: 0;
+    font-family: 'Hubot Sans';
+    font-style: normal;
+    font-weight: 600;
+
+    color: #12786C;
+
+    &.sm {
+        gap: 4px;
+
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    &.md {
+        gap: 4px;
+
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    &.lg {
+        gap: 6px;
+
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &.xl {
+        gap: 6px;
+
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &.xxl {
+        gap: 10px;
+
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    &:hover {
+        color: #0E5D54;
+    }
+
+    &:focus {
+        color: #12786C;
+    }
+
+    &:disabled {
+        color: #98A2B3;
+    }
+
+    &.gray {
+        color: #475467;
+
+        &:hover {
+            color: #344054;
+        }
+
+        &:focus {
+            color: #475467;
+        }
+
+        &:disabled {
+            color: #98A2B3;
+        }
+    }
+
+    &.destruction {
+        color: #B42318;
+
+        &:hover {
+            color: #912018;
+        }
+
+        &:focus {
+            color: #B42318;
+        }
+
+        &:disabled {
+            color: #98A2B3;
+        }
+    }
+}

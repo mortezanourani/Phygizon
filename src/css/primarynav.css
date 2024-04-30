@@ -1,0 +1,49 @@
+.primary-nav {
+    position: sticky;
+    padding: 10px 0;
+    height: 80px;
+    right: 0;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    z-index: 999;
+
+    .container {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        flex-grow: 1;
+        gap: 48px;
+
+        .navbar-brand {
+            position: relative;
+        }
+
+        .menu {
+            display: flex;
+            flex-grow: 1;
+            justify-content: space-between;
+            align-items: center;
+
+            ul.main-menu {
+                padding: 0;
+                margin: auto 0;
+                list-style: none;
+                display: flex;
+                flex-direction: row;
+                flex-grow: 1;
+            }
+
+            ul.navigation-menu {
+                padding: 0;
+                margin: auto 0;
+                list-style: none;
+                display: flex;
+                flex-direction: row;
+                gap: 8px;
+            }
+        }
+    }
+}
