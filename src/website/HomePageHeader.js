@@ -6,8 +6,7 @@ const Header = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        console.log("did");
-        axios.get('https://phygizone.darkube.app/v1/product/products/?limit=2')
+        axios.get('https://phygizone.darkube.app/v1/product/products/')
             .then(response => {
                 setProducts(response.data.results);
             })
@@ -29,7 +28,7 @@ const Header = () => {
                     <img src={"/images/banners/" + products[1].id + ".png"} alt="" />
                 </a>
             </div>
-        </header>
+        </header >
     )
 }
 
