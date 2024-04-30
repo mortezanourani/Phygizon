@@ -7,6 +7,7 @@ import NotFound from './NotFound';
 
 import HomePage from './website/HomePage';
 import reportWebVitals from './reportWebVitals';
+import LoginPage from './website/LoginPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,6 +15,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route exact path="/" Component={HomePage} />
+        <Route path="/login/" Component={LoginPage} />
 
         <Route path="*" Component={NotFound} />
       </Routes>
