@@ -13,6 +13,8 @@ import LoginPage from './website/LoginPage';
 
 import Dashboard from './dashboard/Dashboard';
 import PlaygroundPage from './dashboard/PlaygroundPage';
+import PaymentHistoryPage from './dashboard/FinancePaymentHistoryPage';
+import WalletPage from './dashboard/FinanceWalletPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +26,8 @@ root.render(
 
         <Route exact path="/dashboard/" Component={Dashboard} />
         <Route path="/dashboard/playground/" Component={PlaygroundPage} />
+        <Route path="/dashboard/finance/" Component={PaymentHistoryPage} />
+        <Route path="/dashboard/finance/wallet/" Component={WalletPage} />
 
         <Route path="*" Component={NotFound} />
       </Routes>
