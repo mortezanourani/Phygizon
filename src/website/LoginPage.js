@@ -16,14 +16,12 @@ const LoginPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post('https://phygizone.darkube.app/v1/user/login/check_password/', formData);
-            alert('Form data submitted successfully:', response.data);
-        }
-        catch (error) {
-            console.error('Error:', error);
-            alert(error);
-        }
+        await axios.post('https://phygizone.darkube.app/v1/user/login/check_password/', formData)
+            .then(response => {
+                alert(JSON.stringify(response.data))
+            }).catch(error => {
+                alert(error);
+            });
     }
 
     return (
