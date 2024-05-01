@@ -21,11 +21,10 @@ const LoginPage = () => {
 
         await axios.post('https://phygizone.darkube.app/v1/user/login/check_password/', formData)
             .then(response => {
-                // alert(JSON.stringify(response.data))
-                document.body.innerHTML = response.data.token_info.token;
-                // navigate('/dashboard/', { replace: true });
+                localStorage.setItem('authorization', 'token ' + response.data.token_info.token);
+                navigate('/dashboard/', { replace: true });
             }).catch(error => {
-                alert(error);
+                throw error;
             });
     }
 

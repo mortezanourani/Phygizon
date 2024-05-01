@@ -1,0 +1,295 @@
+.faqpage {
+    background: #EFF8F5;
+}
+
+.hero {
+    text-align: center;
+    padding: 180px 0;
+
+    .title {
+        font-family: 'Hubot Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 44px;
+        letter-spacing: -0.02em;
+        color: #101828;
+        margin: 0;
+        margin-bottom: 16px;
+    }
+
+    .description {
+        /* Text xl/Regular */
+        font-family: 'Hubot Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        color: #667085;
+        margin: 0;
+    }
+
+    form.search {
+        position: relative;
+        margin: 48px auto 0;
+        max-width: 800px;
+
+        .form-control {
+            position: relative;
+            width: 100%;
+
+            img {
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                top: 20px;
+                left: 20px;
+                z-index: 1;
+            }
+
+            input {
+                outline: none;
+                position: relative;
+                height: 64px;
+                padding: 10px 24px;
+                padding-left: 64px;
+                background: #FFFFFF;
+                border: 1px solid #D0D5DD;
+                border-radius: 99px;
+                font-family: 'Hubot Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 24px;
+                line-height: 32px;
+                width: 100%;
+            }
+        }
+    }
+
+    .button-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin: 32px auto;
+
+        a {
+            height: 40px;
+            padding: 8px 24px;
+            text-wrap: nowrap;
+            background: #F9FAFB;
+            border: 1px solid #EAECF0;
+            border-radius: 9999px;
+
+            /* Text md/Medium */
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #344054;
+        }
+    }
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: bottom;
+    gap: 16px;
+    margin: 0;
+}
+
+#categories {
+    margin: 0 auto 64px;
+    border-radius: 40px 40px 0 0;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid #FFFFFF;
+    backdrop-filter: blur(20px);
+    padding: 64px 0 80px;
+    text-align: center;
+
+    .section-title {
+        margin: 0;
+        margin-bottom: 64px;
+
+        h2 {
+            margin: 0;
+            /* Display md/Semibold */
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 44px;
+            letter-spacing: -0.02em;
+
+            color: #101828;
+        }
+
+        p {
+            margin: 12px 0 0;
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 32px;
+
+            color: #667085;
+        }
+    }
+
+    .categories-frame {
+        display: grid;
+        grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+
+        .category {
+            display: inline-block;
+            position: relative;
+            background: #FFFFFF;
+            border: 1px solid #D0D5DD;
+            border-radius: 32px;
+            width: 292px;
+            height: 296px;
+            padding: 64px 48px;
+            vertical-align: top;
+            margin: 16px;
+
+            img {
+                position: relative;
+                aspect-ratio: 1 / 1;
+            }
+
+            h3 {
+                text-wrap: wrap;
+            }
+        }
+    }
+
+    #questions {
+        position: relative;
+        margin: 64px auto;
+        list-style: none;
+        padding: 0 32px;
+        display: grid;
+        grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+        gap: 64px 32px;
+
+        li {
+            padding: 0;
+
+            a {
+                margin: 20px 0 8px;
+                display: block;
+
+                h3 {
+                    position: relative;
+                    margin: 0;
+                    /* Text xl/Bold */
+                    font-family: 'Hubot Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 30px;
+                    /* identical to box height, or 150% */
+                    text-align: center;
+
+                    color: #101828;
+                }
+            }
+
+            p {
+                position: relative;
+                margin: 0;
+                /* Text md/Regular */
+                font-family: 'Hubot Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                /* or 150% */
+                text-align: center;
+
+                color: #475467;
+            }
+        }
+    }
+
+    .ctabox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #67E8B9;
+        border-radius: 16px;
+        padding: 64px;
+        gap: 20px;
+
+        h2 {
+            margin: 0;
+            /* Display md/Bold */
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 44px;
+
+            text-align: center;
+            letter-spacing: -0.02em;
+
+            color: #FFFFFF;
+        }
+
+        p {
+            margin: 0;
+            /* Text xl/Regular */
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+
+            color: #A8F2D7;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 12px;
+
+            a {
+                padding: 12px 18px;
+                border-radius: 8px;
+
+                font-style: normal;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 24px;
+
+                &.secondary {
+                    background: #FFFFFF;
+                    /* Gray/300 */
+                    border: 1px solid #D0D5DD;
+                    /* Shadows/shadow-xs */
+                    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+                    /* Gray/700 */
+                    color: #344054;
+                }
+
+                &.primary {
+                    background: #3BCE99;
+                    border: 1px solid #3BCE99;
+                    /* Shadows/shadow-xs */
+                    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+                    /* Base/White */
+                    color: #FFFFFF;
+                }
+            }
+        }
+    }
+}

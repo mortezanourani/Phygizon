@@ -6,42 +6,55 @@ import Layout from './Layout';
 
 const Dashboard = () => {
     const [profile, setProfile] = useState({});
+    const [orders, setOrders] = useState({});
+
+    const [avatar, setAvatar] = useState("");
+    const [totalOrderCount, setTotalOrderCount] = useState(0);
 
     useEffect(() => {
         axios.get('https://phygizone.darkube.app/v1/user/profile/info/', {
             headers: {
-                'Authorization': '0HiHJSz2cmtpHeAFNJnupDNOQvkNbeXqGYoyolRnpkhmlYSRBdzxtWCMSstQ4GBr'
+                'Authorization': localStorage.getItem('authorization')
             }
-        })
-            .then(response => {
-                setProfile(response.data);
-                alert(response.data);
-            })
-            .catch(error => {
-                throw error;
-            });
-    }, {});
+        }).then(response => {
+            setAvatar(response.data.avatar);
+            // setProfile(response.data);
+        }).catch(error => {
+            throw error;
+        });
+
+        axios.get('https://phygizone.darkube.app/v1/user/profile/dashboard/', {
+            headers: {
+                'Authorization': localStorage.getItem('authorization')
+            }
+        }).then(response => {
+            // setOrders(response.data);
+            setTotalOrderCount(response.data.total_orders.total_order_count);
+        }).catch(error => {
+            throw error;
+        });
+    });
 
     return (
         <Layout>
             <div id="dashboard">
                 <div className="name">
                     <div className="picture">
-                        <img src="/images/users/custom.customer.png" alt="" />
+                        <img src={"/images/users/" + avatar + ".png"} alt="" />
                     </div>
                     <span>
                         <p>Hi, Good Evening</p>
-                        <h3>Sophia!
+                        {/* <h3>{profile.first_name}!
                             <span className='lvl'>
                                 <p className='number'>L9</p>
                                 <img src="/images/icons/icon.profile.level.tag.svg" />
                             </span>
-                        </h3>
+                        </h3> */}
                     </span>
                 </div>
                 <div className="orders">
                     <div className="card all">
-                        <h1>50</h1>
+                        <h1>{totalOrderCount}</h1>
                         <p>All Orders</p>
                         <h3>22.94 MGC</h3>
                         <p>$7322.123</p>

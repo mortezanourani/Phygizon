@@ -1,0 +1,341 @@
+.learning {
+    background: #EFF8F5;
+}
+
+.hero {
+    text-align: center;
+    padding: 180px 0;
+
+    .title {
+        font-family: 'Hubot Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 44px;
+        letter-spacing: -0.02em;
+        color: #101828;
+        margin: 0;
+        margin-bottom: 16px;
+    }
+
+    .description {
+        /* Text xl/Regular */
+        font-family: 'Hubot Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        color: #667085;
+        margin: 0;
+    }
+
+    form.search {
+        position: relative;
+        margin: 48px auto 0;
+        max-width: 800px;
+
+        .form-control {
+            position: relative;
+            width: 100%;
+
+            img {
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                top: 20px;
+                left: 20px;
+                z-index: 1;
+            }
+
+            input {
+                outline: none;
+                position: relative;
+                height: 64px;
+                padding: 10px 24px;
+                padding-left: 64px;
+                background: #FFFFFF;
+                border: 1px solid #D0D5DD;
+                border-radius: 99px;
+                font-family: 'Hubot Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 24px;
+                line-height: 32px;
+                width: 100%;
+            }
+        }
+    }
+
+    .button-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin: 32px auto;
+
+        a {
+            height: 40px;
+            padding: 8px 24px;
+            text-wrap: nowrap;
+            background: #F9FAFB;
+            border: 1px solid #EAECF0;
+            border-radius: 9999px;
+
+            /* Text md/Medium */
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #344054;
+        }
+    }
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: bottom;
+    gap: 16px;
+    margin: 0;
+}
+
+#categories {
+    margin: 0 auto;
+    border-radius: 40px 40px 0 0;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid #FFFFFF;
+    backdrop-filter: blur(20px);
+    padding: 64px 0 80px;
+    text-align: center;
+
+    /* Remove */
+    .tabs {
+        border-radius: 12px;
+        border: 1px solid #667085;
+        width: fit-content;
+        margin: auto;
+        margin-bottom: 128px;
+        padding: 6px;
+    }
+
+    .section-title {
+        margin: 0;
+        margin-bottom: 64px;
+
+        h2 {
+            margin: 0;
+            /* Display md/Semibold */
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 44px;
+            letter-spacing: -0.02em;
+
+            color: #101828;
+        }
+
+        p {
+            margin: 12px 0 0;
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 32px;
+
+            color: #667085;
+        }
+    }
+
+    .categories-frame {
+        display: grid;
+        grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+
+        .category {
+            display: inline-block;
+            position: relative;
+            background: #FFFFFF;
+            border: 1px solid #D0D5DD;
+            border-radius: 32px;
+            width: 292px;
+            height: 296px;
+            padding: 64px 48px;
+            vertical-align: top;
+            margin: 16px;
+
+            img {
+                position: relative;
+                aspect-ratio: 1 / 1;
+            }
+
+            h3 {
+                text-wrap: wrap;
+            }
+        }
+    }
+}
+
+#tutorials {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid #FFFFFF;
+    backdrop-filter: blur(20px);
+    padding: 64px 0 80px;
+
+    .container {
+
+        .last-tutorial {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 48px;
+
+            img {
+                display: block;
+                width: 40%;
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                flex-grow: 1;
+
+                .category-duration {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 32px;
+
+                    * {
+                        margin: 0;
+                    }
+                }
+
+                h3 {
+                    position: relative;
+                    margin: 0;
+                    margin-bottom: 16px;
+
+                    /* Display sm/Bold */
+                    font-family: 'Hubot Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 30px;
+                    line-height: 38px;
+
+                    color: #000000;
+                }
+
+                p {
+                    position: relative;
+                    margin: 0;
+                    margin-bottom: 32px;
+                    /* Text md/Medium */
+                    font-family: 'Hubot Sans';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 24px;
+
+                    color: #000000;
+                }
+
+                .date-link {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                    margin-top: auto;
+                }
+            }
+        }
+
+        .popular {
+            padding: 64px 0 32px;
+
+            .section-title {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: baseline;
+            }
+
+
+            .frame {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: 32px;
+                overflow-x: scroll;
+                padding: 0;
+
+                li {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    gap: 16px;
+
+                    flex: 0 0 27%;
+
+                    padding: 20px 20px 24px;
+                    background: #FFFFFF;
+                    border: 1px solid #D0D5DD;
+                    border-radius: 24px;
+
+                    * {
+                        margin: 0;
+                    }
+
+                    img {
+                        width: 100%;
+                    }
+
+                    .info {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: stretch;
+                        justify-content: space-between;
+
+                        gap: 16px;
+
+                        h3 {
+                            /* Text xl/Bold */
+                            font-family: 'Hubot Sans';
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 20px;
+                            line-height: 30px;
+
+                            color: #101828;
+                        }
+
+                        p {
+                            /* Text md/Regular */
+                            font-family: 'Hubot Sans';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 24px;
+
+                            color: #344054;
+                        }
+
+                        .date-link {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            align-items: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,3 +1,5 @@
+@import './homepage.categories.css';
+
 .homepage-header {
     position: relative;
     display: flex;

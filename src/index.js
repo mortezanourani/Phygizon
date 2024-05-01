@@ -18,6 +18,12 @@ import WalletPage from './dashboard/FinanceWalletPage';
 import PendingsPage from './dashboard/OrdersPendingsPage';
 import WaitingsPage from './dashboard/OrdersWaitingsPage';
 import DeliveredsPage from './dashboard/OrdersDeliveredsPage';
+import HelpCenterPage from './website/HelpCenterPage';
+import LearningPage from './website/HelpCenterLearningPage';
+import BlogPage from './website/HelpCenterBlogPage';
+import FaqPage from './website/HelpCenterFaqPage';
+import ProductsPage from './website/ProductsPage';
+import CartPage from './website/CartPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,6 +32,13 @@ root.render(
       <Routes>
         <Route exact path="/" Component={HomePage} />
         <Route path="/login/" Component={LoginPage} />
+        <Route path="/products/" Component={ProductsPage} />
+        <Route path="/helpcenter/" Component={HelpCenterPage} />
+        <Route path="/helpcenter/learning/" Component={LearningPage} />
+        <Route path="/helpcenter/blog/" Component={BlogPage} />
+        <Route path="/helpcenter/faq/" Component={FaqPage} />
+
+        <Route path="/cart/" Component={CartPage} />
 
         <Route exact path="/dashboard/" Component={Dashboard} />
         <Route path="/dashboard/playground/" Component={PlaygroundPage} />
