@@ -2,6 +2,12 @@ import React from "react";
 
 import logo from '../logo.svg';
 
+const Logout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem('authorization');
+    window.location.replace('/');
+}
+
 const Sidebar = () => {
     return (
         <aside>
@@ -53,7 +59,7 @@ const Sidebar = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="/user/logout/">
+                        <a href="#" onClick={Logout}>
                             <img src="/images/icons/icon.logout.svg" alt="" />
                             Log Out
                         </a>

@@ -34,9 +34,9 @@ const LoginPage = () => {
 
     return (
         <Layout>
-            <form onSubmit={handleSubmit}>
-                <input name="username" value={formData.username} onChange={handleChange} />
-                <input name="password" onChange={handleChange} />
+            <form className="login-form" onSubmit={handleSubmit}>
+                <input className="username" name="username" placeholder="Username" value={formData.username} onChange={handleChange} />
+                <input className="password" type="password" placeholder="Password" name="password" onChange={handleChange} />
                 <button type="submit" className="btn cta lg">Login</button>
             </form>
         </Layout>
