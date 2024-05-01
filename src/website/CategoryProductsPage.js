@@ -11,12 +11,11 @@ const addToCart = (id) => {
         },
         {
             headers: {
-                'accept': 'application/json',
                 'Authorization': localStorage.getItem('authorization'),
-                'Content-Type': 'application/json'
+
             },
         }).then(response => {
-            alert(JSON.stringify(response.data));
+            alert(response.data);
         }).catch(error => {
             if (error.toString().includes("401")) {
                 alert(localStorage.getItem('authorization'));
@@ -26,37 +25,17 @@ const addToCart = (id) => {
         });
 }
 
-const remove = (id) => {
-    axios.patch('https://phygizone.darkube.app/v1/order/carts/update_cart_item/',
-        {
-            "product": id,
-            "quantity": 1,
-        },
-        {
-            headers: {
-                'accept': 'application/json',
-                'Authorization': localStorage.getItem('authorization'),
-                'Content-Type': 'application/json'
-            },
-        }).then(response => {
-            alert(JSON.stringify(response.data));
-        }).catch(error => {
-            if (error.toString().includes("401")) {
-                alert(localStorage.getItem('authorization'));
-                // alert("You need to be logged in.");
-            }
-            alert(error);
-        });
-}
+const CategoryProductsPage = () => {
 
-const ProductsPage = () => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const categoryId = urlParams.get('id');
 
     const [productCount, setProductCount] = useState(null);
     const [products, setProducts] = useState([]);
 
-    axios.get('https://phygizone.darkube.app/v1/product/products/')
+    axios.get('https://phygizone.darkube.app/v1/product/categories/' + { categoryId } + '/products/')
         .then(response => {
-            // document.getElementById('root').innerHTML = JSON.stringify(response.data.results);
             setProductCount(response.data.count);
             setProducts(response.data.results);
         }).catch(error => {
@@ -86,12 +65,17 @@ const ProductsPage = () => {
                                                 <h4 className="final">{"$" + product.current_price.discount_price}</h4>
                                             </div>
                                             <div className="buttons">
-                                                <button className="remove" onClick={() => remove(product.id)}>
+                                                <button className="remove">
                                                     <img src="/images/icons/icon.recyclebin.svg" />
                                                 </button>
-                                                <button className="add" onClick={() => addToCart(product.id)}>
+                                                {/* <form onSubmit={addToCart}> */}
+                                                {/* <input type="hidden" name="id" value={product.id} />
+                                                    <input type="hidden" name="quantity" value="1" />
+                                                    <input type="hidden" name="price" value={product.current_price.discount_price} /> */}
+                                                <button className="add" onClick={() => addToCart(product.id, product.current_price.discount_price)}>
                                                     <img src="/images/icons/icon.addtocart.svg" />
                                                 </button>
+                                                {/* </form> */}
                                             </div>
                                         </div>
                                     </div>
@@ -105,4 +89,4 @@ const ProductsPage = () => {
     );
 }
 
-export default ProductsPage;
+export default CategoryProductsPage;

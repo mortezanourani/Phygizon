@@ -55,3 +55,452 @@
         }
     }
 }
+
+
+section.homepage-products {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 32px;
+
+    .products,
+    .images {
+        flex-basis: 100%;
+        background-color: #F2F4F7;
+        padding: 64px 40px;
+    }
+
+    .products {
+        flex-basis: calc(50%-40px);
+        border-radius: 64px 0 0 64px;
+
+        .section-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 48px;
+
+            .title {
+                position: relative;
+                font-family: 'Hubot Sans';
+                font-weight: 700;
+                font-size: 32px;
+                color: #344054;
+                margin: 0;
+
+                &::after {
+                    position: absolute;
+                    right: -80px;
+                    bottom: 10px;
+                    content: "";
+                    width: 70px;
+                    height: 4px;
+                    border-radius: 2px;
+                    background-color: #475467;
+                }
+
+                &::before {
+                    position: absolute;
+                    right: -115px;
+                    bottom: 8px;
+                    content: "";
+                    width: 107px;
+                    height: 8px;
+                    border-radius: 3px;
+                    background-color: #FFFFFF;
+                }
+            }
+
+            a {
+                font-family: 'Hubot Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 28px;
+                text-decoration: underline;
+                color: #12786C;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .categories {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px 15px;
+
+            a {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                font-weight: normal;
+                gap: 15px;
+                padding: 22px 18px;
+                border-radius: 16px;
+                background-color: #FFFFFF;
+                color: #667085;
+                height: 76px;
+                border: 1px solid #efefef;
+
+                &:hover {
+                    border-color: #667085;
+                }
+
+                &.active {
+                    padding: 22px 16px;
+                    border-color: #dfb64b;
+                    font-weight: bold;
+                }
+
+                .icon {
+                    max-width: 25px;
+                    max-height: 25px;
+                }
+            }
+        }
+    }
+
+    .images {
+        flex-basis: calc(50%+40px);
+        margin-right: -80px;
+        padding-right: 80px;
+        display: grid;
+        grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+        gap: 20px;
+
+        .img-link {
+            border-radius: 21px;
+            overflow: hidden;
+
+            &:nth-child(1) {
+                grid-area: 1 / 1 / 2 / 2;
+            }
+
+            &:nth-child(2) {
+                grid-area: 1 / 2 / 3 / 3;
+            }
+
+            &:nth-child(3) {
+                grid-area: 2 / 1 / 3 / 2;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+.section-title {
+    margin: 0;
+    margin-bottom: 64px;
+
+    .title {
+        font-family: 'Hubot Sans';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 32px;
+        line-height: 38px;
+        text-transform: capitalize;
+
+        color: #344054;
+    }
+
+    h2 {
+        margin: 0;
+        /* Display md/Semibold */
+        font-family: 'Hubot Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 44px;
+        letter-spacing: -0.02em;
+
+        color: #101828;
+    }
+
+    p {
+        margin: 12px 0 0;
+        font-family: 'Hubot Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 32px;
+
+        color: #667085;
+    }
+}
+
+#featured {
+    margin: 64px auto;
+}
+
+#products {
+    display: grid;
+    grid-template: repeat(1, 1fr) / repeat(4, 1fr);
+    gap: 12px;
+}
+
+#brands {
+    padding-top: 64px;
+    padding-bottom: 128px;
+
+    #brands-frame {
+        display: grid;
+        grid-template: repeat(1, 1fr) / repeat(5, 1fr);
+        list-style: none;
+        text-align: center;
+        padding: 0;
+        padding-top: 64px;
+        padding-bottom: 128px;
+
+        .brand {}
+    }
+
+    #sellers {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+
+        .title {
+            /* Display md/Semibold */
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 44px;
+            /* identical to box height, or 122% */
+            text-align: center;
+            letter-spacing: -0.02em;
+
+            color: #101828;
+        }
+
+        .description {
+            /* Text xl/Regular */
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 30px;
+            /* identical to box height, or 150% */
+            text-align: center;
+
+            color: #475467;
+        }
+
+        #values {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 32px;
+            gap: 32px;
+            list-style: none;
+
+            .value {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                padding: 24px 48px;
+
+                border-right: 1px solid #EAECF0;
+
+                h1 {
+                    /* Display xl/Semibold */
+                    font-family: 'Hubot Sans';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 60px;
+                    line-height: 72px;
+                    /* identical to box height, or 120% */
+                    text-align: center;
+                    letter-spacing: -0.02em;
+
+                    /* Secondary/500 */
+                    color: #DFB64B;
+                }
+
+                p {
+                    /* Text lg/Semibold */
+                    font-family: 'Hubot Sans';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 28px;
+                    /* identical to box height, or 156% */
+                    text-align: center;
+
+                    color: #101828;
+                }
+            }
+        }
+    }
+}
+
+#blog {
+    margin: 32px auto 64px;
+
+    #posts {
+        padding: 0;
+        display: grid;
+        grid-template: repeat(1, 1fr) / repeat(4, 1fr);
+        list-style: none;
+        text-align: center;
+        gap: 24px;
+
+        .post {
+            border-radius: 34px;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: stretch;
+
+            .post-header {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin: -50%;
+            }
+
+            .post-info {
+                background: linear-gradient(180deg, rgba(28, 28, 30, 0) 0%, #131315 100%);
+                padding: 64px 24px 24px;
+
+                .post-title {
+                    font-family: 'Hubot Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 13px;
+                    line-height: 17px;
+                    text-align: left;
+                    margin-bottom: 16px;
+
+                    color: #FFFFFF;
+                }
+
+                .post-abstract {
+                    font-family: 'Hubot Sans';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 8px;
+                    line-height: 13px;
+                    text-align: left;
+                    margin-bottom: 32px;
+
+                    color: #FFFFFF;
+                }
+
+                .post-author {
+                    position: relative;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    .time {
+                        margin-right: 16px;
+                        font-family: 'Hubot Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 8px;
+                        line-height: 16px;
+                        text-wrap: nowrap;
+
+                        color: #FFFFFF;
+
+                        background: url('../../public/images/icons/icon.time.svg');
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: 0 0;
+                        padding-left: 24px;
+                    }
+
+                    .author {
+                        margin-right: 32px;
+                        font-family: 'Hubot Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 8px;
+                        line-height: 16px;
+                        text-wrap: nowrap;
+
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        gap: 8px;
+
+                        color: #FFFFFF;
+
+                        .author-pic {
+                            width: 16px;
+                            height: 16px;
+                            object-fit: cover;
+                            border-radius: 8px;
+                        }
+                    }
+                }
+            }
+        }
+
+        :nth-child(1) {
+            grid-area: 1 / 1 / 2 / 2;
+        }
+
+        :nth-child(2) {
+            grid-area: 2 / 1 / 3 / 2;
+        }
+
+        :nth-child(3) {
+            grid-area: 1 / 2 / 3 / 4;
+
+            .post-info {
+                .post-title {
+                    font-size: 24px;
+                    line-height: 32px;
+                }
+
+                .post-abstract {
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+
+                .time {}
+
+                .author {}
+            }
+        }
+
+        :nth-child(4) {
+            grid-area: 1 / 4 / 2 / 5;
+        }
+
+        :nth-child(5) {
+            grid-area: 2 / 4 / 3 / 5;
+        }
+
+    }
+}
+
+#world {
+    img {
+        width: 100%;
+        margin: 128px auto 192px;
+    }
+}

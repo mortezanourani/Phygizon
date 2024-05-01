@@ -5,6 +5,11 @@ import axios from 'axios';
 import Layout from "./Layout";
 
 const LoginPage = () => {
+    const navigate = useNavigate();
+
+    if (localStorage.getItem('authorization') !== null) {
+        window.location.replace('/dashboard/');
+    }
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -15,7 +20,6 @@ const LoginPage = () => {
         setFormData({ ...formData, [name]: value });
     }
 
-    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
 
