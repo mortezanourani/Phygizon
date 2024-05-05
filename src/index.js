@@ -23,6 +23,7 @@ import LearningPage from './website/HelpCenterLearningPage';
 import BlogPage from './website/HelpCenterBlogPage';
 import FaqPage from './website/HelpCenterFaqPage';
 import ProductsPage from './website/ProductsPage';
+import ProductPage from './website/ProductPage';
 import CategoryProductsPage from './website/CategoryProductsPage';
 import CartPage from './website/CartPage';
 
@@ -34,6 +35,7 @@ root.render(
         <Route exact path="/" Component={HomePage} />
         <Route path="/login/" Component={LoginPage} />
         <Route path="/products/" Component={ProductsPage} />
+        <Route path="/product/*" Component={ProductPage} />
         <Route path="/category/*" Component={CategoryProductsPage} />
         <Route path="/helpcenter/" Component={HelpCenterPage} />
         <Route path="/helpcenter/learning/" Component={LearningPage} />

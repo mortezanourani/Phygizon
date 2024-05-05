@@ -3,75 +3,38 @@ import axios from 'axios';
 import Layout from './Layout';
 
 import '../css/homepage.css';
-import Header from './HomePageHeader';
 
-const addToCart = (id) => {
-    axios.post('https://phygizone.darkube.app/v1/order/carts/add_to_cart/',
-        {
-            "product": id,
-        },
-        {
-            headers: {
-                'accept': 'application/json',
-                'Authorization': localStorage.getItem('authorization'),
-                'Content-Type': 'application/json'
-            },
-        }).then(response => {
-            alert(JSON.stringify(response.data));
-        }).catch(error => {
-            if (error.toString().includes("401")) {
-                alert(localStorage.getItem('authorization'));
-                // alert("You need to be logged in.");
-            }
-            alert(error);
-        });
-}
+import { Categories, HomePageData, addToCart, removeFromCart } from '../API';
 
 const HomePage = () => {
-    const [cats, setCats] = useState([]);
-
-    useEffect(() => {
-        axios.get('https://phygizone.darkube.app/v1/product/categories/')
-            .then(response => {
-                setCats(response.data.results);
-            })
-            .catch(error => {
-                console.error(error);
-            })
-    }, []);
-
-    const [mostSoldProducts, setMostSoldProducts] = useState([]);
-    const [highestRatedProducts, setHighestRatedProducts] = useState([]);
-    const [recentProducts, setRecentProducts] = useState([]);
-    const [brands, setBrands] = useState([]);
-
-    useEffect(() => {
-        axios.get('https://phygizone.darkube.app/v1/product/homepage/')
-            .then(response => {
-                setMostSoldProducts(response.data.most_sold_products);
-                setHighestRatedProducts(response.data.highest_rated_products);
-                setRecentProducts(response.data.recent_products);
-                setBrands(response.data.brands);
-            })
-            .catch(error => {
-                console.error(error);
-            })
-    }, []);
+    const data = HomePageData();
 
     return (
         <Layout>
-            <Header />
+            <header class="header homepage-header container">
+                <div class="slider">
+                    <img class="slide" src={"/images/slides/" + data.slide.id + ".png"} alt="" />
+                    <a href={"/product/" + data.slide.id}>Shop now
+                        <img src="/images/icons/btnarrow.svg" alt="" />
+                    </a>
+                </div>
+                <div class="banner">
+                    <a href={"/product/" + data.banner.id}>
+                        <img src={"/images/banners/" + data.banner.id + ".png"} alt="" />
+                    </a>
+                </div>
+            </header >
             <section class="homepage-products container">
                 <div class="products">
                     <div class="section-header">
-                        <h1 class="title">Products</h1>
+                        <h2 class="title">Products</h2>
                         <a href="/products/">Show all</a>
                     </div>
                     <div class="categories">
                         {
-                            cats.map(cat => (
+                            data.categories.map(cat => (
                                 <a href={"/category/" + cat.id + "/"}>
-                                    <img class="icon" src={"/images/icons/" + cat.name + ".svg"} />
+                                    <img class="icon" src={"/images/icons/icon.cat." + cat.id + ".svg"} />
                                     {cat.name}
                                 </a>
                             ))
@@ -93,7 +56,7 @@ const HomePage = () => {
 
             <section id="featured" class="container">
                 <div class="section-title">
-                    <h1 id="title">Recent Products</h1>
+                    <h2 className="title">Recent Products</h2>
                     {/* <div class="tabs">
                         <button id="all">All</button>
                         <button id="nft">NFT</button>
@@ -103,7 +66,7 @@ const HomePage = () => {
                 </div>
                 <div id="products">
                     {
-                        recentProducts.slice(0, 4).map(product => (
+                        data.recentProducts.slice(0, 4).map(product => (
                             <div class="product-card">
                                 <a href={"/product?id=" + product.id}>
                                     <img src={"/images/products/" + product.id + ".png"} alt="" />
@@ -116,10 +79,10 @@ const HomePage = () => {
                                             <h4 class="final">{"$" + product.current_price.discount_price}</h4>
                                         </div>
                                         <div class="buttons">
-                                            <button class="remove">
+                                            <button class="remove" onClick={() => removeFromCart(product.id)}>
                                                 <img src="/images/icons/icon.recyclebin.svg" />
                                             </button>
-                                            <button class="add" onClick={() => addToCart(product.ir)}>
+                                            <button class="add" onClick={() => addToCart(product.id)}>
                                                 <img src="/images/icons/icon.addtocart.svg" />
                                             </button>
                                         </div>
@@ -133,7 +96,7 @@ const HomePage = () => {
 
             <section id="featured" class="container">
                 <div class="section-title">
-                    <h1 id="title">Most Sold Products</h1>
+                    <h2 className="title">Most Sold Products</h2>
                     {/* <div class="tabs">
                         <button id="all">All</button>
                         <button id="nft">NFT</button>
@@ -143,7 +106,7 @@ const HomePage = () => {
                 </div>
                 <div id="products">
                     {
-                        mostSoldProducts.slice(0, 4).map(product => (
+                        data.mostSoldProducts.slice(0, 4).map(product => (
                             <div class="product-card">
                                 <a href={"/product?id=" + product.id}>
                                     <img src={"/images/products/" + product.id + ".png"} alt="" />
@@ -156,10 +119,10 @@ const HomePage = () => {
                                             <h4 class="final">{"$" + product.current_price.discount_price}</h4>
                                         </div>
                                         <div class="buttons">
-                                            <button class="remove">
+                                            <button class="remove" onClick={() => removeFromCart(product.id)}>
                                                 <img src="/images/icons/icon.recyclebin.svg" />
                                             </button>
-                                            <button class="add" onClick={() => addToCart(product.ir)}>
+                                            <button class="add" onClick={() => addToCart(product.id)}>
                                                 <img src="/images/icons/icon.addtocart.svg" />
                                             </button>
                                         </div>
@@ -173,7 +136,7 @@ const HomePage = () => {
 
             <section id="featured" class="container">
                 <div class="section-title">
-                    <h1 id="title">Recent Products</h1>
+                    <h2 className="title">Recent Products</h2>
                     {/* <div class="tabs">
                         <button id="all">All</button>
                         <button id="nft">NFT</button>
@@ -183,7 +146,7 @@ const HomePage = () => {
                 </div>
                 <div id="products">
                     {
-                        recentProducts.slice(0, 4).map(product => (
+                        data.recentProducts.slice(0, 4).map(product => (
                             <div class="product-card">
                                 <a href={"/product?id=" + product.id}>
                                     <img src={"/images/products/" + product.id + ".png"} alt="" />
@@ -196,10 +159,10 @@ const HomePage = () => {
                                             <h4 class="final">{"$" + product.current_price.discount_price}</h4>
                                         </div>
                                         <div class="buttons">
-                                            <button class="remove">
+                                            <button class="remove" onClick={() => removeFromCart(product.id)}>
                                                 <img src="/images/icons/icon.recyclebin.svg" />
                                             </button>
-                                            <button class="add" onClick={() => addToCart(product.ir)}>
+                                            <button class="add" onClick={() => addToCart(product.id)}>
                                                 <img src="/images/icons/icon.addtocart.svg" />
                                             </button>
                                         </div>
@@ -217,7 +180,7 @@ const HomePage = () => {
                 </div>
                 <ul id="brands-frame">
                     {
-                        brands.map(brand => (
+                        data.brands.map(brand => (
                             <li class="brand">
                                 <img src={"/images/brands/" + brand.name + ".svg"} alt="" />
                             </li>

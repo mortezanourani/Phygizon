@@ -61,17 +61,30 @@ body {
     }
 }
 
+#login-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(7px);
+    display: none;
+}
+
 .login-form {
     width: 300px;
-    height: 300px;
-    margin-top: -200px;
+    height: 350px;
+    margin-top: -175px;
     margin-left: -150px;
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 50%;
     border-radius: 16px;
     padding: 32px;
-    box-shadow: 0 0 10px 5px lightgray;
+    box-shadow: 0 0 10px 5px darkgray;
+    border: 1px solid darkgray;
+    background: #e7e7e7;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
