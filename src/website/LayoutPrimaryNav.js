@@ -80,16 +80,29 @@ const PrimaryNav = () => {
                             </a>
                         </li >
                     </ul>
-                    <ul class="navigation-menu">
-                        <li className="menu-item">
-                            <button className="btn lg text gray" onClick={handleLoginForm}>Login</button>
-                        </li >
-                        <li className="menu-item">
-                            <a href='/signup/'>
-                                <button className="btn md cta">Sign up</button>
-                            </a>
-                        </li >
-                    </ul>
+                    {
+                        (window.localStorage.getItem('authorization') === null) ? (
+                            <ul class="navigation-menu">
+                                <li className="menu-item">
+                                    <button className="btn lg text gray" onClick={handleLoginForm}>Login</button>
+                                </li >
+                                <li className="menu-item">
+                                    <a href='/signup/'>
+                                        <button className="btn md cta">Sign up</button>
+                                    </a>
+                                </li >
+                            </ul>
+                        ) : (
+                            <ul class="navigation-menu">
+                                <li className="menu-item">
+                                    <a href='/dashboard/'>
+                                        <button className="btn md cta">Dashboard</button>
+                                    </a>
+                                </li >
+                            </ul>
+                        )
+
+                    }
                 </div>
             </div>
             <div id="login-popup" onClick={closePopup}>
