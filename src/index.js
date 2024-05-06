@@ -9,7 +9,9 @@ import NotFound from './NotFound';
 
 import HomePage from './website/HomePage';
 import reportWebVitals from './reportWebVitals';
-import LoginPage from './website/LoginPage';
+
+import SignupPage from './website/SignupPage';
+import SignupPasswordPage from './website/SignupPasswordPage';
 
 import Dashboard from './dashboard/Dashboard';
 import PlaygroundPage from './dashboard/PlaygroundPage';
@@ -33,7 +35,8 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route exact path="/" Component={HomePage} />
-        <Route path="/login/" Component={LoginPage} />
+        <Route path="/signup/" Component={SignupPage} />
+        <Route path="/signup/password/" Component={SignupPasswordPage} />
         <Route path="/products/" Component={ProductsPage} />
         <Route path="/product/*" Component={ProductPage} />
         <Route path="/category/*" Component={CategoryProductsPage} />

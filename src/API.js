@@ -366,3 +366,29 @@ export const Pay = (methodCode) => {
             }
         });
 }
+
+
+
+/* api: user_orders_list */
+export const Orders = () => {
+    const [count, setCount] = useState(null);
+    const [items, setItems] = useState([]);
+
+    axios.get(baseUrl + '/user/orders/', {
+        headers: apiHeaders,
+    }).then(response => {
+        if (response.status === 200) {
+            setCount(response.data.count);
+            setItems(response.data.results);
+        }
+    }).catch(error => {
+        alert(error.response.status);
+    });
+
+    return {
+        count: count,
+        items: items,
+    };
+}
+
+

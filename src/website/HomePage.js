@@ -68,7 +68,7 @@ const HomePage = () => {
                     {
                         data.recentProducts.slice(0, 4).map(product => (
                             <div class="product-card">
-                                <a href={"/product?id=" + product.id}>
+                                <a href={"/product/" + product.id + "/"}>
                                     <img src={"/images/products/" + product.id + ".png"} alt="" />
                                 </a>
                                 <div class="info">
@@ -108,7 +108,7 @@ const HomePage = () => {
                     {
                         data.mostSoldProducts.slice(0, 4).map(product => (
                             <div class="product-card">
-                                <a href={"/product?id=" + product.id}>
+                                <a href={"/product/" + product.id + "/"}>
                                     <img src={"/images/products/" + product.id + ".png"} alt="" />
                                 </a>
                                 <div class="info">
@@ -148,7 +148,7 @@ const HomePage = () => {
                     {
                         data.recentProducts.slice(0, 4).map(product => (
                             <div class="product-card">
-                                <a href={"/product?id=" + product.id}>
+                                <a href={"/product/" + product.id + "/"}>
                                     <img src={"/images/products/" + product.id + ".png"} alt="" />
                                 </a>
                                 <div class="info">
