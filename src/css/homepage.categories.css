@@ -138,3 +138,12 @@ section.homepage-products {
         }
     }
 }
+
+@media screen and (max-width: 600px) {
+    section.homepage-products .products .categories {
+        width: 100%;
+        display: grid;
+        grid-template: repeat(1, 1fr) / repeat(10, 1fr);
+        overflow-x: scroll;
+    }
+}

@@ -1,15 +1,13 @@
-@import './homepage.categories.css';
-
 .homepage-header {
     position: relative;
     display: flex;
     flex-direction: row;
     gap: 30px;
-    margin-bottom: 16px;
+    margin-bottom: 32px !important;
+    margin-top: 8px !important;
 
     .slider {
         flex-grow: 1;
-        height: 100%;
         border-radius: 0 64px 64px 0;
         position: relative;
         margin-left: -80px;
@@ -44,7 +42,6 @@
 
     .banner {
         flex-grow: .5;
-        height: 100%;
         border-radius: 64px;
         position: relative;
         overflow: hidden;
@@ -81,6 +78,7 @@ section.homepage-products {
     }
 
     .products {
+        margin-top: 0;
         flex-basis: calc(50%-40px);
         border-radius: 64px 0 0 64px;
 
@@ -216,6 +214,13 @@ section.homepage-products {
             padding: 16px;
             background: none !important;
             border-radius: 0 !important;
+
+            .categories {
+                width: 100%;
+                display: grid;
+                grid-template: repeat(1, 1fr) / repeat(10, 1fr);
+                overflow-x: scroll;
+            }
         }
 
         .images {
@@ -227,7 +232,7 @@ section.homepage-products {
 
 .section-title {
     margin: 0;
-    margin-bottom: 64px;
+    margin-bottom: 32px;
 
     .title {
         font-family: 'Hubot Sans';
@@ -267,6 +272,31 @@ section.homepage-products {
 
 #featured {
     margin: 64px auto;
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0px 4px 19.4px rgba(0, 0, 0, 0.09);
+    backdrop-filter: blur(13.1px);
+    padding-bottom: 96px;
+    padding-top: 32px;
+
+    .products {
+        display: grid;
+        grid-template: repeat(1, 1fr) / repeat(4, 1fr);
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .tab-content {
+        .products {
+            display: none;
+        }
+
+        &.all #all,
+        &.nft #nft,
+        &.offers #offers,
+        &.latest #latest {
+            display: grid;
+        }
+    }
 }
 
 #products {
@@ -282,22 +312,46 @@ section.homepage-products {
         justify-content: space-between !important;
         align-items: stretch !important;
     }
+
+    #featured .products {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 16px;
+        max-width: 100%;
+        overflow-x: scroll;
+    }
+
+    #featured .tab-content {
+
+        &.all #all,
+        &.nft #nft,
+        &.offers #offers,
+        &.latest #latest {
+            display: flex;
+        }
+    }
 }
 
 #brands {
-    padding-top: 64px;
+    padding-top: 16px;
     padding-bottom: 128px;
 
     #brands-frame {
         display: grid;
-        grid-template: repeat(1, 1fr) / repeat(5, 1fr);
+        grid-template: repeat(1, 1fr) / repeat(6, 1fr);
         list-style: none;
-        text-align: center;
+        justify-items: center;
+        align-items: center;
         padding: 0;
-        padding-top: 64px;
+        padding-top: 16px;
         padding-bottom: 128px;
 
-        .brand {}
+        .brand {
+            padding: 16px;
+            margin: 8px;
+        }
     }
 
     #sellers {
@@ -352,6 +406,10 @@ section.homepage-products {
 
                 border-right: 1px solid #EAECF0;
 
+                &:last-child {
+                    border-right: none;
+                }
+
                 h1 {
                     /* Display xl/Semibold */
                     font-family: 'Hubot Sans';
@@ -386,11 +444,19 @@ section.homepage-products {
 
 @media screen and (max-width: 600px) {
     #brands-frame {
-        grid-template: repeat(1, 1fr) / repeat(2, 1fr);
+        width: 100%;
+        overflow-x: scroll;
+        grid-template: 1fr / repeat(50, 1fr) !important;
+        padding-bottom: 32px;
+        margin-bottom: 64px;
     }
 
-    #values {
+    #brands #sellers #values {
         flex-direction: column !important;
+
+        .value {
+            border: none;
+        }
     }
 }
 
@@ -541,6 +607,35 @@ section.homepage-products {
             grid-area: 2 / 4 / 3 / 5;
         }
 
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #blog #posts {
+        max-width: 100%;
+        overflow-x: scroll;
+        grid-template: 1fr / repeat(5, 1fr);
+
+        .post {
+            width: 70vw;
+            grid-area: auto;
+
+            .post-info {
+                .post-title {
+                    font-size: 15px;
+                    line-height: 19px;
+                }
+
+                .post-abstract {
+                    font-size: 10px;
+                    line-height: 16px;
+                }
+
+                .time {}
+
+                .author {}
+            }
+        }
     }
 }
 

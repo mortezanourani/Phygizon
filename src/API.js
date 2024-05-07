@@ -80,10 +80,12 @@ export const HomePageData = () => {
     axios.get(baseUrl + '/product/products/?limit=2')
         .then(response => {
             setSlide(response.data.results[0]);
+            setSlide({ id: 'slide' })
             setBanner(response.data.results[1]);
+            setBanner({ id: 'banner' });
         })
         .catch(error => {
-            throw error;
+            // throw error;
         });
 
     axios.get(baseUrl + '/product/categories/?limit=9')
@@ -91,7 +93,7 @@ export const HomePageData = () => {
             setCats(response.data.results);
         })
         .catch(error => {
-            console.error(error);
+            // console.error(error);
         });
 
     axios.get(baseUrl + '/product/homepage/')
@@ -102,7 +104,7 @@ export const HomePageData = () => {
             setBrands(response.data.brands);
         })
         .catch(error => {
-            console.error(error);
+            // console.error(error);
         });
 
     return {

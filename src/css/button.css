@@ -413,3 +413,53 @@
         }
     }
 }
+
+.tab {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &.t1 {
+        button {
+            border: none;
+            outline: none;
+            background: none;
+
+            text-decoration: none;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+
+            color: #667085;
+
+            padding: 32px;
+
+            &.active {
+                font-weight: 700;
+                color: #D19E4C;
+                position: relative;
+
+                &::before {
+                    content: url('../../public/images/btn.active.svg');
+                    position: absolute;
+                    bottom: 0;
+                    left: calc(50% - 55px);
+                    /* box-shadow: 0 10px 100px 5px; */
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .tab {
+        max-width: 100%;
+        justify-content: space-evenly;
+
+        button {
+            padding: 32px 0 !important;
+        }
+    }
+}

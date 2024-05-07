@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import Layout from './Layout';
 
 import '../css/homepage.css';
@@ -8,10 +7,22 @@ import { Categories, HomePageData, addToCart, removeFromCart } from '../API';
 
 const HomePage = () => {
     const data = HomePageData();
+    const allProducts = data.recentProducts.concat(data.mostSoldProducts, data.highestRatedProducts);
+
+    const handleProducts = (e) => {
+        let tablinks = document.getElementsByClassName('products-tab-link');
+        for (let i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(' active', '');
+        }
+
+        let tabcontent = document.querySelector('#featured .tab-content');
+        tabcontent.className = "tab-content " + e.target.id;
+        e.target.className += ' active';
+    }
 
     return (
         <Layout>
-            <header class="header homepage-header container">
+            <header class="container header homepage-header">
                 <div class="slider">
                     <img class="slide" src={"/images/slides/" + data.slide.id + ".png"} alt="" />
                     <a href={"/product/" + data.slide.id}>Shop now
@@ -54,123 +65,131 @@ const HomePage = () => {
                 </div>
             </section>
 
-            <section id="featured" class="container">
-                <div class="section-title">
-                    <h2 className="title">Recent Products</h2>
-                    {/* <div class="tabs">
-                        <button id="all">All</button>
-                        <button id="nft">NFT</button>
-                        <button id="offers">Offers</button>
-                        <button id="latest">Latest</button>
-                    </div> */}
-                </div>
-                <div id="products">
-                    {
-                        data.recentProducts.slice(0, 4).map(product => (
-                            <div class="product-card">
-                                <a href={"/product/" + product.id + "/"}>
-                                    <img src={"/images/products/" + product.id + ".png"} alt="" />
-                                </a>
-                                <div class="info">
-                                    <h4 class="title">{product.name}</h4>
-                                    <div class="cart">
-                                        <div class="cost">
-                                            <h5 class="off">{"$" + product.current_price.price}</h5>
-                                            <h4 class="final">{"$" + product.current_price.discount_price}</h4>
-                                        </div>
-                                        <div class="buttons">
-                                            <button class="remove" onClick={() => removeFromCart(product.id)}>
-                                                <img src="/images/icons/icon.recyclebin.svg" />
-                                            </button>
-                                            <button class="add" onClick={() => addToCart(product.id)}>
-                                                <img src="/images/icons/icon.addtocart.svg" />
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </section>
-
-            <section id="featured" class="container">
-                <div class="section-title">
-                    <h2 className="title">Most Sold Products</h2>
-                    {/* <div class="tabs">
-                        <button id="all">All</button>
-                        <button id="nft">NFT</button>
-                        <button id="offers">Offers</button>
-                        <button id="latest">Latest</button>
-                    </div> */}
-                </div>
-                <div id="products">
-                    {
-                        data.mostSoldProducts.slice(0, 4).map(product => (
-                            <div class="product-card">
-                                <a href={"/product/" + product.id + "/"}>
-                                    <img src={"/images/products/" + product.id + ".png"} alt="" />
-                                </a>
-                                <div class="info">
-                                    <h4 class="title">{product.name}</h4>
-                                    <div class="cart">
-                                        <div class="cost">
-                                            <h5 class="off">{"$" + product.current_price.price}</h5>
-                                            <h4 class="final">{"$" + product.current_price.discount_price}</h4>
-                                        </div>
-                                        <div class="buttons">
-                                            <button class="remove" onClick={() => removeFromCart(product.id)}>
-                                                <img src="/images/icons/icon.recyclebin.svg" />
-                                            </button>
-                                            <button class="add" onClick={() => addToCart(product.id)}>
-                                                <img src="/images/icons/icon.addtocart.svg" />
-                                            </button>
+            <section id="featured">
+                <div className='container'>
+                    <div class="section-title">
+                        <h2 className="title">Featured</h2>
+                        <span class="tab t1">
+                            <button className='products-tab-link active' id="all" onClick={handleProducts}>All</button>
+                            <button className='products-tab-link' id="nft" onClick={handleProducts}>NFT</button>
+                            <button className='products-tab-link' id="offers" onClick={handleProducts}>Offers</button>
+                            <button className='products-tab-link' id="latest" onClick={handleProducts}>Latest</button>
+                        </span>
+                    </div>
+                    <div className='tab-content all'>
+                        <div class="products" id="all">
+                            {
+                                allProducts.slice(0, 8).map(product => (
+                                    <div class="product-card">
+                                        <a href={"/product/" + product.id + "/"}>
+                                            <img src={"/images/products/" + product.id + ".png"} alt="" />
+                                        </a>
+                                        <div class="info">
+                                            <h4 class="title">{product.name}</h4>
+                                            <div class="cart">
+                                                <div class="cost">
+                                                    <h5 class="off">{"$" + product.current_price.price}</h5>
+                                                    <h4 class="final">{"$" + product.current_price.discount_price}</h4>
+                                                </div>
+                                                <div class="buttons">
+                                                    <button class="remove" onClick={() => removeFromCart(product.id)}>
+                                                        <img src="/images/icons/icon.recyclebin.svg" />
+                                                    </button>
+                                                    <button class="add" onClick={() => addToCart(product.id)}>
+                                                        <img src="/images/icons/icon.addtocart.svg" />
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </section>
-
-            <section id="featured" class="container">
-                <div class="section-title">
-                    <h2 className="title">Recent Products</h2>
-                    {/* <div class="tabs">
-                        <button id="all">All</button>
-                        <button id="nft">NFT</button>
-                        <button id="offers">Offers</button>
-                        <button id="latest">Latest</button>
-                    </div> */}
-                </div>
-                <div id="products">
-                    {
-                        data.recentProducts.slice(0, 4).map(product => (
-                            <div class="product-card">
-                                <a href={"/product/" + product.id + "/"}>
-                                    <img src={"/images/products/" + product.id + ".png"} alt="" />
-                                </a>
-                                <div class="info">
-                                    <h4 class="title">{product.name}</h4>
-                                    <div class="cart">
-                                        <div class="cost">
-                                            <h5 class="off">{"$" + product.current_price.price}</h5>
-                                            <h4 class="final">{"$" + product.current_price.discount_price}</h4>
-                                        </div>
-                                        <div class="buttons">
-                                            <button class="remove" onClick={() => removeFromCart(product.id)}>
-                                                <img src="/images/icons/icon.recyclebin.svg" />
-                                            </button>
-                                            <button class="add" onClick={() => addToCart(product.id)}>
-                                                <img src="/images/icons/icon.addtocart.svg" />
-                                            </button>
+                                ))
+                            }
+                        </div>
+                        <div class="products" id="nft">
+                            {
+                                data.recentProducts.map(product => (
+                                    <div class="product-card">
+                                        <a href={"/product/" + product.id + "/"}>
+                                            <img src={"/images/products/" + product.id + ".png"} alt="" />
+                                        </a>
+                                        <div class="info">
+                                            <h4 class="title">{product.name}</h4>
+                                            <div class="cart">
+                                                <div class="cost">
+                                                    <h5 class="off">{"$" + product.current_price.price}</h5>
+                                                    <h4 class="final">{"$" + product.current_price.discount_price}</h4>
+                                                </div>
+                                                <div class="buttons">
+                                                    <button class="remove" onClick={() => removeFromCart(product.id)}>
+                                                        <img src="/images/icons/icon.recyclebin.svg" />
+                                                    </button>
+                                                    <button class="add" onClick={() => addToCart(product.id)}>
+                                                        <img src="/images/icons/icon.addtocart.svg" />
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        ))
-                    }
+                                ))
+                            }
+                        </div>
+                        <div class="products" id="offers">
+                            {
+                                data.mostSoldProducts.map(product => (
+                                    <div class="product-card">
+                                        <a href={"/product/" + product.id + "/"}>
+                                            <img src={"/images/products/" + product.id + ".png"} alt="" />
+                                        </a>
+                                        <div class="info">
+                                            <h4 class="title">{product.name}</h4>
+                                            <div class="cart">
+                                                <div class="cost">
+                                                    <h5 class="off">{"$" + product.current_price.price}</h5>
+                                                    <h4 class="final">{"$" + product.current_price.discount_price}</h4>
+                                                </div>
+                                                <div class="buttons">
+                                                    <button class="remove" onClick={() => removeFromCart(product.id)}>
+                                                        <img src="/images/icons/icon.recyclebin.svg" />
+                                                    </button>
+                                                    <button class="add" onClick={() => addToCart(product.id)}>
+                                                        <img src="/images/icons/icon.addtocart.svg" />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                        <div class="products" id="latest">
+                            {
+                                data.recentProducts.map(product => (
+                                    <div class="product-card">
+                                        <a href={"/product/" + product.id + "/"}>
+                                            <img src={"/images/products/" + product.id + ".png"} alt="" />
+                                        </a>
+                                        <div class="info">
+                                            <h4 class="title">{product.name}</h4>
+                                            <div class="cart">
+                                                <div class="cost">
+                                                    <h5 class="off">{"$" + product.current_price.price}</h5>
+                                                    <h4 class="final">{"$" + product.current_price.discount_price}</h4>
+                                                </div>
+                                                <div class="buttons">
+                                                    <button class="remove" onClick={() => removeFromCart(product.id)}>
+                                                        <img src="/images/icons/icon.recyclebin.svg" />
+                                                    </button>
+                                                    <button class="add" onClick={() => addToCart(product.id)}>
+                                                        <img src="/images/icons/icon.addtocart.svg" />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -178,7 +197,14 @@ const HomePage = () => {
                 <div class="section-title">
                     <h2 class="title">Brands</h2>
                 </div>
-                <ul id="brands-frame">
+                <div id="brands-frame">
+                    {
+                        Array.from({ length: 12 }, (value, index) => (
+                            <img className='brand' src={"/images/brands/" + index + ".svg"} alt="" />
+                        ))
+                    }
+                </div>
+                {/* <ul id="brands-frame">
                     {
                         data.brands.map(brand => (
                             <li class="brand">
@@ -186,7 +212,7 @@ const HomePage = () => {
                             </li>
                         ))
                     }
-                </ul>
+                </ul> */}
                 <div id="sellers">
                     <img src="/images/icons/icon.seller.svg" alt="" />
                     <h2 class="title">Unleash the full power of data</h2>
@@ -205,6 +231,99 @@ const HomePage = () => {
                             <p>Global Artworks</p>
                         </li>
                     </ul>
+                </div>
+            </section>
+
+            <section id="blog" class="container">
+                <div class="section-title">
+                    <h2 class="title">Blog</h2>
+                </div>
+                <div id="posts">
+                    <div class="post">
+                        <img class="post-header" src="/images/blog/post1.png" alt="" />
+                        <div class="post-info">
+                            <h3 class="post-title">Lorem ipsum dolor sit amet consectetur.</h3>
+                            <p class="post-abstract">Lorem ipsum dolor sit amet consectetur. Eget arcu velit tempor ut nunc. Eu
+                                cras
+                                magna eget posuere
+                                sed.</p>
+                            <span class="post-author">
+                                <p class="time">10 min</p>
+                                <p class="author">
+                                    <img class="author-pic" src="/images/blog/avatar.png" alt="" />
+                                    Roosevelt J. Ellison
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img class="post-header" src="/images/blog/post2.png" alt="" />
+                        <div class="post-info">
+                            <h3 class="post-title">Lorem ipsum dolor sit amet consectetur.</h3>
+                            <p class="post-abstract">Lorem ipsum dolor sit amet consectetur. Eget arcu velit tempor ut nunc. Eu
+                                cras
+                                magna eget posuere
+                                sed.</p>
+                            <span class="post-author">
+                                <p class="time">10 min</p>
+                                <p class="author">
+                                    <img class="author-pic" src="/images/blog/avatar.png" alt="" />
+                                    Roosevelt J. Ellison
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img class="post-header" src="/images/blog/post3.png" alt="" />
+                        <div class="post-info">
+                            <h3 class="post-title">Lorem ipsum dolor sit amet consectetur.</h3>
+                            <p class="post-abstract">Lorem ipsum dolor sit amet consectetur. Eget arcu velit tempor ut nunc. Eu
+                                cras
+                                magna eget posuere
+                                sed.</p>
+                            <span class="post-author">
+                                <p class="time">10 min</p>
+                                <p class="author">
+                                    <img class="author-pic" src="/images/blog/avatar.png" alt="" />
+                                    Roosevelt J. Ellison
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img class="post-header" src="/images/blog/post4.png" alt="" />
+                        <div class="post-info">
+                            <h3 class="post-title">Lorem ipsum dolor sit amet consectetur.</h3>
+                            <p class="post-abstract">Lorem ipsum dolor sit amet consectetur. Eget arcu velit tempor ut nunc. Eu
+                                cras
+                                magna eget posuere
+                                sed.</p>
+                            <span class="post-author">
+                                <p class="time">10 min</p>
+                                <p class="author">
+                                    <img class="author-pic" src="/images/blog/avatar.png" alt="" />
+                                    Roosevelt J. Ellison
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img class="post-header" src="/images/blog/post5.png" alt="" />
+                        <div class="post-info">
+                            <h3 class="post-title">Lorem ipsum dolor sit amet consectetur.</h3>
+                            <p class="post-abstract">Lorem ipsum dolor sit amet consectetur. Eget arcu velit tempor ut nunc. Eu
+                                cras
+                                magna eget posuere
+                                sed.</p>
+                            <span class="post-author">
+                                <p class="time">10 min</p>
+                                <p class="author">
+                                    <img class="author-pic" src="/images/blog/avatar.png" alt="" />
+                                    Roosevelt J. Ellison
+                                </p>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
