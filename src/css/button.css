@@ -451,6 +451,35 @@
             }
         }
     }
+
+    &.t2 {
+        display: inline-flex;
+        border-radius: 200px;
+        border: 1px solid lightgray;
+        padding: 4px;
+
+        button {
+            border: none;
+            outline: none;
+            background: none;
+
+            text-decoration: none;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+
+            color: #333;
+            border-radius: 200px;
+
+            padding: 16px 24px;
+
+            &.active {
+                font-weight: 500;
+                background: #3BCE99;
+                color: #fff;
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 600px) {

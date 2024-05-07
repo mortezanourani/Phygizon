@@ -20,6 +20,26 @@ const HomePage = () => {
         e.target.className += ' active';
     }
 
+    const handleFaqs = (e) => {
+        let tablinks = document.getElementsByClassName('faqs-tab-link');
+        for (let i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(' active', '');
+        }
+
+        let tabcontent = document.querySelector('#faqs .tab-content');
+        tabcontent.className = "tab-content " + e.target.id;
+        e.target.className += ' active';
+    }
+
+    const faqToggle = (e) => {
+        const questions = document.getElementsByClassName('question');
+        for (let i = 0; i < questions.length; i++) {
+            questions[i].classList.remove('collapsed');
+        }
+
+        e.target.parentElement.classList.toggle('collapsed');
+    }
+
     return (
         <Layout>
             <header class="container header homepage-header">
@@ -324,6 +344,55 @@ const HomePage = () => {
                             </span>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <section id="faqs" className="container">
+                <div className="section-title">
+                    <h2 className="title">Frequently Asked Questions</h2>
+                    <span className="tab t2">
+                        <button className='faqs-tab-link active' id="general" onClick={handleFaqs}>General</button>
+                        <button className='faqs-tab-link' id="getstart" onClick={handleFaqs}>Get start</button>
+                        <button className='faqs-tab-link' id="create" onClick={handleFaqs}>Create</button>
+                        <button className='faqs-tab-link' id="campaign" onClick={handleFaqs}>Campaign</button>
+                        <button className='faqs-tab-link' id="listing" onClick={handleFaqs}>Listing</button>
+                    </span>
+                </div>
+                <div className='tab-content general'>
+                    <div id='general'>
+                        <div className='question collapsed'>
+                            <h3 onClick={faqToggle}>What is the capital of France?</h3>
+                            <p>The capital of France is Paris. It's known for its art, fashion, gastronomy, and culture, and is home to iconic landmarks like Eiffel Tower and the Louvre Museum.</p>
+                        </div>
+                        <div className='question'>
+                            <h3 onClick={faqToggle}>How does the internet work?</h3>
+                            <p>The internet is a global network of interconnected computers and servers that communicate using standardized protocols. Data is sent in small packets, which are routed through various pathways to reach their destinations, allowing for information sharing and communication across the globe.</p>
+                        </div>
+                        <div className='question'>
+                            <h3 onClick={faqToggle}>How do I backup my computer data?</h3>
+                            <p>To backup computer data, you can use external hard drives, cloud storage services, or backup software. It's important to regularly back up important files and documents to protect against data loss due to hardware failure, accidents or malware.</p>
+                        </div>
+                        <div className='question'>
+                            <h3 onClick={faqToggle}>How can I reduce my carbon footprint?</h3>
+                            <p>The internet is a global network of interconnected computers and servers that communicate using standardized protocols. Data is sent in small packets, which are routed through various pathways to reach their destinations, allowing for information sharing and communication across the globe.</p>
+                        </div>
+                        <div className='question'>
+                            <h3 onClick={faqToggle}>What is healthy diet?</h3>
+                            <p>The capital of France is Paris. It's known for its art, fashion, gastronomy, and culture, and is home to iconic landmarks like Eiffel Tower and the Louvre Museum.</p>
+                        </div>
+                    </div>
+                    <div id='getstart'>
+
+                    </div>
+                    <div id='campaign'>
+
+                    </div>
+                </div>
+                <div className='getintouch'>
+                    <img src='/images/icons/icon.homepage.getintouch.png' alt="" />
+                    <h3>Still have questions?</h3>
+                    <p>Can’t find the answer you’re looking for? Please chat to our friendly team.</p>
+                    <a href="#" className='btn cta xxl'>Get in touch</a>
                 </div>
             </section>
 
