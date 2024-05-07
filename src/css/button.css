@@ -122,6 +122,10 @@
 
             color: #FFFFFF;
 
+            &.dark {
+                color: #182230;
+            }
+
             &:hover {
                 background: #F9FAFB;
                 border: 1px solid #D0D5DD;

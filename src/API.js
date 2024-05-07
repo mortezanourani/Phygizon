@@ -11,6 +11,62 @@ const apiHeaders = {
 
 
 
+/* Get User ID */
+export const GetUserId = () => {
+    const [userId, setUserId] = useState(0);
+
+    axios.get(baseUrl + '/user/profile/info', {
+        headers: apiHeaders,
+    }).then(response => {
+        if (response.status === 200) {
+            setUserId(response.data.id);
+        }
+    }).catch();
+
+    return userId;
+}
+
+
+
+/* Get Dashboard Items */
+export const GetDashboard = () => {
+    const [name, setName] = useState(null);
+    const [totalCount, setTotalCount] = useState(null);
+    const [statusCount, setStatusCount] = useState([]);
+    const [avatar, setAvatar] = useState(null);
+
+    axios.get(baseUrl + '/user/profile/dashboard/', {
+        headers: apiHeaders,
+    }).then(response => {
+        if (response.status === 200) {
+            setName(response.data.user);
+            setTotalCount(response.data.total_orders.total_order_count);
+            setStatusCount(response.data.total_orders.order_counts_by_status);
+        }
+    }).catch(error => {
+        // alert(error.message);
+    });
+
+    axios.get(baseUrl + '/user/profile/info/', {
+        headers: apiHeaders,
+    }).then(response => {
+        if (response.status === 200) {
+            setAvatar(response.data.avatar);
+        }
+    }).catch(error => {
+        // alert(error.message);
+    });
+
+    return {
+        name: name,
+        avatar: avatar,
+        total: totalCount,
+        statusCount: statusCount,
+    };
+}
+
+
+
 /* api: product_homepage_list */
 export const HomePageData = () => {
     const [slide, setSlide] = useState({});
@@ -93,7 +149,6 @@ export const removeFromCart = (id) => {
     axios.patch(baseUrl + '/order/carts/update_cart_item/',
         {
             "product": id,
-            "is_active": false
         },
         {
             headers: apiHeaders,
@@ -270,19 +325,28 @@ export const Cart = () => {
     const [items, setItems] = useState([]);
     const [price, setPrice] = useState("");
 
-    axios.get(baseUrl + '/order/carts/1/', {
+    axios.get(baseUrl + '/order/carts/', {
         headers: apiHeaders,
-    })
-        .then(response => {
-            if (response.status === 200) {
+    }).then(response => {
+        if (response.status === 200) {
+            axios.get(baseUrl + '/order/carts/' + response.data.results[0].id, {
+                headers: apiHeaders,
+            }).then(response => {
                 setUser(response.data.user);
                 setStatus(response.data.status);
                 setItems(response.data.items);
                 setPrice(response.data.total_price);
-            }
-        }).catch(error => {
-            alert(error.response.status);
-        });
+            }).catch(error => {
+                alert(error.message);
+            })
+        }
+    }).catch(error => {
+        if (error.response.status === 404) {
+            alert('Your cart is empty.');
+            return window.location.replace('/');
+        }
+        alert(error.message);
+    });
 
     return {
         user: user,
@@ -312,6 +376,102 @@ export const Addresses = () => {
         count: count,
         items: addresses,
     }
+}
+
+
+
+/* api: user_address_read */
+export const GetAddress = (id) => {
+    const [address, setAddress] = useState({});
+    // const [title, setTitle] = useState(null);
+    // const [postal_code, setPostaCode] = useState(null);
+    // const [country, setCountry] = useState(null);
+    // const [state, setState] = useState(null);
+    // const [city, setCity] = useState(null);
+    // const [postal_address, setPostalAddress] = useState(null);
+    // const [latitude, setLatitude] = useState("0");
+    // const [longitude, setLongitude] = useState("0");
+    // const [user, setUser] = useState(0);
+
+    axios.get(baseUrl + '/user/address/' + id, {
+        headers: apiHeaders,
+    }).then(response => {
+        if (response.status === 200) {
+            setAddress(response.data);
+            // setTitle(response.data.title);
+            // setPostaCode(response.data.postal_code);
+            // setCountry(response.data.country);
+            // setState(response.data.state);
+            // setCity(response.data.city);
+            // setPostalAddress(response.data.postal_address);
+            // setLatitude(response.data.latitude);
+            // setLongitude(response.data.longitude);
+            // setUser(response.data.user);
+        }
+    }).catch(error => {
+        alert(error.response.status);
+    });
+
+    return address;
+    // return {
+    //     title: title,
+    //     postal_code: postal_code,
+    //     country: country,
+    //     state: state,
+    //     city: city,
+    //     postal_address: postal_address,
+    //     latitude: latitude,
+    //     longitude: longitude,
+    //     user: user
+    // };
+}
+
+
+
+/* api: user_address_create */
+export const SetAddress = (address) => {
+    axios.post(baseUrl + '/user/address/', address,
+        {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 201) {
+                window.location.replace('/dashboard/address/');
+            }
+        }).catch(error => {
+            alert(error.message);
+        });
+}
+
+
+
+/* api: user_address_update */
+export const UpdateAddress = (id, address) => {
+    axios.patch(baseUrl + '/user/address/' + id, address,
+        {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                window.location.replace('/dashboard/address/');
+            }
+        }).catch(error => {
+            alert(error.message);
+        });
+}
+
+
+
+/* api: user_address_delete */
+export const DeleteAddress = (id) => {
+    axios.delete(baseUrl + '/user/address/' + id,
+        {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 204) {
+                window.location.replace('/dashboard/address/');
+            }
+        }).catch(error => {
+            alert(error.message);
+        });
 }
 
 
@@ -350,7 +510,7 @@ export const Pay = (methodCode) => {
             headers: apiHeaders,
         }).then(response => {
             if (response.status === 200) {
-                window.location.replace(response.data.url)
+                window.location.replace('/dashboard/orders/')
             }
         }).catch(error => {
             let errorCode = error.response.status;
@@ -370,7 +530,7 @@ export const Pay = (methodCode) => {
 
 
 /* api: user_orders_list */
-export const Orders = () => {
+export const GetOrders = () => {
     const [count, setCount] = useState(null);
     const [items, setItems] = useState([]);
 
@@ -390,5 +550,78 @@ export const Orders = () => {
         items: items,
     };
 }
+
+
+
+/* api: user_orders_read */
+export const OrderDetails = (id) => {
+    const [status, setStatus] = useState(null);
+    const [number, setNumber] = useState(null);
+    const [tax, settax] = useState(null);
+    const [shippingPrice, setShippingPrice] = useState(null);
+    const [discount, setDiscount] = useState(null);
+    const [address, setAddress] = useState(null);
+    const [totalPrice, setTotalPrice] = useState(null);
+    const [items, setItems] = useState([]);
+    const [insertData, setInsertDate] = useState(null);
+    const [updateDate, setUpdateDate] = useState(null);
+
+    axios.get(baseUrl + '/user/orders/' + id, {
+        headers: apiHeaders,
+    }).then(response => {
+        if (response.status === 200) {
+            const data = response.data;
+            setStatus(data.order_status);
+            setNumber(data.order_number);
+            settax(data.tax);
+            setShippingPrice(data.shipping_price);
+            setDiscount(data.discount);
+            setAddress(data.address);
+            setTotalPrice(data.total_price);
+            setItems(data.items);
+            setInsertDate(data.insert_dt);
+            setUpdateDate(data.update_dt);
+        }
+    }).catch(error => {
+        // alert(error.message);
+    });
+
+    return {
+        status: status,
+        number: number,
+        tax: tax,
+        shippingPrice: shippingPrice,
+        discount: discount,
+        address: address,
+        totalPrice: totalPrice,
+        items: items,
+        insertData: insertData,
+        updateDate: updateDate
+    };
+}
+
+
+
+/* api: user_faqs_list */
+export const FAQs = () => {
+    const [count, setCount] = useState(null);
+    const [questions, setQuestions] = useState([]);
+
+    axios.get(baseUrl + '/user/faqs/')
+        .then(response => {
+            if (response.status === 200) {
+                setCount(response.data.count);
+                setQuestions(response.data.results);
+            }
+        }).catch(error => {
+            alert(error.response.status);
+        });
+
+    return {
+        count: count,
+        items: questions,
+    };
+}
+
 
 

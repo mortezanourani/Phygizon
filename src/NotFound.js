@@ -4,7 +4,9 @@ import Layout from "./website/Layout";
 const NotFound = () => {
     return (
         <Layout>
-            <h1>Error 404: Page Not Found!</h1>
+            <div className="notfound">
+                <img src="/images/404.webp" alt="Page Not Found" />
+            </div>
         </Layout>
     )
 }

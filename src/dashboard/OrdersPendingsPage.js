@@ -2,8 +2,11 @@ import React from "react";
 import Layout from './Layout';
 
 import '../css/orders.css';
+import { GetOrders } from "../API";
 
 const PendingsPage = () => {
+    const orders = GetOrders();
+
     return (
         <Layout>
             <div className="pendings" id="pendings">
@@ -16,58 +19,42 @@ const PendingsPage = () => {
                     <a href="/dashboard/orders/canceled"><button className="btn md text gray">Canceled</button></a>
                 </nav>
                 <div className="records">
-                    <div className="order-item">
-                        <div>
-                            <p>Order ID <b>18441</b></p>
-                            <p>Price <b>$85</b></p>
-                        </div>
-                        <div>
-                            <p>RayPoint <b>150</b></p>
-                            <p>Date <b>16 April 2024</b></p>
-                        </div>
-                        <div>
-                            <p>Asset <span className="badge green">NFT</span></p>
-                            <p>Status <span className="badge red">Waiting</span></p>
-                        </div>
-                        <div>
-                            <div className="album">
-                                <img src="/images/products/product.png" alt="" />
-                                <img src="/images/products/product.png" alt="" />
-                                <img src="/images/products/product.png" alt="" />
-                                <img src="/images/products/product.png" alt="" />
-                            </div>
-                            <a href="#" className="btn md ghost action">
-                                Finalize your purchase
-                                <img src="/images/icons/btnarrow.svg" alt="" />
-                            </a>
-                        </div>
-                    </div>
-                    <div className="order-item">
-                        <div>
-                            <p>Order ID <b>18441</b></p>
-                            <p>Price <b>$85</b></p>
-                        </div>
-                        <div>
-                            <p>RayPoint <b>150</b></p>
-                            <p>Date <b>16 April 2024</b></p>
-                        </div>
-                        <div>
-                            <p>Asset <span className="badge green">NFT</span></p>
-                            <p>Status <span className="badge red">Waiting</span></p>
-                        </div>
-                        <div>
-                            <div className="album">
-                                <img src="/images/products/product.png" alt="" />
-                                <img src="/images/products/product.png" alt="" />
-                                <img src="/images/products/product.png" alt="" />
-                                <img src="/images/products/product.png" alt="" />
-                            </div>
-                            <a href="#" className="btn md ghost action">
-                                Finalize your purchase
-                                <img src="/images/icons/btnarrow.svg" alt="" />
-                            </a>
-                        </div>
-                    </div>
+                    {
+                        orders.count === null ? (
+                            <h3>Loading...</h3>
+                        ) : (
+                            orders.items.map(order => (
+                                order.order_status === 1 ? (
+                                    <div className="order-item">
+                                        <div>
+                                            <p>Order ID <b>{order.id}</b></p>
+                                            <p>Price <b>$ {order.total_price}</b></p>
+                                        </div>
+                                        <div>
+                                            <p>RayPoint <b>0</b></p>
+                                            <p>Date <b>{order.insert_dt}</b></p>
+                                        </div>
+                                        <div>
+                                            <p>Asset <span className="badge green">NFT</span></p>
+                                            <p>Status <span className="badge red">Pending</span></p>
+                                        </div>
+                                        <div>
+                                            <div className="album">
+                                                <img src="/images/products/product.png" alt="" />
+                                                <img src="/images/products/product.png" alt="" />
+                                                <img src="/images/products/product.png" alt="" />
+                                                <img src="/images/products/product.png" alt="" />
+                                            </div>
+                                            <a href={"/dashboard/order/" + order.id} className="btn md ghost action">
+                                                Finalize your purchase
+                                                <img src="/images/icons/btnarrow.svg" alt="" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                ) : (null)
+                            ))
+                        )
+                    }
                 </div>
             </div>
         </Layout>

@@ -14,12 +14,17 @@ import SignupPage from './website/SignupPage';
 import SignupPasswordPage from './website/SignupPasswordPage';
 
 import Dashboard from './dashboard/Dashboard';
+import AddressPage from './dashboard/AddressPage';
+import AddressAddPage from './dashboard/AddressAddPage';
+import AddressEditPage from './dashboard/AddressEditPage';
 import PlaygroundPage from './dashboard/PlaygroundPage';
 import PaymentHistoryPage from './dashboard/FinancePaymentHistoryPage';
 import WalletPage from './dashboard/FinanceWalletPage';
 import PendingsPage from './dashboard/OrdersPendingsPage';
 import WaitingsPage from './dashboard/OrdersWaitingsPage';
+import InProgressPage from './dashboard/OrdersInProgressPage';
 import DeliveredsPage from './dashboard/OrdersDeliveredsPage';
+import OrderDetailsPage from './dashboard/OrderDetailsPage';
 import HelpCenterPage from './website/HelpCenterPage';
 import LearningPage from './website/HelpCenterLearningPage';
 import BlogPage from './website/HelpCenterBlogPage';
@@ -48,12 +53,17 @@ root.render(
         <Route path="/cart/" Component={CartPage} />
 
         <Route exact path="/dashboard/" Component={Dashboard} />
+        <Route path='/dashboard/address/' Component={AddressPage} />
+        <Route path='/dashboard/address/add/' Component={AddressAddPage} />
+        {/* <Route path='/dashboard/address/*' Component={AddressEditPage} /> */}
         <Route path="/dashboard/playground/" Component={PlaygroundPage} />
         <Route path="/dashboard/finance/" Component={PaymentHistoryPage} />
         <Route path="/dashboard/finance/wallet/" Component={WalletPage} />
         <Route path="/dashboard/orders/" Component={PendingsPage} />
         <Route path="/dashboard/orders/waiting/" Component={WaitingsPage} />
+        <Route path="/dashboard/orders/inprogress/" Component={InProgressPage} />
         <Route path="/dashboard/orders/delivered/" Component={DeliveredsPage} />
+        <Route path="/dashboard/order/*" Component={OrderDetailsPage} />
 
         <Route path="*" Component={NotFound} />
       </Routes>

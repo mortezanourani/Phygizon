@@ -2,65 +2,79 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import { GetDashboard } from '../API';
+
 import Layout from './Layout';
 
 const Dashboard = () => {
-    const [profile, setProfile] = useState({});
-    const [orders, setOrders] = useState({});
+    // const [profile, setProfile] = useState({});
+    // const [orders, setOrders] = useState({});
 
-    const [avatar, setAvatar] = useState("");
-    const [totalOrderCount, setTotalOrderCount] = useState(0);
+    // const [avatar, setAvatar] = useState("");
+    // const [totalOrderCount, setTotalOrderCount] = useState(0);
 
-    useEffect(() => {
-        axios.get('https://phygizone.darkube.app/v1/user/profile/info/', {
-            headers: {
-                'Authorization': localStorage.getItem('authorization')
-            }
-        }).then(response => {
-            setAvatar(response.data.avatar);
-            // setProfile(response.data);
-        }).catch(error => {
-            throw error;
-        });
+    // useEffect(() => {
+    //     axios.get('https://phygizone.darkube.app/v1/user/profile/info/', {
+    //         headers: {
+    //             'Authorization': localStorage.getItem('authorization')
+    //         }
+    //     }).then(response => {
+    //         setAvatar(response.data.avatar);
+    //         // setProfile(response.data);
+    //     }).catch(error => {
+    //         throw error;
+    //     });
 
-        axios.get('https://phygizone.darkube.app/v1/user/profile/dashboard/', {
-            headers: {
-                'Authorization': localStorage.getItem('authorization')
-            }
-        }).then(response => {
-            // setOrders(response.data);
-            setTotalOrderCount(response.data.total_orders.total_order_count);
-        }).catch(error => {
-            throw error;
-        });
-    });
+    //     axios.get('https://phygizone.darkube.app/v1/user/profile/dashboard/', {
+    //         headers: {
+    //             'Authorization': localStorage.getItem('authorization')
+    //         }
+    //     }).then(response => {
+    //         // setOrders(response.data);
+    //         setTotalOrderCount(response.data.total_orders.total_order_count);
+    //     }).catch(error => {
+    //         throw error;
+    //     });
+    // });
+
+    const info = GetDashboard();
 
     return (
         <Layout>
             <div id="dashboard">
                 <div className="name">
                     <div className="picture">
-                        <img src={"/images/users/" + avatar + ".png"} alt="" />
+                        <img src={"/images/users/" + info.avatar + ".png"} alt="" />
                     </div>
                     <span>
-                        <p>Hi, Good Evening</p>
-                        {/* <h3>{profile.first_name}!
+                        <p>Hi, Welcome</p>
+                        <h3>{info.name}!
                             <span className='lvl'>
                                 <p className='number'>L9</p>
                                 <img src="/images/icons/icon.profile.level.tag.svg" />
                             </span>
-                        </h3> */}
+                        </h3>
                     </span>
                 </div>
                 <div className="orders">
                     <div className="card all">
-                        <h1>{totalOrderCount}</h1>
+                        <h1>{info.total}</h1>
                         <p>All Orders</p>
-                        <h3>22.94 MGC</h3>
-                        <p>$7322.123</p>
+                        {/* <h3>22.94 MGC</h3>
+                        <p>$7322.123</p> */}
                     </div>
                     <div className="filters">
-                        <div className="card">
+                        {
+                            info.statusCount.map(order => (
+                                <div className="card">
+                                    <img src="/images/icons/icon.dashboard.orders.current.svg" alt="" />
+                                    <p>{order.order_status__text}</p>
+                                    <h3>{order.count}</h3>
+                                    <a href="/dashboard/orders/" className="lnk sm gray">See all</a>
+                                </div>
+                            ))
+                        }
+                        {/* <div className="card">
                             <img src="/images/icons/icon.dashboard.orders.current.svg" alt="" />
                             <p>Current</p>
                             <h3>24</h3>
@@ -89,8 +103,7 @@ const Dashboard = () => {
                             <p>The Keeper</p>
                             <h3>4</h3>
                             <a href="/dashboard/orders/keeper/" className="lnk sm gray">See all</a>
-                        </div>
-
+                        </div> */}
                     </div>
                 </div>
                 <div className="wallet">
