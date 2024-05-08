@@ -33,10 +33,10 @@ import ProductsPage from './website/ProductsPage';
 import ProductPage from './website/ProductPage';
 import CategoryProductsPage from './website/CategoryProductsPage';
 import CartPage from './website/CartPage';
+import ComingSoonPage from './website/ComingSoonPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route exact path="/" Component={HomePage} />
@@ -49,6 +49,10 @@ root.render(
         <Route path="/helpcenter/learning/" Component={LearningPage} />
         <Route path="/helpcenter/blog/" Component={BlogPage} />
         <Route path="/helpcenter/faq/" Component={FaqPage} />
+        <Route path="/sellers/" Component={ComingSoonPage} />
+        <Route path="/offers/" Component={ComingSoonPage} />
+        <Route path="/popular/" Component={ComingSoonPage} />
+        <Route path="/categories/" Component={ComingSoonPage} />
 
         <Route path="/cart/" Component={CartPage} />
 
@@ -64,11 +68,9 @@ root.render(
         <Route path="/dashboard/orders/inprogress/" Component={InProgressPage} />
         <Route path="/dashboard/orders/delivered/" Component={DeliveredsPage} />
         <Route path="/dashboard/order/*" Component={OrderDetailsPage} />
-
         <Route path="*" Component={NotFound} />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -82,7 +82,7 @@ const PrimaryNav = () => {
                     </ul>
                     {
                         (window.localStorage.getItem('authorization') === null) ? (
-                            <ul class="navigation-menu">
+                            <ul className="navigation-menu">
                                 <li className="menu-item">
                                     <button className="btn lg text gray" onClick={handleLoginForm}>Login</button>
                                 </li >
@@ -93,7 +93,7 @@ const PrimaryNav = () => {
                                 </li >
                             </ul>
                         ) : (
-                            <ul class="navigation-menu">
+                            <ul className="navigation-menu">
                                 <li className="menu-item">
                                     <a href='/dashboard/'>
                                         <button className="btn md cta">Dashboard</button>

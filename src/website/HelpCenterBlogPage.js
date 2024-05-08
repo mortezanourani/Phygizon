@@ -15,96 +15,96 @@ const BlogPage = () => {
                 description="Resources and insights" />
 
             <section>
-                <div class="tabs">
-                    <button class="btn lg text">Buyers & Customets</button>
-                    <button class="btn lg text">Sellers</button>
+                <div className="tabs">
+                    <button className="btn lg text">Buyers & Customets</button>
+                    <button className="btn lg text">Sellers</button>
                 </div>
-                <div class="recent-post">
-                    <div class="container">
-                        <h2 class="section-title">Recent blog post</h2>
-                        <div class="post">
-                            <img class="post-image" src="/images/blog/recent-post.png" alt="" />
-                            <span class="author-date">
-                                <p class="author">Olivia Rhye</p>
-                                <i class="sep"></i>
-                                <p class="date">20 Jan 2024</p>
+                <div className="recent-post">
+                    <div className="container">
+                        <h2 className="section-title">Recent blog post</h2>
+                        <div className="post">
+                            <img className="post-image" src="/images/blog/recent-post.png" alt="" />
+                            <span className="author-date">
+                                <p className="author">Olivia Rhye</p>
+                                <i className="sep"></i>
+                                <p className="date">20 Jan 2024</p>
                             </span>
-                            <a class="title" href="#">
+                            <a className="title" href="#">
                                 <h2>UX review presentations</h2>
-                                <img class="ext-link" src="/images/icons/icon.external.link.svg" alt="" />
+                                <img className="ext-link" src="/images/icons/icon.external.link.svg" alt="" />
                             </a>
-                            <p class="abstract">How do you create compelling presentations that wow your colleagues and impress
+                            <p className="abstract">How do you create compelling presentations that wow your colleagues and impress
                                 your managers?</p>
-                            <div class="categories">
-                                <a class="badge green" href="#">Design</a>
-                                <a class="badge violet" href="#">Research</a>
-                                <a class="badge red" href="#">Presentation</a>
+                            <div className="categories">
+                                <a className="badge green" href="#">Design</a>
+                                <a className="badge violet" href="#">Research</a>
+                                <a className="badge red" href="#">Presentation</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="blog">
-                    <div class="container">
-                        <h2 class="section-title">All blog posts</h2>
-                        <div class="posts">
-                            <div class="post">
-                                <img class="post-image" src="/images/blog/recent-post.png" alt="" />
-                                <span class="author-date">
-                                    <p class="author">Olivia Rhye</p>
-                                    <i class="sep"></i>
-                                    <p class="date">20 Jan 2024</p>
+                <div className="blog">
+                    <div className="container">
+                        <h2 className="section-title">All blog posts</h2>
+                        <div className="posts">
+                            <div className="post">
+                                <img className="post-image" src="/images/blog/recent-post.png" alt="" />
+                                <span className="author-date">
+                                    <p className="author">Olivia Rhye</p>
+                                    <i className="sep"></i>
+                                    <p className="date">20 Jan 2024</p>
                                 </span>
-                                <a class="title" href="#">
+                                <a className="title" href="#">
                                     <h2>UX review presentations</h2>
-                                    <img class="ext-link" src="/images/icons/icon.external.link.svg" alt="" />
+                                    <img className="ext-link" src="/images/icons/icon.external.link.svg" alt="" />
                                 </a>
-                                <p class="abstract">How do you create compelling presentations that wow your colleagues and
+                                <p className="abstract">How do you create compelling presentations that wow your colleagues and
                                     impress
                                     your managers?</p>
-                                <div class="categories">
-                                    <a class="badge green" href="#">Design</a>
-                                    <a class="badge violet" href="#">Research</a>
-                                    <a class="badge red" href="#">Presentation</a>
+                                <div className="categories">
+                                    <a className="badge green" href="#">Design</a>
+                                    <a className="badge violet" href="#">Research</a>
+                                    <a className="badge red" href="#">Presentation</a>
                                 </div>
                             </div>
-                            <div class="post">
-                                <img class="post-image" src="/images/blog/recent-post.png" alt="" />
-                                <span class="author-date">
-                                    <p class="author">Olivia Rhye</p>
-                                    <i class="sep"></i>
-                                    <p class="date">20 Jan 2024</p>
+                            <div className="post">
+                                <img className="post-image" src="/images/blog/recent-post.png" alt="" />
+                                <span className="author-date">
+                                    <p className="author">Olivia Rhye</p>
+                                    <i className="sep"></i>
+                                    <p className="date">20 Jan 2024</p>
                                 </span>
-                                <a class="title" href="#">
+                                <a className="title" href="#">
                                     <h2>UX review presentations</h2>
-                                    <img class="ext-link" src="/images/icons/icon.external.link.svg" alt="" />
+                                    <img className="ext-link" src="/images/icons/icon.external.link.svg" alt="" />
                                 </a>
-                                <p class="abstract">How do you create compelling presentations that wow your colleagues and
+                                <p className="abstract">How do you create compelling presentations that wow your colleagues and
                                     impress
                                     your managers?</p>
-                                <div class="categories">
-                                    <a class="badge green" href="#">Design</a>
-                                    <a class="badge violet" href="#">Research</a>
-                                    <a class="badge red" href="#">Presentation</a>
+                                <div className="categories">
+                                    <a className="badge green" href="#">Design</a>
+                                    <a className="badge violet" href="#">Research</a>
+                                    <a className="badge red" href="#">Presentation</a>
                                 </div>
                             </div>
-                            <div class="post">
-                                <img class="post-image" src="/images/blog/recent-post.png" alt="" />
-                                <span class="author-date">
-                                    <p class="author">Olivia Rhye</p>
-                                    <i class="sep"></i>
-                                    <p class="date">20 Jan 2024</p>
+                            <div className="post">
+                                <img className="post-image" src="/images/blog/recent-post.png" alt="" />
+                                <span className="author-date">
+                                    <p className="author">Olivia Rhye</p>
+                                    <i className="sep"></i>
+                                    <p className="date">20 Jan 2024</p>
                                 </span>
-                                <a class="title" href="#">
+                                <a className="title" href="#">
                                     <h2>UX review presentations</h2>
-                                    <img class="ext-link" src="/images/icons/icon.external.link.svg" alt="" />
+                                    <img className="ext-link" src="/images/icons/icon.external.link.svg" alt="" />
                                 </a>
-                                <p class="abstract">How do you create compelling presentations that wow your colleagues and
+                                <p className="abstract">How do you create compelling presentations that wow your colleagues and
                                     impress
                                     your managers?</p>
-                                <div class="categories">
-                                    <a class="badge green" href="#">Design</a>
-                                    <a class="badge violet" href="#">Research</a>
-                                    <a class="badge red" href="#">Presentation</a>
+                                <div className="categories">
+                                    <a className="badge green" href="#">Design</a>
+                                    <a className="badge violet" href="#">Research</a>
+                                    <a className="badge red" href="#">Presentation</a>
                                 </div>
                             </div>
                         </div>

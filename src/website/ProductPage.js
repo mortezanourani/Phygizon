@@ -40,19 +40,19 @@ const ProductPage = () => {
                     </div> */}
                 </div>
             </section>
-            <section id="product" class="container">
-                <div class="image">
+            <section id="product" className="container">
+                <div className="image">
                     <img src="/images/product.product.png" alt="" />
                 </div>
-                <div class="product-info">
-                    <h2 class="product-title">{data.name}</h2>
-                    <div class="information">
+                <div className="product-info">
+                    <h2 className="product-title">{data.name}</h2>
+                    <div className="information">
                         <span>Sell By {data.brand.name}</span>
                         <span>Rated {data.rate}</span>
                         <span>Reviews</span>
                     </div>
-                    <div class="options">
-                        <div class="color">
+                    <div className="options">
+                        <div className="color">
                             <label for="">Color</label>
                             <input type="radio" name="color" id={data.color.id} value={data.color.name} />
                             <label for={data.color.id}>{data.color.name}</label>
@@ -61,25 +61,25 @@ const ProductPage = () => {
                             <input type="radio" name="" id="" />Orange
                             <input type="radio" name="" id="" />Red
                         </div>
-                        <div class="size">
+                        <div className="size">
                             <label for="">Size</label>
-                            <input type="radio" name="" id="" class="btn md ghost gray" />Sm
-                            <input type="radio" name="" id="" class="btn md ghost gray" />Md
-                            <input type="radio" name="" id="" class="btn md ghost gray" />Lg
+                            <input type="radio" name="" id="" className="btn md ghost gray" />Sm
+                            <input type="radio" name="" id="" className="btn md ghost gray" />Md
+                            <input type="radio" name="" id="" className="btn md ghost gray" />Lg
                         </div>
-                        <div class="material">
+                        <div className="material">
                             <label for="">Material</label>
                             <input type="radio" name="material" id={data.material.id} value={data.material.name} />
-                            <label for={data.material.id} class="badge">{data.material.name}</label>
+                            <label for={data.material.id} className="badge">{data.material.name}</label>
                             <input id="m1" type="radio" name="material" />
-                            <label for="m1" class="badge">Natural Leather</label>
+                            <label for="m1" className="badge">Natural Leather</label>
                             <input id="m2" type="radio" name="material" />
-                            <label for="m2" class="badge">Artificial Leather</label>
+                            <label for="m2" className="badge">Artificial Leather</label>
                             <input id="m3" type="radio" name="material" />
-                            <label for="m3" class="badge">Plastic</label>
+                            <label for="m3" className="badge">Plastic</label>
                         </div>
                     </div>
-                    <div class="safe-holder">
+                    <div className="safe-holder">
                         <i>icon</i>
                         <span>
                             <h3>Safe Holder</h3>
@@ -88,50 +88,50 @@ const ProductPage = () => {
                         <button>Select</button>
                     </div>
                 </div>
-                <div class="product-menu">
-                    <button class="btn md cta">NFT</button>
-                    <button class="btn md text gray">Save</button>
-                    <button class="btn md text gray">360 View</button>
-                    <button class="btn md text gray">VR View</button>
-                    <button class="btn md text gray">Pricing</button>
-                    <button class="btn md text gray">Compare</button>
-                    <button class="btn md text gray">Share</button>
+                <div className="product-menu">
+                    <button className="btn md cta">NFT</button>
+                    <button className="btn md text gray">Save</button>
+                    <button className="btn md text gray">360 View</button>
+                    <button className="btn md text gray">VR View</button>
+                    <button className="btn md text gray">Pricing</button>
+                    <button className="btn md text gray">Compare</button>
+                    <button className="btn md text gray">Share</button>
                 </div>
             </section>
-            <section class="cart container" id="addtocart">
-                <div class="">
-                    <div class="timer">
-                        <h3 class="title pink">Amazing offer</h3>
-                        <div class="digits-group">
-                            <span class="digit pink">02</span>
-                            <span class="digit pink">09</span>
-                            <span class="digit pink">44</span>
-                            <span class="digit pink">21</span>
+            <section className="cart container" id="addtocart">
+                <div className="">
+                    <div className="timer">
+                        <h3 className="title pink">Amazing offer</h3>
+                        <div className="digits-group">
+                            <span className="digit pink">02</span>
+                            <span className="digit pink">09</span>
+                            <span className="digit pink">44</span>
+                            <span className="digit pink">21</span>
                         </div>
                     </div>
-                    <div class="cost">
-                        <p class="before">{data.currentPrice.price} MGC</p>
-                        <h2 class="after">{data.currentPrice.discount_price} MGC
-                            <p class="dollar">($15.87)</p>
+                    <div className="cost">
+                        <p className="before">{data.currentPrice.price} MGC</p>
+                        <h2 className="after">{data.currentPrice.discount_price} MGC
+                            <p className="dollar">($15.87)</p>
                         </h2>
                     </div>
-                    <div class="action">
-                        <span class="count">
-                            <button class="btn ghost gray">-</button>
+                    <div className="action">
+                        <span className="count">
+                            <button className="btn ghost gray">-</button>
                             <h3>1</h3>
-                            <button class="btn ghost gray">+</button>
+                            <button className="btn ghost gray">+</button>
                         </span>
-                        <button class="btn xl cta" onClick={() => addToCart(productId)}>Add to Cart</button>
+                        <button className="btn xl cta" onClick={() => addToCart(productId)}>Add to Cart</button>
                     </div>
                 </div>
             </section>
             <section>
-                <div class="tabs">
+                <div className="tabs">
                     <button>Details</button>
                     <button>Reviews</button>
                     <button>FAQ</button>
                 </div>
-                <div class="details">
+                <div className="details">
                     <div>
                         <h3>Specification</h3>
                         <table>
@@ -150,10 +150,10 @@ const ProductPage = () => {
                         <div dangerouslySetInnerHTML={{ __html: data.description }} />
                     </div>
                 </div>
-                <div class="reviews">
+                <div className="reviews">
                     {
                         data.comments.map(comment => (
-                            <div class="comment">
+                            <div className="comment">
                                 <div>
                                     <img src={comment.user.avatar} alt="" />
                                     <span>
@@ -187,70 +187,70 @@ const ProductPage = () => {
                         <button>Laft a comment</button>
                     </div> */}
                 </div>
-                <div class="faq">
+                <div className="faq">
                 </div>
             </section>
-            <section id="similars" class="container">
-                <div class="product-card">
+            <section id="similars" className="container">
+                <div className="product-card">
                     <img src="/images/product.png" alt="" />
-                    <div class="info">
-                        <h4 class="title">Berry silver gemstone bracelet stack</h4>
-                        <div class="cart">
-                            <div class="cost">
-                                <h5 class="off">$204.50</h5>
-                                <h4 class="final">$185.00</h4>
+                    <div className="info">
+                        <h4 className="title">Berry silver gemstone bracelet stack</h4>
+                        <div className="cart">
+                            <div className="cost">
+                                <h5 className="off">$204.50</h5>
+                                <h4 className="final">$185.00</h4>
                             </div>
-                            <div class="buttons">
-                                <button class="remove"></button>
-                                <button class="add"></button>
+                            <div className="buttons">
+                                <button className="remove"></button>
+                                <button className="add"></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="product-card">
+                <div className="product-card">
                     <img src="/images/product.png" alt="" />
-                    <div class="info">
-                        <h4 class="title">Berry silver gemstone bracelet stack</h4>
-                        <div class="cart">
-                            <div class="cost">
-                                <h5 class="off">$204.50</h5>
-                                <h4 class="final">$185.00</h4>
+                    <div className="info">
+                        <h4 className="title">Berry silver gemstone bracelet stack</h4>
+                        <div className="cart">
+                            <div className="cost">
+                                <h5 className="off">$204.50</h5>
+                                <h4 className="final">$185.00</h4>
                             </div>
-                            <div class="buttons">
-                                <button class="remove"></button>
-                                <button class="add"></button>
+                            <div className="buttons">
+                                <button className="remove"></button>
+                                <button className="add"></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="product-card">
+                <div className="product-card">
                     <img src="/images/product.png" alt="" />
-                    <div class="info">
-                        <h4 class="title">Berry silver gemstone bracelet stack</h4>
-                        <div class="cart">
-                            <div class="cost">
-                                <h5 class="off">$204.50</h5>
-                                <h4 class="final">$185.00</h4>
+                    <div className="info">
+                        <h4 className="title">Berry silver gemstone bracelet stack</h4>
+                        <div className="cart">
+                            <div className="cost">
+                                <h5 className="off">$204.50</h5>
+                                <h4 className="final">$185.00</h4>
                             </div>
-                            <div class="buttons">
-                                <button class="remove"></button>
-                                <button class="add"></button>
+                            <div className="buttons">
+                                <button className="remove"></button>
+                                <button className="add"></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="product-card">
+                <div className="product-card">
                     <img src="/images/product.png" alt="" />
-                    <div class="info">
-                        <h4 class="title">Berry silver gemstone bracelet stack</h4>
-                        <div class="cart">
-                            <div class="cost">
-                                <h5 class="off">$204.50</h5>
-                                <h4 class="final">$185.00</h4>
+                    <div className="info">
+                        <h4 className="title">Berry silver gemstone bracelet stack</h4>
+                        <div className="cart">
+                            <div className="cost">
+                                <h5 className="off">$204.50</h5>
+                                <h4 className="final">$185.00</h4>
                             </div>
-                            <div class="buttons">
-                                <button class="remove"></button>
-                                <button class="add"></button>
+                            <div className="buttons">
+                                <button className="remove"></button>
+                                <button className="add"></button>
                             </div>
                         </div>
                     </div>

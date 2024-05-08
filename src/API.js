@@ -9,24 +9,22 @@ const apiHeaders = {
     'Content-Type': 'application/json'
 };
 
-
-
 /* Get User ID */
 export const GetUserId = () => {
     const [userId, setUserId] = useState(0);
 
-    axios.get(baseUrl + '/user/profile/info', {
-        headers: apiHeaders,
-    }).then(response => {
-        if (response.status === 200) {
-            setUserId(response.data.id);
-        }
-    }).catch();
+    useEffect(() => {
+        axios.get(baseUrl + '/user/profile/info', {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                setUserId(response.data.id);
+            }
+        }).catch(() => {});
+    }, []);
 
     return userId;
-}
-
-
+};
 
 /* Get Dashboard Items */
 export const GetDashboard = () => {
@@ -35,27 +33,25 @@ export const GetDashboard = () => {
     const [statusCount, setStatusCount] = useState([]);
     const [avatar, setAvatar] = useState(null);
 
-    axios.get(baseUrl + '/user/profile/dashboard/', {
-        headers: apiHeaders,
-    }).then(response => {
-        if (response.status === 200) {
-            setName(response.data.user);
-            setTotalCount(response.data.total_orders.total_order_count);
-            setStatusCount(response.data.total_orders.order_counts_by_status);
-        }
-    }).catch(error => {
-        // alert(error.message);
-    });
+    useEffect(() => {
+        axios.get(baseUrl + '/user/profile/dashboard/', {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                setName(response.data.user);
+                setTotalCount(response.data.total_orders.total_order_count);
+                setStatusCount(response.data.total_orders.order_counts_by_status);
+            }
+        }).catch(() => {});
 
-    axios.get(baseUrl + '/user/profile/info/', {
-        headers: apiHeaders,
-    }).then(response => {
-        if (response.status === 200) {
-            setAvatar(response.data.avatar);
-        }
-    }).catch(error => {
-        // alert(error.message);
-    });
+        axios.get(baseUrl + '/user/profile/info/', {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                setAvatar(response.data.avatar);
+            }
+        }).catch(() => {});
+    }, []);
 
     return {
         name: name,
@@ -63,9 +59,7 @@ export const GetDashboard = () => {
         total: totalCount,
         statusCount: statusCount,
     };
-}
-
-
+};
 
 /* api: product_homepage_list */
 export const HomePageData = () => {
@@ -77,35 +71,29 @@ export const HomePageData = () => {
     const [recentProducts, setRecentProducts] = useState([]);
     const [brands, setBrands] = useState([]);
 
-    axios.get(baseUrl + '/product/products/?limit=2')
-        .then(response => {
-            setSlide(response.data.results[0]);
-            setSlide({ id: 'slide' })
-            setBanner(response.data.results[1]);
-            setBanner({ id: 'banner' });
-        })
-        .catch(error => {
-            // throw error;
-        });
+    useEffect(() => {
+        axios.get(baseUrl + '/product/products/?limit=2')
+            .then(response => {
+                setSlide(response.data.results[0]);
+                setBanner(response.data.results[1]);
+            })
+            .catch(() => {});
 
-    axios.get(baseUrl + '/product/categories/?limit=9')
-        .then(response => {
-            setCats(response.data.results);
-        })
-        .catch(error => {
-            // console.error(error);
-        });
+        axios.get(baseUrl + '/product/categories/?limit=9')
+            .then(response => {
+                setCats(response.data.results);
+            })
+            .catch(() => {});
 
-    axios.get(baseUrl + '/product/homepage/')
-        .then(response => {
-            setMostSoldProducts(response.data.most_sold_products);
-            setHighestRatedProducts(response.data.highest_rated_products);
-            setRecentProducts(response.data.recent_products);
-            setBrands(response.data.brands);
-        })
-        .catch(error => {
-            // console.error(error);
-        });
+        axios.get(baseUrl + '/product/homepage/')
+            .then(response => {
+                setMostSoldProducts(response.data.most_sold_products);
+                setHighestRatedProducts(response.data.highest_rated_products);
+                setRecentProducts(response.data.recent_products);
+                setBrands(response.data.brands);
+            })
+            .catch(() => {});
+    }, []);
 
     return {
         slide: slide,
@@ -116,87 +104,31 @@ export const HomePageData = () => {
         recentProducts: recentProducts,
         brands: brands,
     };
-}
-
-
-
-/* api: order_cart_add_to_cart */
-export const addToCart = (id) => {
-    axios.post(baseUrl + '/order/carts/add_to_cart/',
-        {
-            "product": id,
-        },
-        {
-            headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                alert('Product got added to your cart.');
-            }
-        }).catch(error => {
-            let errorCode = error.response.status;
-            switch (errorCode) {
-                case (401):
-                    alert('You need to be logged in.');
-                    break;
-                default:
-                    alert(error.response.data.message);
-            }
-        });
-}
-
-
-
-/* api: order_carts_update_cart_item */
-export const removeFromCart = (id) => {
-    axios.patch(baseUrl + '/order/carts/update_cart_item/',
-        {
-            "product": id,
-        },
-        {
-            headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                alert('Product got removed from your cart.');
-            }
-        }).catch(error => {
-            let errorCode = error.response.status;
-            switch (errorCode) {
-                case (401):
-                    alert('You need to be logged in.');
-                    break;
-                case (500):
-                    alert('This product is not in your cart.');
-                    break;
-                default:
-                    alert(error.response.status);
-            }
-        });
-}
-
-
+};
 
 /* api: product_categories_list */
 export const Categories = () => {
     const [count, setCount] = useState(null);
     const [categories, setCategories] = useState([]);
 
-    axios.get(baseUrl + '/product/categories/')
-        .then(response => {
-            if (response.status === 200) {
-                setCount(response.data.count);
-                setCategories(response.data.results);
-            }
-        }).catch(error => {
-            alert(error.response.status);
-        });
+    useEffect(() => {
+        axios.get(baseUrl + '/product/categories/')
+            .then(response => {
+                if (response.status === 200) {
+                    setCount(response.data.count);
+                    setCategories(response.data.results);
+                }
+            })
+            .catch(error => {
+                alert(error.response.status);
+            });
+    }, []);
 
     return {
         count: count,
         categories: categories,
     };
-}
-
-
+};
 
 /* api: product_categories_read */
 export const CategoryProducts = (catId) => {
@@ -204,20 +136,23 @@ export const CategoryProducts = (catId) => {
     const [categoryDetail, setCategoryDetail] = useState("");
     const [categoryProducts, setCategoryProducts] = useState([]);
 
-    if (catId === null) {
-        throw 'Error: Category id is required.';
-    }
+    useEffect(() => {
+        if (catId === null) {
+            throw 'Error: Category id is required.';
+        }
 
-    axios.get(baseUrl + '/product/categories/' + catId)
-        .then(response => {
-            if (response.status === 200) {
-                setCategoryName(response.data.name);
-                setCategoryDetail(response.data.detail);
-                setCategoryProducts(response.data.products);
-            }
-        }).catch(error => {
-            alert(error.response.status);
-        });
+        axios.get(baseUrl + '/product/categories/' + catId)
+            .then(response => {
+                if (response.status === 200) {
+                    setCategoryName(response.data.name);
+                    setCategoryDetail(response.data.detail);
+                    setCategoryProducts(response.data.products);
+                }
+            })
+            .catch(error => {
+                alert(error.response.status);
+            });
+    }, [catId]);
 
     return {
         categoryId: catId,
@@ -225,32 +160,7 @@ export const CategoryProducts = (catId) => {
         categoryDetail: categoryDetail,
         products: categoryProducts,
     };
-}
-
-
-
-/* api: product_products_list */
-export const Products = () => {
-    const [count, setCount] = useState(null);
-    const [products, setProducts] = useState([]);
-
-    axios.get(baseUrl + '/product/products/')
-        .then(response => {
-            if (response.status === 200) {
-                setCount(response.data.count);
-                setProducts(response.data.results);
-            }
-        }).catch(error => {
-            alert(error.response.status);
-        });
-
-    return {
-        count: count,
-        products: products,
-    };
-}
-
-
+};
 
 /* api: product_products_read */
 export const Product = (id) => {
@@ -266,36 +176,39 @@ export const Product = (id) => {
     const [isNftRequired, setIsNftRequired] = useState(false);
     const [currentPrice, setCurrentPrice] = useState({});
     const [prices, setPrices] = useState([]);
-    const [comments, setCommetns] = useState([]);
+    const [comments, setComments] = useState([]);
     const [nftLink, setNftLink] = useState("");
     const [description, setDescription] = useState("");
     const [album, setAlbum] = useState([]);
     const [specifications, setSpecifications] = useState([]);
 
-    axios.get(baseUrl + '/product/products/1/')
-        .then(response => {
-            if (response.status === 200) {
-                setName(response.data.name);
-                setCategory(response.data.category);
-                setColor(response.data.color);
-                setBrand(response.data.brand);
-                setMaterial(response.data.material);
-                setRate(response.data.rate);
-                setStock(response.data.stock);
-                setHasStock(response.data.has_stock);
-                setImage(response.data.image);
-                setIsNftRequired(response.data.is_nft_required);
-                setCurrentPrice(response.data.current_price);
-                setPrices(response.data.prices);
-                setCommetns(response.data.comments);
-                setNftLink(response.data.nft_link);
-                setDescription(response.data.description);
-                setAlbum(response.data.album);
-                setSpecifications(response.data.specifications);
-            }
-        }).catch(error => {
-            alert(error.response.status);
-        });
+    useEffect(() => {
+        axios.get(baseUrl + '/product/products/' + id + '/')
+            .then(response => {
+                if (response.status === 200) {
+                    setName(response.data.name);
+                    setCategory(response.data.category);
+                    setColor(response.data.color);
+                    setBrand(response.data.brand);
+                    setMaterial(response.data.material);
+                    setRate(response.data.rate);
+                    setStock(response.data.stock);
+                    setHasStock(response.data.has_stock);
+                    setImage(response.data.image);
+                    setIsNftRequired(response.data.is_nft_required);
+                    setCurrentPrice(response.data.current_price);
+                    setPrices(response.data.prices);
+                    setComments(response.data.comments);
+                    setNftLink(response.data.nft_link);
+                    setDescription(response.data.description);
+                    setAlbum(response.data.album);
+                    setSpecifications(response.data.specifications);
+                }
+            })
+            .catch(error => {
+                alert(error.response.status);
+            });
+    }, [id]);
 
     return {
         name: name,
@@ -316,9 +229,29 @@ export const Product = (id) => {
         album: album,
         specifications: specifications,
     };
-}
+};
 
 
+export const Products = () => {
+    const [count, setCount] = useState(null);
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(baseUrl + "/product/products/");
+                if (response.status === 200) {
+                    setCount(response.data.count);
+                    setProducts(response.data.results);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        fetchProducts();
+    }, []); // Empty array ensures it only runs once
+
+    return { count, products };
+};
 
 /* api: order_carts_read */
 export const Cart = () => {
@@ -327,28 +260,30 @@ export const Cart = () => {
     const [items, setItems] = useState([]);
     const [price, setPrice] = useState("");
 
-    axios.get(baseUrl + '/order/carts/', {
-        headers: apiHeaders,
-    }).then(response => {
-        if (response.status === 200) {
-            axios.get(baseUrl + '/order/carts/' + response.data.results[0].id, {
-                headers: apiHeaders,
-            }).then(response => {
-                setUser(response.data.user);
-                setStatus(response.data.status);
-                setItems(response.data.items);
-                setPrice(response.data.total_price);
-            }).catch(error => {
-                alert(error.message);
-            })
-        }
-    }).catch(error => {
-        if (error.response.status === 404) {
-            alert('Your cart is empty.');
-            return window.location.replace('/');
-        }
-        alert(error.message);
-    });
+    useEffect(() => {
+        axios.get(baseUrl + '/order/carts/', {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                axios.get(baseUrl + '/order/carts/' + response.data.results[0].id, {
+                    headers: apiHeaders,
+                }).then(response => {
+                    setUser(response.data.user);
+                    setStatus(response.data.status);
+                    setItems(response.data.items);
+                    setPrice(response.data.total_price);
+                }).catch(error => {
+                    alert(error.message);
+                });
+            }
+        }).catch(error => {
+            if (error.response.status === 404) {
+                alert('Your cart is empty.');
+                return window.location.replace('/');
+            }
+            alert(error.message);
+        });
+    }, []);
 
     return {
         user: user,
@@ -356,204 +291,72 @@ export const Cart = () => {
         items: items,
         totalPrice: price,
     };
-}
-
-
+};
 
 /* api: user_address_list */
 export const Addresses = () => {
     const [count, setCount] = useState(null);
     const [addresses, setAddresses] = useState([]);
 
-    axios.get(baseUrl + '/user/address/', {
-        headers: apiHeaders,
-    }).then(response => {
-        if (response.status === 200) {
-            setCount(response.data.count);
-            setAddresses(response.data.results);
-        }
-    });
+    useEffect(() => {
+        axios.get(baseUrl + '/user/address/', {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                setCount(response.data.count);
+                setAddresses(response.data.results);
+            }
+        });
+    }, []);
 
     return {
         count: count,
         items: addresses,
-    }
-}
-
-
+    };
+};
 
 /* api: user_address_read */
 export const GetAddress = (id) => {
     const [address, setAddress] = useState({});
-    // const [title, setTitle] = useState(null);
-    // const [postal_code, setPostaCode] = useState(null);
-    // const [country, setCountry] = useState(null);
-    // const [state, setState] = useState(null);
-    // const [city, setCity] = useState(null);
-    // const [postal_address, setPostalAddress] = useState(null);
-    // const [latitude, setLatitude] = useState("0");
-    // const [longitude, setLongitude] = useState("0");
-    // const [user, setUser] = useState(0);
 
-    axios.get(baseUrl + '/user/address/' + id, {
-        headers: apiHeaders,
-    }).then(response => {
-        if (response.status === 200) {
-            setAddress(response.data);
-            // setTitle(response.data.title);
-            // setPostaCode(response.data.postal_code);
-            // setCountry(response.data.country);
-            // setState(response.data.state);
-            // setCity(response.data.city);
-            // setPostalAddress(response.data.postal_address);
-            // setLatitude(response.data.latitude);
-            // setLongitude(response.data.longitude);
-            // setUser(response.data.user);
-        }
-    }).catch(error => {
-        alert(error.response.status);
-    });
+    useEffect(() => {
+        axios.get(baseUrl + '/user/address/' + id, {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                setAddress(response.data);
+            }
+        }).catch(error => {
+            alert(error.response.status);
+        });
+    }, [id]);
 
     return address;
-    // return {
-    //     title: title,
-    //     postal_code: postal_code,
-    //     country: country,
-    //     state: state,
-    //     city: city,
-    //     postal_address: postal_address,
-    //     latitude: latitude,
-    //     longitude: longitude,
-    //     user: user
-    // };
-}
-
-
-
-/* api: user_address_create */
-export const SetAddress = (address) => {
-    axios.post(baseUrl + '/user/address/', address,
-        {
-            headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 201) {
-                window.location.replace('/dashboard/address/');
-            }
-        }).catch(error => {
-            alert(error.message);
-        });
-}
-
-
-
-/* api: user_address_update */
-export const UpdateAddress = (id, address) => {
-    axios.patch(baseUrl + '/user/address/' + id, address,
-        {
-            headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                window.location.replace('/dashboard/address/');
-            }
-        }).catch(error => {
-            alert(error.message);
-        });
-}
-
-
-
-/* api: user_address_delete */
-export const DeleteAddress = (id) => {
-    axios.delete(baseUrl + '/user/address/' + id,
-        {
-            headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 204) {
-                window.location.replace('/dashboard/address/');
-            }
-        }).catch(error => {
-            alert(error.message);
-        });
-}
-
-
-
-/* api: orser_payments_list */
-export const Payments = () => {
-    const [count, setCount] = useState(null);
-    const [methods, setMethods] = useState([]);
-
-    axios.get(baseUrl + '/order/payments/', {
-        headers: apiHeaders,
-    }).then(response => {
-        if (response.status === 200) {
-            setCount(response.data.count);
-            setMethods(response.data.results);
-        }
-    }).catch(error => {
-        alert(error.response.status);
-    });
-
-    return {
-        count: count,
-        methods: methods
-    };
-}
-
-
-
-/* api: order_payments_save_payment */
-export const Pay = (methodCode) => {
-    axios.post(baseUrl + '/order/payments/save_payment/',
-        {
-            "payment_method_code": methodCode,
-        },
-        {
-            headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                window.location.replace('/dashboard/orders/')
-            }
-        }).catch(error => {
-            let errorCode = error.response.status;
-            switch (errorCode) {
-                case (401):
-                    alert('You need to be logged in.');
-                    break;
-                case (500):
-                    alert('Server error: Something went wrong.');
-                    break;
-                default:
-                    alert(error.response.status);
-            }
-        });
-}
-
-
+};
 
 /* api: user_orders_list */
 export const GetOrders = () => {
     const [count, setCount] = useState(null);
     const [items, setItems] = useState([]);
 
-    axios.get(baseUrl + '/user/orders/', {
-        headers: apiHeaders,
-    }).then(response => {
-        if (response.status === 200) {
-            setCount(response.data.count);
-            setItems(response.data.results);
-        }
-    }).catch(error => {
-        alert(error.response.status);
-    });
+    useEffect(() => {
+        axios.get(baseUrl + '/user/orders/', {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                setCount(response.data.count);
+                setItems(response.data.results);
+            }
+        }).catch(error => {
+            alert(error.response.status);
+        });
+    }, []);
 
     return {
         count: count,
         items: items,
     };
-}
-
-
+};
 
 /* api: user_orders_read */
 export const OrderDetails = (id) => {
@@ -568,25 +371,25 @@ export const OrderDetails = (id) => {
     const [insertData, setInsertDate] = useState(null);
     const [updateDate, setUpdateDate] = useState(null);
 
-    axios.get(baseUrl + '/user/orders/' + id, {
-        headers: apiHeaders,
-    }).then(response => {
-        if (response.status === 200) {
-            const data = response.data;
-            setStatus(data.order_status);
-            setNumber(data.order_number);
-            settax(data.tax);
-            setShippingPrice(data.shipping_price);
-            setDiscount(data.discount);
-            setAddress(data.address);
-            setTotalPrice(data.total_price);
-            setItems(data.items);
-            setInsertDate(data.insert_dt);
-            setUpdateDate(data.update_dt);
-        }
-    }).catch(error => {
-        // alert(error.message);
-    });
+    useEffect(() => {
+        axios.get(baseUrl + '/user/orders/' + id, {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                const data = response.data;
+                setStatus(data.order_status);
+                setNumber(data.order_number);
+                settax(data.tax);
+                setShippingPrice(data.shipping_price);
+                setDiscount(data.discount);
+                setAddress(data.address);
+                setTotalPrice(data.total_price);
+                setItems(data.items);
+                setInsertDate(data.insert_dt);
+                setUpdateDate(data.update_dt);
+            }
+        }).catch(() => {});
+    }, [id]);
 
     return {
         status: status,
@@ -600,30 +403,171 @@ export const OrderDetails = (id) => {
         insertData: insertData,
         updateDate: updateDate
     };
-}
-
-
+};
 
 /* api: user_faqs_list */
 export const FAQs = () => {
     const [count, setCount] = useState(null);
     const [questions, setQuestions] = useState([]);
 
-    axios.get(baseUrl + '/user/faqs/')
-        .then(response => {
-            if (response.status === 200) {
-                setCount(response.data.count);
-                setQuestions(response.data.results);
-            }
-        }).catch(error => {
+    useEffect(() => {
+        axios.get(baseUrl + '/user/faqs/')
+            .then(response => {
+                if (response.status === 200) {
+                    setCount(response.data.count);
+                    setQuestions(response.data.results);
+                }
+            }).catch(error => {
             alert(error.response.status);
         });
+    }, []);
 
     return {
         count: count,
         items: questions,
     };
-}
+};
 
+/* api: order_payments_list */
+export const Payments = () => {
+    const [count, setCount] = useState(null);
+    const [methods, setMethods] = useState([]);
 
+    useEffect(() => {
+        axios.get(baseUrl + '/order/payments/', {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                setCount(response.data.count);
+                setMethods(response.data.results);
+            }
+        }).catch(error => {
+            alert(error.response.status);
+        });
+    }, []);
 
+    return {
+        count: count,
+        methods: methods
+    };
+};
+
+/* api: order_cart_add_to_cart */
+export const addToCart = (id) => {
+    axios.post(baseUrl + '/order/carts/add_to_cart/',
+        {
+            "product": id,
+        },
+        {
+            headers: apiHeaders,
+        }).then(response => {
+        if (response.status === 200) {
+            alert('Product got added to your cart.');
+        }
+    }).catch(error => {
+        let errorCode = error.response.status;
+        switch (errorCode) {
+            case (401):
+                alert('You need to be logged in.');
+                break;
+            default:
+                alert(error.response.data.message);
+        }
+    });
+};
+
+/* api: order_carts_update_cart_item */
+export const removeFromCart = (id) => {
+    axios.patch(baseUrl + '/order/carts/update_cart_item/',
+        {
+            "product": id,
+        },
+        {
+            headers: apiHeaders,
+        }).then(response => {
+        if (response.status === 200) {
+            alert('Product got removed from your cart.');
+        }
+    }).catch(error => {
+        let errorCode = error.response.status;
+        switch (errorCode) {
+            case (401):
+                alert('You need to be logged in.');
+                break;
+            case (500):
+                alert('This product is not in your cart.');
+                break;
+            default:
+                alert(error.response.status);
+        }
+    });
+};
+
+/* api: user_address_create */
+export const SetAddress = (address) => {
+    axios.post(baseUrl + '/user/address/', address,
+        {
+            headers: apiHeaders,
+        }).then(response => {
+        if (response.status === 201) {
+            window.location.replace('/dashboard/address/');
+        }
+    }).catch(error => {
+        alert(error.message);
+    });
+};
+
+/* api: user_address_update */
+export const UpdateAddress = (id, address) => {
+    axios.patch(baseUrl + '/user/address/' + id, address,
+        {
+            headers: apiHeaders,
+        }).then(response => {
+        if (response.status === 200) {
+            window.location.replace('/dashboard/address/');
+        }
+    }).catch(error => {
+        alert(error.message);
+    });
+};
+
+/* api: user_address_delete */
+export const DeleteAddress = (id) => {
+    axios.delete(baseUrl + '/user/address/' + id,
+        {
+            headers: apiHeaders,
+        }).then(response => {
+        if (response.status === 204) {
+            window.location.replace('/dashboard/address/');
+        }
+    }).catch(error => {
+        alert(error.message);
+    });
+};
+
+/* api: order_payments_save_payment */
+export const Pay = (methodCode) => {
+    axios.post(baseUrl + '/order/payments/save_payment/',
+        {
+            "payment_method_code": methodCode,
+        },
+        {
+            headers: apiHeaders,
+        }).then(response => {
+        if (response.status === 200) {
+            window.location.replace('/dashboard/orders/')
+        }
+    }).catch(error => {
+        let errorCode = error.response.status;
+        switch (errorCode) {
+            case (401):
+                alert('You need to be logged in.');
+                break;
+            case (500):
+                alert('Server error: Something went wrong.');
+                break;
+            default:
+                alert(error.response.status);
+        }
+    });
+};

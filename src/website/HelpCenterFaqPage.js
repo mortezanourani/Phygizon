@@ -15,33 +15,33 @@ const FaqPage = () => {
                 description="Resources and insights" />
 
             <section id="categories">
-                <div class="container">
-                    <div class="section-title">
+                <div className="container">
+                    <div className="section-title">
                         <h2>Browse categories</h2>
                         <p>find the answer to your problem</p>
                     </div>
-                    <div class="categories-frame">
-                        <a class="category" href="#">
+                    <div className="categories-frame">
+                        <a className="category" href="#">
                             <img src="/images/icons/icon.sellers.svg" alt="" />
                             <h3>Seller Account Setup</h3>
                         </a>
-                        <a class="category" href="#">
+                        <a className="category" href="#">
                             <img src="/images/icons/icon.sellers.svg" alt="" />
                             <h3>Listing Your Products</h3>
                         </a>
-                        <a class="category" href="#">
+                        <a className="category" href="#">
                             <img src="/images/icons/icon.sellers.svg" alt="" />
                             <h3>Pricing & Discounts</h3>
                         </a>
-                        <a class="category" href="#">
+                        <a className="category" href="#">
                             <img src="/images/icons/icon.sellers.svg" alt="" />
                             <h3>Order Management</h3>
                         </a>
-                        <a class="category" href="#">
+                        <a className="category" href="#">
                             <img src="/images/icons/icon.sellers.svg" alt="" />
                             <h3>Customer Communication</h3>
                         </a>
-                        <a class="category" href="#">
+                        <a className="category" href="#">
                             <img src="/images/icons/icon.sellers.svg" alt="" />
                             <h3>Adding NFT's section</h3>
                         </a>
@@ -60,12 +60,12 @@ const FaqPage = () => {
                             ))
                         }
                     </ul>
-                    <div class="ctabox">
+                    <div className="ctabox">
                         <h2>Still have questions?</h2>
                         <p>Join over 4000+ startups already growing with Untitled</p>
-                        <div class="button-group">
-                            <a href="/helpcenter/learn/" class="btn ghost gray">Learn more</a>
-                            <a href="/" class="btn cta">Get started</a>
+                        <div className="button-group">
+                            <a href="/helpcenter/learn/" className="btn ghost gray">Learn more</a>
+                            <a href="/" className="btn cta">Get started</a>
                         </div>
                     </div>
                 </div>

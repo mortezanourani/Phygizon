@@ -1,11 +1,11 @@
 import React from "react";
 import Layout from "./Layout";
-import { Products, addToCart, removeFromCart } from "../API";
+import {Products, addToCart, removeFromCart} from "../API";
 
 import '../css/product.css';
 
 const ProductsPage = () => {
-    const data = Products();
+    const {count, products} = Products();
 
     return (
         <Layout>
@@ -13,12 +13,12 @@ const ProductsPage = () => {
                 <div className="main container">
                     <div className="section-title">
                         <h2 className="title">All Products</h2>
-                        <p style={{ marginBottom: '25px' }}>{data.count} products</p>
+                        <p style={{ marginBottom: '25px' }}>{count} products</p>
                     </div>
                     <div id="products">
                         {
-                            data.products.map(product => (
-                                <div className="product-card">
+                            products.map(product => (
+                                <div key={product.id} className="product-card">
                                     <a href={"/product/" + product.id}>
                                         <img src={"/images/products/" + product.id + ".png"} alt="" />
                                     </a>

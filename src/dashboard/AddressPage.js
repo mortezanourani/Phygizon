@@ -10,11 +10,11 @@ const AddressPage = () => {
     return (
         <Layout>
             <div id="addresses">
-                <div class="section-header">
-                    <h3 class="page-title">Address</h3>
-                    <a class="btn md ghost gray dark" href="/dashboard/address/add/">Add new address</a>
+                <div className="section-header">
+                    <h3 className="page-title">Address</h3>
+                    <a className="btn md ghost gray dark" href="/dashboard/address/add/">Add new address</a>
                 </div>
-                <div class="addresses-frame">
+                <div className="addresses-frame">
                     {
                         address.count === null ? (
                             <div>
@@ -26,7 +26,7 @@ const AddressPage = () => {
                             </div>
                         ) : (
                             address.items.map(address => (
-                                <div class="address">
+                                <div className="address">
                                     <span className="titlebar">
                                         <h3>{address.title}</h3>
                                         <menu>
