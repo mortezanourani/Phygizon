@@ -33,44 +33,44 @@ import ProductsPage from './website/ProductsPage';
 import ProductPage from './website/ProductPage';
 import CategoryProductsPage from './website/CategoryProductsPage';
 import CartPage from './website/CartPage';
-import ComingSoonPage from './website/ComingSoonPage';
+import ComingSoon from './ComingSoon';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <BrowserRouter>
-      <Routes>
-        <Route exact path="/" Component={HomePage} />
-        <Route path="/signup/" Component={SignupPage} />
-        <Route path="/signup/password/" Component={SignupPasswordPage} />
-        <Route path="/products/" Component={ProductsPage} />
-        <Route path="/product/*" Component={ProductPage} />
-        <Route path="/category/*" Component={CategoryProductsPage} />
-        <Route path="/helpcenter/" Component={HelpCenterPage} />
-        <Route path="/helpcenter/learning/" Component={LearningPage} />
-        <Route path="/helpcenter/blog/" Component={BlogPage} />
-        <Route path="/helpcenter/faq/" Component={FaqPage} />
-        <Route path="/sellers/" Component={ComingSoonPage} />
-        <Route path="/offers/" Component={ComingSoonPage} />
-        <Route path="/popular/" Component={ComingSoonPage} />
-        <Route path="/categories/" Component={ComingSoonPage} />
+  <BrowserRouter>
+    <Routes>
+      <Route exact path="/" Component={HomePage} />
+      <Route path="/signup/" Component={SignupPage} />
+      <Route path="/signup/password/" Component={SignupPasswordPage} />
+      <Route path="/products/" Component={ProductsPage} />
+      <Route path="/product/*" Component={ProductPage} />
+      <Route path="/category/*" Component={CategoryProductsPage} />
+      <Route path="/helpcenter/" Component={HelpCenterPage} />
+      <Route path="/helpcenter/learning/" Component={LearningPage} />
+      <Route path="/helpcenter/blog/" Component={BlogPage} />
+      <Route path="/helpcenter/faq/" Component={FaqPage} />
+      <Route path="/sellers/" Component={ComingSoon} />
+      <Route path="/offers/" Component={ComingSoon} />
+      <Route path="/popular/" Component={ComingSoon} />
+      <Route path="/categories/" Component={ComingSoon} />
 
-        <Route path="/cart/" Component={CartPage} />
+      <Route path="/cart/" Component={CartPage} />
 
-        <Route exact path="/dashboard/" Component={Dashboard} />
-        <Route path='/dashboard/address/' Component={AddressPage} />
-        <Route path='/dashboard/address/add/' Component={AddressAddPage} />
-        {/* <Route path='/dashboard/address/*' Component={AddressEditPage} /> */}
-        <Route path="/dashboard/playground/" Component={PlaygroundPage} />
-        <Route path="/dashboard/finance/" Component={PaymentHistoryPage} />
-        <Route path="/dashboard/finance/wallet/" Component={WalletPage} />
-        <Route path="/dashboard/orders/" Component={PendingsPage} />
-        <Route path="/dashboard/orders/waiting/" Component={WaitingsPage} />
-        <Route path="/dashboard/orders/inprogress/" Component={InProgressPage} />
-        <Route path="/dashboard/orders/delivered/" Component={DeliveredsPage} />
-        <Route path="/dashboard/order/*" Component={OrderDetailsPage} />
-        <Route path="*" Component={NotFound} />
-      </Routes>
-    </BrowserRouter>
+      <Route exact path="/dashboard/" Component={Dashboard} />
+      <Route path='/dashboard/address/' Component={AddressPage} />
+      <Route path='/dashboard/address/add/' Component={AddressAddPage} />
+      {/* <Route path='/dashboard/address/*' Component={AddressEditPage} /> */}
+      <Route path="/dashboard/playground/" Component={PlaygroundPage} />
+      <Route path="/dashboard/finance/" Component={PaymentHistoryPage} />
+      <Route path="/dashboard/finance/wallet/" Component={WalletPage} />
+      <Route path="/dashboard/orders/" Component={PendingsPage} />
+      <Route path="/dashboard/orders/waiting/" Component={WaitingsPage} />
+      <Route path="/dashboard/orders/inprogress/" Component={InProgressPage} />
+      <Route path="/dashboard/orders/delivered/" Component={DeliveredsPage} />
+      <Route path="/dashboard/order/*" Component={OrderDetailsPage} />
+      <Route path="*" Component={NotFound} />
+    </Routes>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

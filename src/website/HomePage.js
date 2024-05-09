@@ -3,11 +3,15 @@ import Layout from './Layout';
 
 import '../css/homepage.css';
 
-import { Categories, HomePageData, addToCart, removeFromCart } from '../API';
+import { FAQs, HomePageData, addToCart, removeFromCart } from '../API';
 
 const HomePage = () => {
     const data = HomePageData();
-    const allProducts = data.recentProducts.concat(data.mostSoldProducts, data.highestRatedProducts);
+    const allProducts = data.products.slice(0, 8);
+    const nftProducts = data.products.filter(product => (product.nft_link !== null)).slice(0, 8);
+    const offersProducts = data.products.filter(product => (product.current_price.discount !== 0)).slice(0, 8);
+    const latestProducts = data.products.sort((a, b) => b.id - a.id).slice(0, 8);
+    const faqs = FAQs();
 
     const handleProducts = (e) => {
         let tablinks = document.getElementsByClassName('products-tab-link');
@@ -44,14 +48,14 @@ const HomePage = () => {
         <Layout>
             <header className="container header homepage-header">
                 <div className="slider">
-                    <img className="slide" src={"/images/slides/" + data.slide.id + ".png"} alt="" />
-                    <a href={"/product/" + data.slide.id}>Shop now
+                    <img className="slide" src={"/images/slides/slide.png"} alt="" />
+                    <a /*href={"/product/" + data.slide.id}*/>Shop now
                         <img src="/images/icons/btnarrow.svg" alt="" />
                     </a>
                 </div>
                 <div className="banner">
-                    <a href={"/product/" + data.banner.id}>
-                        <img src={"/images/banners/" + data.banner.id + ".png"} alt="" />
+                    <a /*href={"/product/" + data.banner.id}*/>
+                        <img src={"/images/banners/banner.png"} alt="" />
                     </a>
                 </div>
             </header >
@@ -73,13 +77,13 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="images">
-                    <a className="img-link" href="#">
+                    <a className="img-link">
                         <img src="/images/products/cat1.png" alt="" />
                     </a>
-                    <a className="img-link" href="#">
+                    <a className="img-link">
                         <img src="/images/products/cat2.png" alt="" />
                     </a>
-                    <a className="img-link" href="#">
+                    <a className="img-link">
                         <img src="/images/products/cat3.png" alt="" />
                     </a>
                 </div>
@@ -99,10 +103,10 @@ const HomePage = () => {
                     <div className='tab-content all'>
                         <div className="products" id="all">
                             {
-                                allProducts.slice(0, 8).map(product => (
+                                allProducts.map(product => (
                                     <div className="product-card">
                                         <a href={"/product/" + product.id + "/"}>
-                                            <img src={"/images/products/" + product.id + ".png"} alt="" />
+                                            <img src={product.image} alt="" />
                                         </a>
                                         <div className="info">
                                             <h4 className="title">{product.name}</h4>
@@ -127,10 +131,10 @@ const HomePage = () => {
                         </div>
                         <div className="products" id="nft">
                             {
-                                data.recentProducts.map(product => (
+                                nftProducts.map(product => (
                                     <div className="product-card">
                                         <a href={"/product/" + product.id + "/"}>
-                                            <img src={"/images/products/" + product.id + ".png"} alt="" />
+                                            <img src={product.image} alt="" />
                                         </a>
                                         <div className="info">
                                             <h4 className="title">{product.name}</h4>
@@ -155,10 +159,10 @@ const HomePage = () => {
                         </div>
                         <div className="products" id="offers">
                             {
-                                data.mostSoldProducts.map(product => (
+                                offersProducts.map(product => (
                                     <div className="product-card">
                                         <a href={"/product/" + product.id + "/"}>
-                                            <img src={"/images/products/" + product.id + ".png"} alt="" />
+                                            <img src={product.image} alt="" />
                                         </a>
                                         <div className="info">
                                             <h4 className="title">{product.name}</h4>
@@ -183,10 +187,10 @@ const HomePage = () => {
                         </div>
                         <div className="products" id="latest">
                             {
-                                data.recentProducts.map(product => (
+                                latestProducts.map(product => (
                                     <div className="product-card">
                                         <a href={"/product/" + product.id + "/"}>
-                                            <img src={"/images/products/" + product.id + ".png"} alt="" />
+                                            <img src={product.image} alt="" />
                                         </a>
                                         <div className="info">
                                             <h4 className="title">{product.name}</h4>
@@ -360,33 +364,17 @@ const HomePage = () => {
                 </div>
                 <div className='tab-content general'>
                     <div id='general'>
-                        <div className='question collapsed'>
-                            <h3 onClick={faqToggle}>What is the capital of France?</h3>
-                            <p>The capital of France is Paris. It's known for its art, fashion, gastronomy, and culture, and is home to iconic landmarks like Eiffel Tower and the Louvre Museum.</p>
-                        </div>
-                        <div className='question'>
-                            <h3 onClick={faqToggle}>How does the internet work?</h3>
-                            <p>The internet is a global network of interconnected computers and servers that communicate using standardized protocols. Data is sent in small packets, which are routed through various pathways to reach their destinations, allowing for information sharing and communication across the globe.</p>
-                        </div>
-                        <div className='question'>
-                            <h3 onClick={faqToggle}>How do I backup my computer data?</h3>
-                            <p>To backup computer data, you can use external hard drives, cloud storage services, or backup software. It's important to regularly back up important files and documents to protect against data loss due to hardware failure, accidents or malware.</p>
-                        </div>
-                        <div className='question'>
-                            <h3 onClick={faqToggle}>How can I reduce my carbon footprint?</h3>
-                            <p>The internet is a global network of interconnected computers and servers that communicate using standardized protocols. Data is sent in small packets, which are routed through various pathways to reach their destinations, allowing for information sharing and communication across the globe.</p>
-                        </div>
-                        <div className='question'>
-                            <h3 onClick={faqToggle}>What is healthy diet?</h3>
-                            <p>The capital of France is Paris. It's known for its art, fashion, gastronomy, and culture, and is home to iconic landmarks like Eiffel Tower and the Louvre Museum.</p>
-                        </div>
+                        {
+                            faqs.items.map(faq => (
+                                <div className='question'>
+                                    <h3 onClick={faqToggle}>{faq.question}</h3>
+                                    <p>{faq.answer}</p>
+                                </div>
+                            ))
+                        }
                     </div>
-                    <div id='getstart'>
-
-                    </div>
-                    <div id='campaign'>
-
-                    </div>
+                    <div id='getstart'></div>
+                    <div id='campaign'></div>
                 </div>
                 <div className='getintouch'>
                     <img src='/images/icons/icon.homepage.getintouch.png' alt="" />

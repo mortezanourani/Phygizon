@@ -4,8 +4,17 @@ import axios from "axios";
 
 import logo from '../logo.svg';
 import '../css/primarynav.css';
+import { Categories } from "../API";
 
 const PrimaryNav = () => {
+    const categories = Categories();
+
+    const parentCategories = categories.categories.filter(category => (category.parent === null));
+
+    const childLists = parentCategories.map((parent) => {
+        return categories.categories.filter(category => (category.parent === parent.id));
+    });
+
     const navigate = useNavigate();
 
     const handleLoginForm = () => {
@@ -46,6 +55,29 @@ const PrimaryNav = () => {
             });
     }
 
+    const categoriesPopup = (e) => {
+        e.preventDefault();
+
+        const catPopup = document.getElementById("categories-popup");
+        catPopup.style.display = (catPopup.style.display === "none") ? "flex" : "none";
+    }
+
+    const displayChilds = (e) => {
+        const parentId = e.target.id;
+
+        const parentLinks = document.getElementsByClassName("parent-link");
+        for (let i = 0; i < parentLinks.length; i++) {
+            parentLinks[i].classList.remove("active");
+        }
+        e.target.classList.add("active");
+
+        const childContents = document.getElementsByClassName('child-content');
+        for (let i = 0; i < childContents.length; i++) {
+            childContents[i].style.display = "none";
+        }
+        document.getElementById("childsof" + parentId).style.display = "flex";
+    }
+
     return (
         <nav className="primary-nav">
             <div className="container">
@@ -55,8 +87,8 @@ const PrimaryNav = () => {
                 <div className="menu">
                     <ul className="main-menu">
                         <li className="menu-item">
-                            <a href='/categories/'>
-                                <button className="btn lg text gray">Categories</button>
+                            <a href='/categories/' onClick={categoriesPopup}>
+                                <button className="btn lg text gray">Categories <img style={{ marginLeft: "12px" }} src="/images/icons/icon.categories.downarrow.svg" /></button>
                             </a>
                         </li >
                         <li className="menu-item">
@@ -105,6 +137,53 @@ const PrimaryNav = () => {
                     }
                 </div>
             </div>
+            <div className="primary-nav-popup-menu" id="categories-popup">
+                <div className="container">
+                    <div className="parents">
+                        {
+                            parentCategories.map(category => (
+                                <a className="parent-link btn text gray lg" id={category.id} onMouseOver={displayChilds} href={"/category/" + category.id}>
+                                    <img src="/images/icons/icon.categories.svg" alt="" />
+                                    {category.name}
+                                </a>
+                            ))
+                        }
+                    </div>
+                    <div className="childs">
+                        {
+                            parentCategories.map(category => {
+                                let childList = category.sub_categories;
+                                return (
+                                    <div className="child-content" id={"childsof" + category.id}>
+                                        {
+                                            (childList.length !== 0) ? (
+                                                childList.map(category => (
+                                                    <div className="child-column">
+                                                        <a href={"/category/" + category.id}><h3>{category.name}</h3></a>
+                                                    </div>
+                                                ))) : (null)
+                                        }
+                                    </div>
+                                )
+                            }
+                            )
+                            // childLists.map(childList => (
+                            //     (childList.length !== 0) ? (
+                            //         <div className="child-content" id={JSON.stringify(childList[0].parent)}>
+                            //             {
+                            //                 childList.map(list => (
+                            //                     <div className="child-column">
+                            //                         <a href={"/category/" + list.id}><h3>{list.name}</h3></a>
+                            //                     </div>
+                            //                 ))
+                            //             }
+                            //         </div>
+                            //     ) : (null)
+                            // ))
+                        }
+                    </div>
+                </div>
+            </div>
             <div id="login-popup" onClick={closePopup}>
                 <form className="login-form" onSubmit={handleSubmit}>
                     <input className="username" name="username" placeholder="Username" value={formData.username} onChange={handleChange} />
@@ -112,7 +191,7 @@ const PrimaryNav = () => {
                     <button type="submit" className="btn cta lg">Login</button>
                 </form>
             </div>
-        </nav>
+        </nav >
     );
 }
 

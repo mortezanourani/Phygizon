@@ -42,7 +42,7 @@ const ProductPage = () => {
             </section>
             <section id="product" className="container">
                 <div className="image">
-                    <img src="/images/product.product.png" alt="" />
+                    <img src={data.image} alt="" />
                 </div>
                 <div className="product-info">
                     <h2 className="product-title">{data.name}</h2>
@@ -192,7 +192,7 @@ const ProductPage = () => {
             </section>
             <section id="similars" className="container">
                 <div className="product-card">
-                    <img src="/images/product.png" alt="" />
+                    <img src="/images/products/product.png" alt="" />
                     <div className="info">
                         <h4 className="title">Berry silver gemstone bracelet stack</h4>
                         <div className="cart">
@@ -208,7 +208,7 @@ const ProductPage = () => {
                     </div>
                 </div>
                 <div className="product-card">
-                    <img src="/images/product.png" alt="" />
+                    <img src="/images/products/product.png" alt="" />
                     <div className="info">
                         <h4 className="title">Berry silver gemstone bracelet stack</h4>
                         <div className="cart">
@@ -224,7 +224,7 @@ const ProductPage = () => {
                     </div>
                 </div>
                 <div className="product-card">
-                    <img src="/images/product.png" alt="" />
+                    <img src="/images/products/product.png" alt="" />
                     <div className="info">
                         <h4 className="title">Berry silver gemstone bracelet stack</h4>
                         <div className="cart">
@@ -240,7 +240,7 @@ const ProductPage = () => {
                     </div>
                 </div>
                 <div className="product-card">
-                    <img src="/images/product.png" alt="" />
+                    <img src="/images/products/product.png" alt="" />
                     <div className="info">
                         <h4 className="title">Berry silver gemstone bracelet stack</h4>
                         <div className="cart">

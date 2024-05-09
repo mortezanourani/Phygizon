@@ -156,7 +156,7 @@ section.homepage-products {
                 border: 1px solid #efefef;
 
                 &:hover {
-                    border-color: #667085;
+                    border-color: #dfb64b;
                 }
 
                 &.active {

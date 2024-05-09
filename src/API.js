@@ -66,6 +66,7 @@ export const HomePageData = () => {
     const [slide, setSlide] = useState({});
     const [banner, setBanner] = useState({});
     const [cats, setCats] = useState([]);
+    const [products, setProducts] = useState([]);
     const [mostSoldProducts, setMostSoldProducts] = useState([]);
     const [highestRatedProducts, setHighestRatedProducts] = useState([]);
     const [recentProducts, setRecentProducts] = useState([]);
@@ -81,18 +82,25 @@ export const HomePageData = () => {
             })
             .catch(() => { });
 
-        axios.get(baseUrl + '/product/categories/?limit=9')
+        axios.get(baseUrl + '/product/categories/')
             .then(response => {
-                setCats(response.data.results);
+                const categories = response.data.results.filter(cat => (cat.parent === null));
+                setCats(categories);
             })
             .catch(() => { });
 
-        axios.get(baseUrl + '/product/homepage/')
+        // axios.get(baseUrl + '/product/homepage/')
+        //     .then(response => {
+        //         setMostSoldProducts(response.data.most_sold_products);
+        //         setHighestRatedProducts(response.data.highest_rated_products);
+        //         setRecentProducts(response.data.recent_products);
+        //         setBrands(response.data.brands);
+        //     })
+        //     .catch(() => { });
+
+        axios.get(baseUrl + '/product/products/')
             .then(response => {
-                setMostSoldProducts(response.data.most_sold_products);
-                setHighestRatedProducts(response.data.highest_rated_products);
-                setRecentProducts(response.data.recent_products);
-                setBrands(response.data.brands);
+                setProducts(response.data.results);
             })
             .catch(() => { });
     }, []);
@@ -101,9 +109,10 @@ export const HomePageData = () => {
         slide: slide,
         banner: banner,
         categories: cats,
-        mostSoldProducts: mostSoldProducts,
-        highestRatedProducts: highestRatedProducts,
-        recentProducts: recentProducts,
+        products: products,
+        // mostSoldProducts: mostSoldProducts,
+        // highestRatedProducts: highestRatedProducts,
+        // recentProducts: recentProducts,
         brands: brands,
     };
 };
@@ -419,9 +428,7 @@ export const FAQs = () => {
                     setCount(response.data.count);
                     setQuestions(response.data.results);
                 }
-            }).catch(error => {
-                alert(error.response.status);
-            });
+            }).catch(() => { });
     }, []);
 
     return {

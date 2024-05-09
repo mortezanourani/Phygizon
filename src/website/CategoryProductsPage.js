@@ -30,7 +30,7 @@ const CategoryProductsPage = () => {
                             data.products.map(product => (
                                 <div className="product-card">
                                     <a href={"/product/" + product.id}>
-                                        <img src={"/images/products/" + product.id + ".png"} alt="" />
+                                        <img src={product.image} alt="" />
                                     </a>
                                     <div className="info">
                                         <h4 className="title">{product.name}</h4>

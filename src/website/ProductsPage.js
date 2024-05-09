@@ -1,11 +1,11 @@
 import React from "react";
 import Layout from "./Layout";
-import {Products, addToCart, removeFromCart} from "../API";
+import { Products, addToCart, removeFromCart } from "../API";
 
 import '../css/product.css';
 
 const ProductsPage = () => {
-    const {count, products} = Products();
+    const { count, products } = Products();
 
     return (
         <Layout>
@@ -20,7 +20,7 @@ const ProductsPage = () => {
                             products.map(product => (
                                 <div key={product.id} className="product-card">
                                     <a href={"/product/" + product.id}>
-                                        <img src={"/images/products/" + product.id + ".png"} alt="" />
+                                        <img src={product.image} alt="" />
                                     </a>
                                     <div className="info">
                                         <h4 className="title">{product.name}</h4>
