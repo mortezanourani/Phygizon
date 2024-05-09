@@ -20,7 +20,7 @@ export const GetUserId = () => {
             if (response.status === 200) {
                 setUserId(response.data.id);
             }
-        }).catch(() => {});
+        }).catch(() => { });
     }, []);
 
     return userId;
@@ -42,7 +42,7 @@ export const GetDashboard = () => {
                 setTotalCount(response.data.total_orders.total_order_count);
                 setStatusCount(response.data.total_orders.order_counts_by_status);
             }
-        }).catch(() => {});
+        }).catch(() => { });
 
         axios.get(baseUrl + '/user/profile/info/', {
             headers: apiHeaders,
@@ -50,7 +50,7 @@ export const GetDashboard = () => {
             if (response.status === 200) {
                 setAvatar(response.data.avatar);
             }
-        }).catch(() => {});
+        }).catch(() => { });
     }, []);
 
     return {
@@ -76,14 +76,16 @@ export const HomePageData = () => {
             .then(response => {
                 setSlide(response.data.results[0]);
                 setBanner(response.data.results[1]);
+                setSlide({ id: 'slide' });
+                setBanner({ id: 'banner' });
             })
-            .catch(() => {});
+            .catch(() => { });
 
         axios.get(baseUrl + '/product/categories/?limit=9')
             .then(response => {
                 setCats(response.data.results);
             })
-            .catch(() => {});
+            .catch(() => { });
 
         axios.get(baseUrl + '/product/homepage/')
             .then(response => {
@@ -92,7 +94,7 @@ export const HomePageData = () => {
                 setRecentProducts(response.data.recent_products);
                 setBrands(response.data.brands);
             })
-            .catch(() => {});
+            .catch(() => { });
     }, []);
 
     return {
@@ -388,7 +390,7 @@ export const OrderDetails = (id) => {
                 setInsertDate(data.insert_dt);
                 setUpdateDate(data.update_dt);
             }
-        }).catch(() => {});
+        }).catch(() => { });
     }, [id]);
 
     return {
@@ -418,8 +420,8 @@ export const FAQs = () => {
                     setQuestions(response.data.results);
                 }
             }).catch(error => {
-            alert(error.response.status);
-        });
+                alert(error.response.status);
+            });
     }, []);
 
     return {
@@ -461,19 +463,19 @@ export const addToCart = (id) => {
         {
             headers: apiHeaders,
         }).then(response => {
-        if (response.status === 200) {
-            alert('Product got added to your cart.');
-        }
-    }).catch(error => {
-        let errorCode = error.response.status;
-        switch (errorCode) {
-            case (401):
-                alert('You need to be logged in.');
-                break;
-            default:
-                alert(error.response.data.message);
-        }
-    });
+            if (response.status === 200) {
+                alert('Product got added to your cart.');
+            }
+        }).catch(error => {
+            let errorCode = error.response.status;
+            switch (errorCode) {
+                case (401):
+                    alert('You need to be logged in.');
+                    break;
+                default:
+                    alert(error.response.data.message);
+            }
+        });
 };
 
 /* api: order_carts_update_cart_item */
@@ -485,22 +487,22 @@ export const removeFromCart = (id) => {
         {
             headers: apiHeaders,
         }).then(response => {
-        if (response.status === 200) {
-            alert('Product got removed from your cart.');
-        }
-    }).catch(error => {
-        let errorCode = error.response.status;
-        switch (errorCode) {
-            case (401):
-                alert('You need to be logged in.');
-                break;
-            case (500):
-                alert('This product is not in your cart.');
-                break;
-            default:
-                alert(error.response.status);
-        }
-    });
+            if (response.status === 200) {
+                alert('Product got removed from your cart.');
+            }
+        }).catch(error => {
+            let errorCode = error.response.status;
+            switch (errorCode) {
+                case (401):
+                    alert('You need to be logged in.');
+                    break;
+                case (500):
+                    alert('This product is not in your cart.');
+                    break;
+                default:
+                    alert(error.response.status);
+            }
+        });
 };
 
 /* api: user_address_create */
@@ -509,12 +511,12 @@ export const SetAddress = (address) => {
         {
             headers: apiHeaders,
         }).then(response => {
-        if (response.status === 201) {
-            window.location.replace('/dashboard/address/');
-        }
-    }).catch(error => {
-        alert(error.message);
-    });
+            if (response.status === 201) {
+                window.location.replace('/dashboard/address/');
+            }
+        }).catch(error => {
+            alert(error.message);
+        });
 };
 
 /* api: user_address_update */
@@ -523,12 +525,12 @@ export const UpdateAddress = (id, address) => {
         {
             headers: apiHeaders,
         }).then(response => {
-        if (response.status === 200) {
-            window.location.replace('/dashboard/address/');
-        }
-    }).catch(error => {
-        alert(error.message);
-    });
+            if (response.status === 200) {
+                window.location.replace('/dashboard/address/');
+            }
+        }).catch(error => {
+            alert(error.message);
+        });
 };
 
 /* api: user_address_delete */
@@ -537,12 +539,12 @@ export const DeleteAddress = (id) => {
         {
             headers: apiHeaders,
         }).then(response => {
-        if (response.status === 204) {
-            window.location.replace('/dashboard/address/');
-        }
-    }).catch(error => {
-        alert(error.message);
-    });
+            if (response.status === 204) {
+                window.location.replace('/dashboard/address/');
+            }
+        }).catch(error => {
+            alert(error.message);
+        });
 };
 
 /* api: order_payments_save_payment */
@@ -554,20 +556,20 @@ export const Pay = (methodCode) => {
         {
             headers: apiHeaders,
         }).then(response => {
-        if (response.status === 200) {
-            window.location.replace('/dashboard/orders/')
-        }
-    }).catch(error => {
-        let errorCode = error.response.status;
-        switch (errorCode) {
-            case (401):
-                alert('You need to be logged in.');
-                break;
-            case (500):
-                alert('Server error: Something went wrong.');
-                break;
-            default:
-                alert(error.response.status);
-        }
-    });
+            if (response.status === 200) {
+                window.location.replace('/dashboard/orders/')
+            }
+        }).catch(error => {
+            let errorCode = error.response.status;
+            switch (errorCode) {
+                case (401):
+                    alert('You need to be logged in.');
+                    break;
+                case (500):
+                    alert('Server error: Something went wrong.');
+                    break;
+                default:
+                    alert(error.response.status);
+            }
+        });
 };
