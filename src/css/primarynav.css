@@ -61,7 +61,6 @@
         left: 0;
         right: 0;
         width: 100%;
-        background: #ffffff;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -72,6 +71,11 @@
         transition: all ease-in .5s;
 
         .container {
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(36px);
+            border-radius: 0px 0px 32px 32px;
+
             padding: 32px 16px;
             opacity: 0;
             transition: all ease .5s .5s;
@@ -87,7 +91,6 @@
 
         .parents {
             flex-basis: 30%;
-            background: #ffffff;
             display: flex;
             flex-direction: column;
             justify-content: space-between;

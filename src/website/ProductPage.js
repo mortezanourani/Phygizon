@@ -49,92 +49,96 @@ const ProductPage = () => {
                         <p>{JSON.stringify(data.specifications)}</p>
                     </div> */}
             <section id="product" className="container">
-                <div className="image">
-                    <img src='/images/products/product.png' alt="" />
-                </div>
-                <div className="product-info">
-                    <h2 className="product-title">{data.name}</h2>
-                    <div className="information">
-                        <div className="seller">
-                            <img src={'/images/brands/' + data.brand.id + '.svg'} />
-                            <span>
-                                <p>Sell by</p>
-                                <h5>{data.brand.name}</h5>
-                            </span>
-                        </div>
-                        <div className="rate">
-                            <img src="/images/icons/icon.rate.star.svg" />
-                            <span>
-                                <p>Rating</p>
-                                <h5>{data.rate}</h5>
-                            </span>
-                        </div>
-                        <div className="reviews">
-                            <img src='/images/icons/icon.reviews.svg' />
-                            <span>
-                                <p>Reviews</p>
-                                <h5>{data.comments.length}</h5>
-                            </span>
-                        </div>
+                <div className="product-content">
+                    <div className="image">
+                        <img src='/images/products/product.png' alt="" />
                     </div>
-                    <div className="options">
-                        <div className="color">
-                            <h4 className="option-title">Color</h4>
-                            <div className="option-value option-color">
-                                <span className="color-demo" style={{ backgroundColor: data.color.color }}></span>
-                                <p className="color-value">{data.color.name}</p>
+                    <div className="product-info">
+                        <h2 className="product-title">{data.name}</h2>
+                        <div className="information">
+                            <div className="seller">
+                                <img src={'/images/brands/' + data.brand.id + '.svg'} alt="" />
+                                <span>
+                                    <p>Sell by</p>
+                                    <h5>{data.brand.name}</h5>
+                                </span>
+                            </div>
+                            <div className="rate">
+                                <img src="/images/icons/icon.rate.star.svg" alt="" />
+                                <span>
+                                    <p>Rating</p>
+                                    <h5>{data.rate}</h5>
+                                </span>
+                            </div>
+                            <div className="reviews">
+                                <img src='/images/icons/icon.reviews.svg' alt="" />
+                                <span>
+                                    <p>Reviews</p>
+                                    <h5>{data.comments.length}</h5>
+                                </span>
                             </div>
                         </div>
-                        <div className="size">
-                            <h4 className="option-title">Size</h4>
-                            <div className="option-value active">
-                                <p>M</p>
+                        <div className="options">
+                            <div className="color">
+                                <h4 className="option-title">Color</h4>
+                                <div className="option-value option-color">
+                                    <span className="color-demo" style={{ backgroundColor: data.color.color }}></span>
+                                    <p className="color-value">{data.color.name}</p>
+                                </div>
+                            </div>
+                            <div className="size">
+                                <h4 className="option-title">Size</h4>
+                                <div className="option-value active">
+                                    <p>M</p>
+                                </div>
+                            </div>
+                            <div className="material">
+                                <h4 className="option-title">Material</h4>
+                                <div className="option-value active">
+                                    <p>{data.brand.name}</p>
+                                </div>
                             </div>
                         </div>
-                        <div className="material">
-                            <h4 className="option-title">Material</h4>
-                            <div className="option-value active">
-                                <p>{data.brand.name}</p>
+                        <div className="safe-holder">
+                            <div className="safe-holder-text">
+                                <i>
+                                    <img src='/images/icons/icon.safe.holder.svg' alt="" />
+                                </i>
+                                <span className="caption">
+                                    <h3>Safe Holder</h3>
+                                    <p>You can keep the product in the storage company</p>
+                                </span>
                             </div>
+                            <button className="btn ghost gray dark md">Select</button>
                         </div>
-                    </div>
-                    <div className="safe-holder">
-                        <i>
-                            <img src='/images/icons/icon.safe.holder.svg' alt="" />
-                        </i>
-                        <span className="caption">
-                            <h3>Safe Holder</h3>
-                            <p>You can keep the product in the storage company</p>
-                        </span>
-                        <button className="btn ghost gray dark md">Select</button>
                     </div>
                 </div>
                 <div className="sidebar-menu">
                     <button id="nft" className="btn md text gray active">
-                        <img src="/images/icons/icon.product.nft.svg" />
+                        <img src="/images/icons/icon.product.nft.svg" alt="" />
                     </button>
                     <button id="save" className="btn md text gray">
-                        <img src="/images/icons/icon.product.heart.svg" />
+                        <img src="/images/icons/icon.product.heart.svg" alt="" />
                         Save
                     </button>
                     <button id="view" className="btn md text gray">
-                        <img src="/images/icons/icon.product.360.svg" />
+                        <img src="/images/icons/icon.product.360.svg" alt="" />
                         360 View
                     </button>
                     <button id="vr" className="btn md text gray">
-                        <img src="/images/icons/icon.product.vr.svg" />
+                        <img src="/images/icons/icon.product.vr.svg" alt="" />
                         VR View
                     </button>
                     <button id="pricing" className="btn md text gray">
-                        <img src="/images/icons/icon.product.pricing.svg" />
+                        <img src="/images/icons/icon.product.pricing.svg" alt="" />
                         Pricing
                     </button>
                     <button id="compare" className="btn md text gray">
-                        <img src="/images/icons/icon.product.compare.svg" />
+                        <img src="/images/icons/icon.product.compare.svg" alt="" />
                         Compare
                     </button>
                     <button id="share" className="btn md text gray">
-                        <img src="/images/icons/icon.product.share.svg" />
+                        <img src="/images/icons/icon.product.share.svg" alt="" />
                         Share
                     </button>
                 </div>
@@ -175,7 +179,7 @@ const ProductPage = () => {
                                             <span>
                                                 <h3>{comment.user.__str__}</h3>
                                                 <span>
-                                                    <img src="/images/icons/icon.rate.star.small.svg" />
+                                                    <img src="/images/icons/icon.rate.star.small.svg" alt="" />
                                                 </span>
                                             </span>
                                             <p>({comment.rate} Days ago)</p>
@@ -183,11 +187,11 @@ const ProductPage = () => {
                                         <p className="body">{comment.body}</p>
                                         <span className="rate-menu">
                                             <button className="like">
-                                                <img src="/images/icons/icon.comment.like.svg" />
+                                                <img src="/images/icons/icon.comment.like.svg" alt="" />
                                                 {comment.like}
                                             </button>
                                             <button className="dislike">
-                                                <img src="/images/icons/icon.comment.dislike.svg" />
+                                                <img src="/images/icons/icon.comment.dislike.svg" alt="" />
                                                 {comment.dislike}
                                             </button>
                                         </span>
@@ -218,11 +222,11 @@ const ProductPage = () => {
                     <div className="action">
                         <span className="count">
                             <button className="btn ghost gray">
-                                <img src="/images/icons/icon.cart.quantity.down.svg" />
+                                <img src="/images/icons/icon.cart.quantity.down.svg" alt="" />
                             </button>
                             <h2>1</h2>
                             <button className="btn ghost gray">
-                                <img src="/images/icons/icon.cart.quantity.up.svg" />
+                                <img src="/images/icons/icon.cart.quantity.up.svg" alt="" />
                             </button>
                         </span>
                         <button className="btn xl cta" onClick={() => addToCart(productId)}>Add to Cart</button>
@@ -241,10 +245,10 @@ const ProductPage = () => {
                             </div>
                             <div className="buttons">
                                 <button className="remove">
-                                    <img src="/images/icons/icon.recyclebin.svg" />
+                                    <img src="/images/icons/icon.recyclebin.svg" alt="" />
                                 </button>
                                 <button className="add">
-                                    <img src="/images/icons/icon.addtocart.svg" />
+                                    <img src="/images/icons/icon.addtocart.svg" alt="" />
                                 </button>
                             </div>
                         </div>
@@ -261,10 +265,10 @@ const ProductPage = () => {
                             </div>
                             <div className="buttons">
                                 <button className="remove">
-                                    <img src="/images/icons/icon.recyclebin.svg" />
+                                    <img src="/images/icons/icon.recyclebin.svg" alt="" />
                                 </button>
                                 <button className="add">
-                                    <img src="/images/icons/icon.addtocart.svg" />
+                                    <img src="/images/icons/icon.addtocart.svg" alt="" />
                                 </button>
                             </div>
                         </div>
@@ -281,10 +285,10 @@ const ProductPage = () => {
                             </div>
                             <div className="buttons">
                                 <button className="remove">
-                                    <img src="/images/icons/icon.recyclebin.svg" />
+                                    <img src="/images/icons/icon.recyclebin.svg" alt="" />
                                 </button>
                                 <button className="add">
-                                    <img src="/images/icons/icon.addtocart.svg" />
+                                    <img src="/images/icons/icon.addtocart.svg" alt="" />
                                 </button>
                             </div>
                         </div>
@@ -301,10 +305,10 @@ const ProductPage = () => {
                             </div>
                             <div className="buttons">
                                 <button className="remove">
-                                    <img src="/images/icons/icon.recyclebin.svg" />
+                                    <img src="/images/icons/icon.recyclebin.svg" alt="" />
                                 </button>
                                 <button className="add">
-                                    <img src="/images/icons/icon.addtocart.svg" />
+                                    <img src="/images/icons/icon.addtocart.svg" alt="" />
                                 </button>
                             </div>
                         </div>
