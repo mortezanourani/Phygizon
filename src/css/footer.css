@@ -147,15 +147,30 @@ footer {
     }
 }
 
-@media screen and (max-width: 600px) {
+/* Tablet screen */
+@media screen and (max-width < 1024px) {}
+
+/* Mobile screen */
+@media screen and (max-width: 480px) {
     footer {
         .container {
             flex-direction: column;
-        }
 
-        form {
-            flex-direction: column !important;
-            align-items: start !important;
+            .subscribe {
+                p {
+                    margin: 16px 0;
+                }
+
+                form {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+            }
+
+            .links {
+                flex-direction: column;
+                align-items: start;
+            }
         }
     }
 }

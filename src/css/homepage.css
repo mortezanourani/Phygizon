@@ -280,7 +280,7 @@ section.homepage-products {
 
     .products {
         display: grid;
-        grid-template: repeat(1, 1fr) / repeat(4, 1fr);
+        grid-template: repeat(1, 1fr) / repeat(4, minmax(0, 1fr));
         gap: 12px;
         margin-bottom: 12px;
     }
@@ -340,13 +340,14 @@ section.homepage-products {
 
     #brands-frame {
         display: grid;
-        grid-template: repeat(1, 1fr) / repeat(6, 1fr);
+        grid-template: repeat(1, 1fr) / repeat(5, minmax(0, 1fr));
         list-style: none;
         justify-items: center;
         align-items: center;
         padding: 0;
         padding-top: 16px;
-        padding-bottom: 128px;
+        padding-bottom: 16px;
+        margin-bottom: 128px;
 
         .brand {
             padding: 16px;
@@ -391,10 +392,9 @@ section.homepage-products {
         #values {
             display: flex;
             flex-direction: row;
-            justify-content: space-evenly;
+            justify-content: center;
             align-items: center;
             margin-top: 32px;
-            gap: 32px;
             list-style: none;
 
             .value {
@@ -402,7 +402,9 @@ section.homepage-products {
                 flex-direction: column;
                 justify-content: space-between;
                 align-items: center;
+                gap: 16px;
                 padding: 24px 48px;
+                width: 33%;
 
                 border-right: 1px solid #EAECF0;
 
@@ -434,6 +436,7 @@ section.homepage-products {
                     line-height: 28px;
                     /* identical to box height, or 156% */
                     text-align: center;
+                    text-wrap: nowrap;
 
                     color: #101828;
                 }

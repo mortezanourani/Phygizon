@@ -67,10 +67,9 @@ export const HomePageData = () => {
     const [banner, setBanner] = useState({});
     const [cats, setCats] = useState([]);
     const [products, setProducts] = useState([]);
-    const [mostSoldProducts, setMostSoldProducts] = useState([]);
-    const [highestRatedProducts, setHighestRatedProducts] = useState([]);
-    const [recentProducts, setRecentProducts] = useState([]);
     const [brands, setBrands] = useState([]);
+    const [orderCount, setOrderCount] = useState(null);
+    const [productCount, setProductCount] = useState(null);
 
     useEffect(() => {
         axios.get(baseUrl + '/product/products/?limit=2')
@@ -89,14 +88,13 @@ export const HomePageData = () => {
             })
             .catch(() => { });
 
-        // axios.get(baseUrl + '/product/homepage/')
-        //     .then(response => {
-        //         setMostSoldProducts(response.data.most_sold_products);
-        //         setHighestRatedProducts(response.data.highest_rated_products);
-        //         setRecentProducts(response.data.recent_products);
-        //         setBrands(response.data.brands);
-        //     })
-        //     .catch(() => { });
+        axios.get(baseUrl + '/product/homepage/')
+            .then(response => {
+                setBrands(response.data.brands);
+                setProductCount(response.data.product_counts);
+                setOrderCount(response.data.order_counts);
+            })
+            .catch(() => { });
 
         axios.get(baseUrl + '/product/products/')
             .then(response => {
@@ -110,10 +108,9 @@ export const HomePageData = () => {
         banner: banner,
         categories: cats,
         products: products,
-        // mostSoldProducts: mostSoldProducts,
-        // highestRatedProducts: highestRatedProducts,
-        // recentProducts: recentProducts,
         brands: brands,
+        orderCount: orderCount,
+        productCount: productCount
     };
 };
 

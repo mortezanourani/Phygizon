@@ -50,13 +50,13 @@ const Footer = () => {
                         <h4>Resources</h4>
                         <ul>
                             <li>
-                                <a href="blog.html">Blog</a>
+                                <a href="/blog/">Blog</a>
                             </li>
                             <li>
                                 <a href="">Learn</a>
                             </li>
                             <li>
-                                <a href="helpcenter.html">Help centre</a>
+                                <a href="/helpcenter/">Help centre</a>
                             </li>
                             <li>
                                 <a href="">Community standards</a>

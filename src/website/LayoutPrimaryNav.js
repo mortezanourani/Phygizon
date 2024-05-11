@@ -55,11 +55,18 @@ const PrimaryNav = () => {
             });
     }
 
+    const collapseMenu = (e) => {
+        e.preventDefault();
+
+        const primaryMenu = document.getElementById('primary-nav-menu');
+        primaryMenu.classList.toggle('collapsed');
+    }
+
     const categoriesPopup = (e) => {
         e.preventDefault();
 
         const catPopup = document.getElementById("categories-popup");
-        catPopup.style.display = (catPopup.style.display !== "flex") ? "flex" : "none";
+        catPopup.classList.toggle('collapsed');
     }
 
     const displayChilds = (e) => {
@@ -84,13 +91,63 @@ const PrimaryNav = () => {
                 <a className="navbar-brand" itemID='brand' href='/'>
                     <img src={logo} alt='Phygizon' />
                 </a>
-                <div className="menu">
+                <button className="btn text gray" id="collapse-button" onClick={collapseMenu}>
+                    <img src="/images/icons/icon.hamburger.menu.svg" />
+                </button>
+                <div id="primary-nav-menu" className="menu">
                     <ul className="main-menu">
                         <li className="menu-item">
                             <a href='/categories/' onClick={categoriesPopup}>
                                 <button className="btn lg text gray">Categories <img style={{ marginLeft: "12px" }} src="/images/icons/icon.categories.downarrow.svg" /></button>
                             </a>
                         </li >
+                        <div className="primary-nav-popup-menu" id="categories-popup">
+                            <div className="container">
+                                <div className="parents">
+                                    {
+                                        parentCategories.map(category => (
+                                            <a className="parent-link btn text gray lg" id={category.id} onMouseOver={displayChilds} href={"/category/" + category.id}>
+                                                <img src="/images/icons/icon.categories.svg" alt="" />
+                                                {category.name}
+                                            </a>
+                                        ))
+                                    }
+                                </div>
+                                <div className="childs">
+                                    {
+                                        parentCategories.map(category => {
+                                            let childList = category.sub_categories;
+                                            return (
+                                                <div className="child-content" id={"childsof" + category.id}>
+                                                    {
+                                                        (childList.length !== 0) ? (
+                                                            childList.map(category => (
+                                                                <div className="child-column">
+                                                                    <a href={"/category/" + category.id}><h3>{category.name}</h3></a>
+                                                                </div>
+                                                            ))) : (null)
+                                                    }
+                                                </div>
+                                            )
+                                        }
+                                        )
+                                        // childLists.map(childList => (
+                                        //     (childList.length !== 0) ? (
+                                        //         <div className="child-content" id={JSON.stringify(childList[0].parent)}>
+                                        //             {
+                                        //                 childList.map(list => (
+                                        //                     <div className="child-column">
+                                        //                         <a href={"/category/" + list.id}><h3>{list.name}</h3></a>
+                                        //                     </div>
+                                        //                 ))
+                                        //             }
+                                        //         </div>
+                                        //     ) : (null)
+                                        // ))
+                                    }
+                                </div>
+                            </div>
+                        </div>
                         <li className="menu-item">
                             <a href='/popular/'>
                                 <button className="btn lg text gray">Popular</button>
@@ -116,7 +173,7 @@ const PrimaryNav = () => {
                         (window.localStorage.getItem('authorization') === null) ? (
                             <ul className="navigation-menu">
                                 <li className="menu-item">
-                                    <button className="btn lg text gray" onClick={handleLoginForm}>Login</button>
+                                    <button className="btn lg ghost gray dark" onClick={handleLoginForm}>Login</button>
                                 </li >
                                 <li className="menu-item">
                                     <a href='/signup/'>
@@ -135,53 +192,6 @@ const PrimaryNav = () => {
                         )
 
                     }
-                </div>
-            </div>
-            <div className="primary-nav-popup-menu" id="categories-popup">
-                <div className="container">
-                    <div className="parents">
-                        {
-                            parentCategories.map(category => (
-                                <a className="parent-link btn text gray lg" id={category.id} onMouseOver={displayChilds} href={"/category/" + category.id}>
-                                    <img src="/images/icons/icon.categories.svg" alt="" />
-                                    {category.name}
-                                </a>
-                            ))
-                        }
-                    </div>
-                    <div className="childs">
-                        {
-                            parentCategories.map(category => {
-                                let childList = category.sub_categories;
-                                return (
-                                    <div className="child-content" id={"childsof" + category.id}>
-                                        {
-                                            (childList.length !== 0) ? (
-                                                childList.map(category => (
-                                                    <div className="child-column">
-                                                        <a href={"/category/" + category.id}><h3>{category.name}</h3></a>
-                                                    </div>
-                                                ))) : (null)
-                                        }
-                                    </div>
-                                )
-                            }
-                            )
-                            // childLists.map(childList => (
-                            //     (childList.length !== 0) ? (
-                            //         <div className="child-content" id={JSON.stringify(childList[0].parent)}>
-                            //             {
-                            //                 childList.map(list => (
-                            //                     <div className="child-column">
-                            //                         <a href={"/category/" + list.id}><h3>{list.name}</h3></a>
-                            //                     </div>
-                            //                 ))
-                            //             }
-                            //         </div>
-                            //     ) : (null)
-                            // ))
-                        }
-                    </div>
                 </div>
             </div>
             <div id="login-popup" onClick={closePopup}>

@@ -19,6 +19,14 @@
 
         .navbar-brand {
             position: relative;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        #collapse-button {
+            display: none;
         }
 
         .menu {
@@ -45,31 +53,37 @@
                 gap: 8px;
             }
         }
-
-        @media screen and (max-width: 600px) {
-            .menu {
-                justify-content: right;
-
-                .main-menu {
-                    display: none !important;
-                }
-            }
-
-        }
     }
 
     .primary-nav-popup-menu {
-        position: absolute;
+        position: fixed;
         top: 80px;
+        left: 0;
+        right: 0;
         width: 100%;
         background: #ffffff;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
-        padding: 32px 16px;
+        overflow: hidden;
 
-        display: none;
+        max-height: 0;
+        transition: all ease-in .5s;
+
+        .container {
+            padding: 32px 16px;
+            opacity: 0;
+            transition: all ease .5s .5s;
+        }
+
+        &.collapsed {
+            max-height: 100%;
+
+            .container {
+                opacity: 1;
+            }
+        }
 
         .parents {
             flex-basis: 30%;
@@ -121,4 +135,82 @@
             }
         }
     }
+}
+
+@media screen and (max-width: 600px) {
+    .primary-nav {
+        padding: 0;
+        height: 60px;
+
+        .container {
+            justify-content: space-between;
+
+            .navbar-brand {
+                height: 40px;
+            }
+
+            #collapse-button {
+                display: block;
+            }
+
+            .menu {
+                position: fixed;
+                top: 60px;
+                right: 0;
+                left: 100%;
+                bottom: 0;
+                width: 100%;
+                overflow-y: scroll;
+                background: #fff;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 16px;
+                transition: all ease .5s;
+
+                &.collapsed {
+                    left: 0;
+                }
+
+                ul.main-menu {
+                    flex-direction: column;
+
+                    button {
+                        width: 100%;
+                        text-align: left;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+                }
+
+                ul.navigation-menu {
+                    margin-bottom: 16px;
+                    justify-content: space-between;
+                    flex-direction: column-reverse;
+
+                    li.menu-item {
+                        button {
+                            width: 100%
+                        }
+                    }
+                }
+            }
+
+            .primary-nav-popup-menu {
+                position: relative;
+                top: auto;
+
+                .container {
+                    flex-direction: column;
+                    padding: 0 0 16px;
+
+                    .childs {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
 }

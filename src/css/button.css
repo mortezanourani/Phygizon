@@ -419,9 +419,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 8px;
 
     &.t1 {
+        gap: 8px;
+
         button {
             border: none;
             outline: none;
@@ -453,6 +454,7 @@
     }
 
     &.t2 {
+        gap: 0px;
         display: inline-flex;
         border-radius: 200px;
         border: 1px solid lightgray;
@@ -467,11 +469,16 @@
             font-style: normal;
             font-weight: 500;
             font-size: 18px;
+            text-wrap: nowrap;
 
             color: #333;
             border-radius: 200px;
 
             padding: 16px 24px;
+
+            &:disabled {
+                color: #c7c7c7;
+            }
 
             &.active {
                 font-weight: 500;

@@ -150,10 +150,6 @@ const ProductPage = () => {
                         <div className="specifications">
                             <h3>Specification</h3>
                             <div className="properties">
-                                <div className="property">
-                                    <td className="prop-name">type.nam</td>
-                                    <td className="prop-value">specification.value</td>
-                                </div>
                                 {
                                     data.specifications.map(specification => (
                                         <div className="property">

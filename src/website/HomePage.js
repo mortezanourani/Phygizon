@@ -223,38 +223,29 @@ const HomePage = () => {
                 </div>
                 <div id="brands-frame">
                     {
-                        Array.from({ length: 12 }, (value, index) => (
-                            <img className='brand' src={"/images/brands/" + index + ".svg"} alt="" />
+                        data.brands.map(brand => (
+                            <img className='brand' id={brand.name} src={"/images/brands/" + brand.id + ".svg"} alt="" />
                         ))
                     }
                 </div>
-                {/* <ul id="brands-frame">
-                    {
-                        data.brands.map(brand => (
-                            <li className="brand">
-                                <img src={"/images/brands/" + brand.name + ".svg"} alt="" />
-                            </li>
-                        ))
-                    }
-                </ul> */}
                 <div id="sellers">
                     <img src="/images/icons/icon.seller.svg" alt="" />
                     <h2 className="title">Unleash the full power of data</h2>
                     <p className="description">Everything you need to convert, engage, and more users.</p>
-                    <ul id="values">
-                        <li className="value">
-                            <h1>400+</h1>
+                    <div id="values">
+                        <div className="value">
+                            <h1>{data.productCount}</h1>
                             <p>Successful sales</p>
-                        </li>
-                        <li className="value">
-                            <h1>5200+</h1>
+                        </div>
+                        <div className="value">
+                            <h1>{data.orderCount}</h1>
                             <p>Sellers</p>
-                        </li>
-                        <li className="value">
+                        </div>
+                        <div className="value">
                             <h1>10K</h1>
                             <p>Global Artworks</p>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </section>
 
