@@ -11,6 +11,7 @@ import HomePage from './website/HomePage';
 import reportWebVitals from './reportWebVitals';
 
 import SignupPage from './website/SignupPage';
+import SignupVerifyPage from './website/SignupVerificationPage';
 import SignupPasswordPage from './website/SignupPasswordPage';
 
 import Dashboard from './dashboard/Dashboard';
@@ -41,6 +42,7 @@ root.render(
     <Routes>
       <Route exact path="/" Component={HomePage} />
       <Route path="/signup/" Component={SignupPage} />
+      <Route path="/signup/verify/" Component={SignupVerifyPage} />
       <Route path="/signup/password/" Component={SignupPasswordPage} />
       <Route path="/products/" Component={ProductsPage} />
       <Route path="/product/*" Component={ProductPage} />

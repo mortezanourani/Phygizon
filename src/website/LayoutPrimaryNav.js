@@ -59,7 +59,7 @@ const PrimaryNav = () => {
         e.preventDefault();
 
         const catPopup = document.getElementById("categories-popup");
-        catPopup.style.display = (catPopup.style.display === "none") ? "flex" : "none";
+        catPopup.style.display = (catPopup.style.display !== "flex") ? "flex" : "none";
     }
 
     const displayChilds = (e) => {

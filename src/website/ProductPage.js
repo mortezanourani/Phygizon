@@ -13,11 +13,21 @@ const ProductPage = () => {
 
     const data = Product(productId);
 
+    const handleTab = (e) => {
+        const tabLinks = document.getElementsByClassName('tab-link');
+        for (let i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].classList.remove('active');
+        }
+
+        e.target.classList.add('active');
+
+        const tabContents = document.getElementById('tabs-content');
+        tabContents.className = "tab-content";
+        tabContents.classList.add(e.target.id.replace('product-', ''));
+    }
     return (
         <Layout>
-            <section className="product">
-                <div className="main container">
-                    {/* <div className="section-title">
+            {/* <div className="section-title">
                         <h2 className="title">{data.name}</h2>
                         <p style={{ marginBottom: '25px' }}>{data.categoryDetail}</p>
                         <p>{data.name}</p>
@@ -38,64 +48,158 @@ const ProductPage = () => {
                         <p>{JSON.stringify(data.album)}</p>
                         <p>{JSON.stringify(data.specifications)}</p>
                     </div> */}
-                </div>
-            </section>
             <section id="product" className="container">
                 <div className="image">
-                    <img src={data.image} alt="" />
+                    <img src='/images/products/product.png' alt="" />
                 </div>
                 <div className="product-info">
                     <h2 className="product-title">{data.name}</h2>
                     <div className="information">
-                        <span>Sell By {data.brand.name}</span>
-                        <span>Rated {data.rate}</span>
-                        <span>Reviews</span>
+                        <div className="seller">
+                            <img src={'/images/brands/' + data.brand.id + '.svg'} />
+                            <span>
+                                <p>Sell by</p>
+                                <h5>{data.brand.name}</h5>
+                            </span>
+                        </div>
+                        <div className="rate">
+                            <img src="/images/icons/icon.rate.star.svg" />
+                            <span>
+                                <p>Rating</p>
+                                <h5>{data.rate}</h5>
+                            </span>
+                        </div>
+                        <div className="reviews">
+                            <img src='/images/icons/icon.reviews.svg' />
+                            <span>
+                                <p>Reviews</p>
+                                <h5>{data.comments.length}</h5>
+                            </span>
+                        </div>
                     </div>
                     <div className="options">
                         <div className="color">
-                            <label for="">Color</label>
-                            <input type="radio" name="color" id={data.color.id} value={data.color.name} />
-                            <label for={data.color.id}>{data.color.name}</label>
-                            <input type="radio" name="" id="" />Purple
-                            <input type="radio" name="" id="" />Blue
-                            <input type="radio" name="" id="" />Orange
-                            <input type="radio" name="" id="" />Red
+                            <h4 className="option-title">Color</h4>
+                            <div className="option-value option-color">
+                                <span className="color-demo" style={{ backgroundColor: data.color.color }}></span>
+                                <p className="color-value">{data.color.name}</p>
+                            </div>
                         </div>
                         <div className="size">
-                            <label for="">Size</label>
-                            <input type="radio" name="" id="" className="btn md ghost gray" />Sm
-                            <input type="radio" name="" id="" className="btn md ghost gray" />Md
-                            <input type="radio" name="" id="" className="btn md ghost gray" />Lg
+                            <h4 className="option-title">Size</h4>
+                            <div className="option-value active">
+                                <p>M</p>
+                            </div>
                         </div>
                         <div className="material">
-                            <label for="">Material</label>
-                            <input type="radio" name="material" id={data.material.id} value={data.material.name} />
-                            <label for={data.material.id} className="badge">{data.material.name}</label>
-                            <input id="m1" type="radio" name="material" />
-                            <label for="m1" className="badge">Natural Leather</label>
-                            <input id="m2" type="radio" name="material" />
-                            <label for="m2" className="badge">Artificial Leather</label>
-                            <input id="m3" type="radio" name="material" />
-                            <label for="m3" className="badge">Plastic</label>
+                            <h4 className="option-title">Material</h4>
+                            <div className="option-value active">
+                                <p>{data.brand.name}</p>
+                            </div>
                         </div>
                     </div>
                     <div className="safe-holder">
-                        <i>icon</i>
-                        <span>
+                        <i>
+                            <img src='/images/icons/icon.safe.holder.svg' alt="" />
+                        </i>
+                        <span className="caption">
                             <h3>Safe Holder</h3>
                             <p>You can keep the product in the storage company</p>
                         </span>
-                        <button>Select</button>
+                        <button className="btn ghost gray dark md">Select</button>
                     </div>
                 </div>
-                <div className="product-menu">
-                    <button className="btn md cta">NFT</button>
-                    <button className="btn md text gray">Save</button>
-                    <button className="btn md text gray">360 View</button>
-                    <button className="btn md text gray">VR View</button>
-                    <button className="btn md text gray">Pricing</button>
-                    <button className="btn md text gray">Compare</button>
-                    <button className="btn md text gray">Share</button>
+                <div className="sidebar-menu">
+                    <button id="nft" className="btn md text gray active">
+                        <img src="/images/icons/icon.product.nft.svg" />
+                    </button>
+                    <button id="save" className="btn md text gray">
+                        <img src="/images/icons/icon.product.heart.svg" />
+                        Save
+                    </button>
+                    <button id="view" className="btn md text gray">
+                        <img src="/images/icons/icon.product.360.svg" />
+                        360 View
+                    </button>
+                    <button id="vr" className="btn md text gray">
+                        <img src="/images/icons/icon.product.vr.svg" />
+                        VR View
+                    </button>
+                    <button id="pricing" className="btn md text gray">
+                        <img src="/images/icons/icon.product.pricing.svg" />
+                        Pricing
+                    </button>
+                    <button id="compare" className="btn md text gray">
+                        <img src="/images/icons/icon.product.compare.svg" />
+                        Compare
+                    </button>
+                    <button id="share" className="btn md text gray">
+                        <img src="/images/icons/icon.product.share.svg" />
+                        Share
+                    </button>
+                </div>
+            </section>
+            <section className="container">
+                <div className="tab t1">
+                    <button id="product-details" className="tab-link active" onClick={handleTab}>Details</button>
+                    <button id="product-reviews" className="tab-link" onClick={handleTab}>Reviews</button>
+                    <button>FAQ</button>
+                </div>
+                <div id="tabs-content" className="tab-content details">
+                    <div className="details">
+                        <div className="specifications">
+                            <h3>Specification</h3>
+                            <div className="properties">
+                                <div className="property">
+                                    <td className="prop-name">type.nam</td>
+                                    <td className="prop-value">specification.value</td>
+                                </div>
+                                {
+                                    data.specifications.map(specification => (
+                                        <div className="property">
+                                            <td className="prop-name">{specification.specification_type.name}</td>
+                                            <td className="prop-value">{specification.value}</td>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                        <div className="descriptions">
+                            <h3>Description</h3>
+                            <div dangerouslySetInnerHTML={{ __html: data.description }} />
+                        </div>
+                    </div>
+                    <div className="reviews">
+                        {
+                            data.comments.map(comment => (
+                                <div className="comment">
+                                    <img className="avatar" src={comment.user.avatar} alt="" />
+                                    <div className="content">
+                                        <div className="title">
+                                            <span>
+                                                <h3>{comment.user.__str__}</h3>
+                                                <span>
+                                                    <img src="/images/icons/icon.rate.star.small.svg" />
+                                                </span>
+                                            </span>
+                                            <p>({comment.rate} Days ago)</p>
+                                        </div>
+                                        <p className="body">{comment.body}</p>
+                                        <span className="rate-menu">
+                                            <button className="like">
+                                                <img src="/images/icons/icon.comment.like.svg" />
+                                                {comment.like}
+                                            </button>
+                                            <button className="dislike">
+                                                <img src="/images/icons/icon.comment.dislike.svg" />
+                                                {comment.dislike}
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
                 </div>
             </section>
             <section className="cart container" id="addtocart">
@@ -117,77 +221,16 @@ const ProductPage = () => {
                     </div>
                     <div className="action">
                         <span className="count">
-                            <button className="btn ghost gray">-</button>
-                            <h3>1</h3>
-                            <button className="btn ghost gray">+</button>
+                            <button className="btn ghost gray">
+                                <img src="/images/icons/icon.cart.quantity.down.svg" />
+                            </button>
+                            <h2>1</h2>
+                            <button className="btn ghost gray">
+                                <img src="/images/icons/icon.cart.quantity.up.svg" />
+                            </button>
                         </span>
                         <button className="btn xl cta" onClick={() => addToCart(productId)}>Add to Cart</button>
                     </div>
-                </div>
-            </section>
-            <section>
-                <div className="tabs">
-                    <button>Details</button>
-                    <button>Reviews</button>
-                    <button>FAQ</button>
-                </div>
-                <div className="details">
-                    <div>
-                        <h3>Specification</h3>
-                        <table>
-                            {
-                                data.specifications.map(specification => (
-                                    <tr>
-                                        <td>{specification.specification_type.name}</td>
-                                        <td>{specification.value}</td>
-                                    </tr>
-                                ))
-                            }
-                        </table>
-                    </div>
-                    <div>
-                        <h3>Description</h3>
-                        <div dangerouslySetInnerHTML={{ __html: data.description }} />
-                    </div>
-                </div>
-                <div className="reviews">
-                    {
-                        data.comments.map(comment => (
-                            <div className="comment">
-                                <div>
-                                    <img src={comment.user.avatar} alt="" />
-                                    <span>
-                                        <h3>{comment.user.__str__}</h3>
-                                        <span>{comment.rate}</span>
-                                    </span>
-                                    <p>(3 Days ago)</p>
-                                </div>
-                                {/* <h3>Title</h3> */}
-                                <p>{comment.body}</p>
-                                <span>
-                                    <button>Like</button>
-                                    <button>Dislike</button>
-                                </span>
-                            </div>
-                        ))
-                    }
-                    {/* <div>
-                        <button>Newest</button>
-                        <span>
-                            <button>Previous</button>
-                            <button>1</button>
-                            <button>2</button>
-                            <button>3</button>
-                            ...
-                            <button>8</button>
-                            <button>9</button>
-                            <button>10</button>
-                            <button>Next</button>
-                        </span>
-                        <button>Laft a comment</button>
-                    </div> */}
-                </div>
-                <div className="faq">
                 </div>
             </section>
             <section id="similars" className="container">
@@ -201,8 +244,12 @@ const ProductPage = () => {
                                 <h4 className="final">$185.00</h4>
                             </div>
                             <div className="buttons">
-                                <button className="remove"></button>
-                                <button className="add"></button>
+                                <button className="remove">
+                                    <img src="/images/icons/icon.recyclebin.svg" />
+                                </button>
+                                <button className="add">
+                                    <img src="/images/icons/icon.addtocart.svg" />
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -217,8 +264,12 @@ const ProductPage = () => {
                                 <h4 className="final">$185.00</h4>
                             </div>
                             <div className="buttons">
-                                <button className="remove"></button>
-                                <button className="add"></button>
+                                <button className="remove">
+                                    <img src="/images/icons/icon.recyclebin.svg" />
+                                </button>
+                                <button className="add">
+                                    <img src="/images/icons/icon.addtocart.svg" />
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -233,8 +284,12 @@ const ProductPage = () => {
                                 <h4 className="final">$185.00</h4>
                             </div>
                             <div className="buttons">
-                                <button className="remove"></button>
-                                <button className="add"></button>
+                                <button className="remove">
+                                    <img src="/images/icons/icon.recyclebin.svg" />
+                                </button>
+                                <button className="add">
+                                    <img src="/images/icons/icon.addtocart.svg" />
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -249,8 +304,12 @@ const ProductPage = () => {
                                 <h4 className="final">$185.00</h4>
                             </div>
                             <div className="buttons">
-                                <button className="remove"></button>
-                                <button className="add"></button>
+                                <button className="remove">
+                                    <img src="/images/icons/icon.recyclebin.svg" />
+                                </button>
+                                <button className="add">
+                                    <img src="/images/icons/icon.addtocart.svg" />
+                                </button>
                             </div>
                         </div>
                     </div>
