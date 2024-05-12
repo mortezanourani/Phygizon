@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import logo from '../logo.svg';
 import '../css/footer.css';
+import { Categories } from "../API";
 
 const Footer = () => {
+    const cats = Categories();
+
     return (
         <footer>
             <div className='container'>
@@ -20,43 +23,29 @@ const Footer = () => {
                     <div className="menu">
                         <h4>Shopping</h4>
                         <ul>
-                            <li>
-                                <a href="">Gaming Accessories</a>
-                            </li>
-                            <li>
-                                <a href="">Home Decor</a>
-                            </li>
-                            <li>
-                                <a href="">Jewelry & Accessories</a>
-                            </li>
-                            <li>
-                                <a href="">Leather goods & Works</a>
-                            </li>
-                            <li>
-                                <a href="">Visual Arts</a>
-                            </li>
-                            <li>
-                                <a href="">Woodworking</a>
-                            </li>
-                            <li>
-                                <a href="">Artistic Pendants & Gemstones</a>
-                            </li>
-                            <li>
-                                <a href="">Handcraft Clothing & Apparel</a>
-                            </li>
+                            {
+                                cats.categories
+                                    .filter(category => category.parent === null)
+                                    .sort((a, b) => a.id - b.id)
+                                    .map(category => (
+                                        <li>
+                                            <a href={"/category/" + category.id}>{category.name}</a>
+                                        </li>
+                                    ))
+                            }
                         </ul>
                     </div>
                     <div className="menu">
                         <h4>Resources</h4>
                         <ul>
                             <li>
-                                <a href="/blog/">Blog</a>
+                                <a href="/helpcenter/blog/">Blog</a>
                             </li>
                             <li>
-                                <a href="">Learn</a>
+                                <a href="/helpcenter/learning/">Learn</a>
                             </li>
                             <li>
-                                <a href="/helpcenter/">Help centre</a>
+                                <a href="/helpcenter/">Help center</a>
                             </li>
                             <li>
                                 <a href="">Community standards</a>
@@ -88,7 +77,7 @@ const Footer = () => {
                                 <a href="">Ventures</a>
                             </li>
                             <li>
-                                <a href="">Help centre</a>
+                                <a href="/helpcenter/">Help center</a>
                             </li>
                             <li>
                                 <a href="">Tutorials</a>
