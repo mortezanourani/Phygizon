@@ -5,64 +5,92 @@ import axios from 'axios';
 import Layout from "./Layout";
 
 const SignupVerifyPage = () => {
+    const [type, setType] = useState(null);
+    const [key, setKey] = useState(null);
+    const [receiver, setReceiver] = useState(null);
+    const [code, setCode] = useState(null);
+    const [userCode, setUserCode] = useState(null);
+
     const navigate = useNavigate();
 
     if (localStorage.getItem('authorization') !== null) {
         navigate('/dashboard/', { replace: true });
     }
 
-    // useEffect(() => {
-    //     axios.post('https://phygizone.darkube.app/v1/user/register/send_code/',
-    //         {
-    //             'send_code_type': 'sms'
-    //         },
-    //         {
-    //             headers: {
-    //                 'accept': 'application/json',
-    //                 'Authorization': 'token efbKxQqbYMSKygvhtPB0KCW36mD1vgx4xyV5tVCiQEhM7sYlpuIvxLJ6rmFva9a6',
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         }).then(response => {
-    //             alert(JSON.stringify(response.data));
-    //         }).catch(error => {
-    //             alert(JSON.stringify(error));
-    //         });
-    // }, [])
-
-    const [formData, setFormData] = useState({
-        verification_code: '',
-    });
+    useEffect(() => {
+        axios.post('https://phygizone.darkube.app/v1/user/register/send_code/',
+            {
+                'send_code_type': 'sms'
+            },
+            {
+                headers: {
+                    'accept': 'application/json',
+                    'Authorization': localStorage.getItem('register'),
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                let data = response.data.random_number;
+                setType(data.send_code_type);
+                setKey(data.key);
+                setReceiver(data.receiver);
+                setCode(data.code);
+            }).catch(error => {
+                alert(error.message);
+            });
+    }, []);
 
     const handleChange = (e) => {
-        // const { name, value } = e.target;
-        // setFormData({ ...formData, [name]: value });
-        alert(JSON.stringify(formData));
-    }
+        let inputCode = "";
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+        const inputDigits = document.getElementsByClassName('digit');
+        for (let i = 0; i < inputDigits.length; i++) {
+            inputCode += inputDigits[i].value;
+        }
+        setUserCode(inputCode);
 
-        await axios.post('https://phygizone.darkube.app/v1/user/register/user/')
-            .then(() => { })
-            .catch(() => { });
+        if (e.target.nextSibling === null) {
+            axios.post('https://phygizone.darkube.app/v1/user/register/check_code/',
+                {
+                    'random_key': key,
+                    'random_code': inputCode
+                }, {
+                headers: {
+                    'accept': 'application/json',
+                    'Authorization': localStorage.getItem('register'),
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.status === 200) {
+                    navigate('/signup/password/', { replace: true });
+                }
+            }).catch(error => {
+                if (error.response.status === 400) {
+                    alert('Wrong code.');
+                }
+            });
+            return;
+        }
 
-        navigate('/signup/password/', { replace: true })
+        e.target.nextSibling.focus();
+        e.target.nextSibling.select();
     }
 
     return (
         <Layout>
-            <div className="signup-verification-page">
-                <form className="signup-form" onSubmit={handleSubmit}>
-                    <h1 style={{ marginBottom: '16px', marginTop: '-64px' }}>Verification Code</h1>
+            <div id="signup-verification-page">
+                <form className="signup-verification-form">
+                    <img className="logo" src="/logomini.svg" alt="" />
                     <div>
-                        <input className="verification" name="code" placeholder="" onChange={handleChange} />
-                        <input className="verification" name="code" placeholder="" onChange={handleChange} />
-                        <input className="verification" name="code" placeholder="" onChange={handleChange} />
-                        <input className="verification" name="code" placeholder="" onChange={handleChange} />
-                        <input className="verification" name="code" placeholder="" onChange={handleChange} />
-                        <input className="verification" name="code" placeholder="" onChange={handleChange} />
+                        <h4>Enter Verification Code</h4>
+                        <p>We sent a <b style={{ textTransform: "uppercase" }}>{type}</b> to <b>{receiver}</b>.</p>
                     </div>
-                    <button type="submit" className="btn cta lg">Verify</button>
+                    <div className="digits-group">
+                        <input className="digit" name="code" placeholder="0" onChange={handleChange} />
+                        <input className="digit" name="code" placeholder="0" onChange={handleChange} />
+                        <input className="digit" name="code" placeholder="0" onChange={handleChange} />
+                        <input className="digit" name="code" placeholder="0" onChange={handleChange} />
+                        <input className="digit" name="code" placeholder="0" onChange={handleChange} />
+                    </div>
                 </form>
             </div>
         </Layout>

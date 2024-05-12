@@ -21,7 +21,7 @@ const PrimaryNav = () => {
         if (localStorage.getItem('authorization') !== null) {
             navigate('/dashboard/', { replace: true });
         }
-        document.getElementById('login-popup').style.display = 'block';
+        document.getElementById('login-popup').style.display = 'flex';
     }
 
     const closePopup = (e) => {

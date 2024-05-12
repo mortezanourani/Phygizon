@@ -11,6 +11,10 @@ const SignupPage = () => {
         window.location.replace('/dashboard/');
     }
 
+    if (localStorage.getItem('register') === null) {
+        window.location.replace('/');
+    }
+
     const [formData, setFormData] = useState({
         password: '',
         confirmpassword: '',
@@ -42,7 +46,8 @@ const SignupPage = () => {
             }).then(response => {
                 if (response.status === 200) {
                     alert('Welcome to our community.');
-                    navigate('/', { replace: true });
+                    localStorage.removeItem('register');
+                    return navigate('/', { replace: true });
                 }
             }).catch(error => {
                 alert(error.message);
@@ -51,17 +56,19 @@ const SignupPage = () => {
 
     return (
         <Layout>
-            <form className="signup-form" onSubmit={handleSubmit}>
-                <h1 style={{ marginBottom: '16px', marginTop: '-64px' }}>Set your Password</h1>
-                <div>
+            <div id="signup-password-page">
+                <form className="signup-password-form" onSubmit={handleSubmit}>
+                    <img className="logo" src="/logomini.svg" alt="" />
+                    <span>
+                        <h4>Welcome to Phygizon</h4>
+                        <p>We are glad to see you here.</p>
+                    </span>
                     <input type="password" className="password" name="password" placeholder="Password" onChange={handleChange} />
-                </div>
-                <div>
                     <input type="password" className="retype" name="confirmpassword" placeholder="Retype" onChange={handleChange} />
-                </div>
 
-                <button type="submit" className="btn cta lg">Set</button>
-            </form>
+                    <button type="submit" className="btn cta lg">Continue</button>
+                </form>
+            </div>
         </Layout>
     )
 }

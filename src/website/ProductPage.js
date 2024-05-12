@@ -51,7 +51,7 @@ const ProductPage = () => {
             <section id="product" className="container">
                 <div className="product-content">
                     <div className="image">
-                        <img src='/images/products/product.png' alt="" />
+                        <img src={data.image} alt="" />
                     </div>
                     <div className="product-info">
                         <h2 className="product-title">{data.name}</h2>
