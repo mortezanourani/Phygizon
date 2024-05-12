@@ -37,7 +37,7 @@ const SignupPage = () => {
             .then(response => {
                 if (response.status === 201) {
                     localStorage.setItem('register', 'token ' + response.data.token_info.token);
-                    navigate('/signup/password/', { replace: true });
+                    navigate('/signup/verify/', { replace: true });
                 }
             }).catch(error => {
                 alert(error.response.data.message);
@@ -46,22 +46,24 @@ const SignupPage = () => {
 
     return (
         <Layout>
-            <form className="signup-form" onSubmit={handleSubmit}>
-                <h1 style={{ marginBottom: '16px', marginTop: '-64px' }}>Welcome to Phygizon</h1>
-                <div>
+            <div id="signup-page">
+                <form className="signup-form" onSubmit={handleSubmit}>
+                    <img className="logo" src="/logomini.svg" alt="" />
+                    <span>
+                        <h4>Welcome to Phygizon</h4>
+                        <p>We are glad to see you here.</p>
+                    </span>
                     <input type="email" className="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
-                </div>
-                <div>
                     <input className="firstname" name="firstname" placeholder="First Name" value={formData.firstname} onChange={handleChange} />
                     <input className="lastname" name="lastname" placeholder="Last Name" value={formData.lastname} onChange={handleChange} />
-                </div>
-                <div>
-                    <input className="country" name="country" placeholder="Country" value={formData.country} onChange={handleChange} />
-                    <input type="tel" className="phonenumber" name="phonenumber" placeholder="Phone Number" value={formData.phonenumber} onChange={handleChange} />
-                </div>
+                    <div className="phone">
+                        <input className="country" name="country" placeholder="Country" value={formData.country} onChange={handleChange} />
+                        <input type="tel" className="phonenumber" name="phonenumber" placeholder="Phone Number" value={formData.phonenumber} onChange={handleChange} />
+                    </div>
 
-                <button type="submit" className="btn cta lg">Continue</button>
-            </form>
+                    <button type="submit" className="btn cta lg">Continue</button>
+                </form>
+            </div>
         </Layout>
     )
 }

@@ -25,9 +25,6 @@ const PrimaryNav = () => {
     }
 
     const closePopup = (e) => {
-        if (e.target !== document.getElementById('login-popup')) {
-            return;
-        }
         document.getElementById('login-popup').style.display = 'none';
     }
 
@@ -129,8 +126,7 @@ const PrimaryNav = () => {
                                                     }
                                                 </div>
                                             )
-                                        }
-                                        )
+                                        })
                                         // childLists.map(childList => (
                                         //     (childList.length !== 0) ? (
                                         //         <div className="child-content" id={JSON.stringify(childList[0].parent)}>
@@ -194,11 +190,19 @@ const PrimaryNav = () => {
                     }
                 </div>
             </div>
-            <div id="login-popup" onClick={closePopup}>
+            <div id="login-popup">
                 <form className="login-form" onSubmit={handleSubmit}>
-                    <input className="username" name="username" placeholder="Username" value={formData.username} onChange={handleChange} />
+                    <button type="reset" className="close btn text gray" onClick={closePopup}>
+                        <img src="/images/icons/icon.close.svg" alt="" />
+                    </button>
+                    <img id="logo" src="/logomini.svg" alt="" />
+                    <span>
+                        <h4>Welcome back</h4>
+                        <p>We was waiting for you.</p>
+                    </span>
+                    <input className="username" name="username" placeholder="Phone number" value={formData.username} onChange={handleChange} />
                     <input className="password" type="password" placeholder="Password" name="password" onChange={handleChange} />
-                    <button type="submit" className="btn cta lg">Login</button>
+                    <button type="submit" className="btn cta md">Login</button>
                 </form>
             </div>
         </nav >
