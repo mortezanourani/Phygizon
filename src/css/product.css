@@ -9,6 +9,7 @@
 }
 
 .product-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -19,9 +20,62 @@
     border-radius: 24px;
     padding: 12px;
 
+    .nft-link {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 12px 18px;
+
+        position: absolute;
+        width: 78px;
+        height: 38px;
+        right: 24px;
+        top: 24px;
+
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(4px);
+        border-radius: 12px;
+        background-image: url('../../public/images/icons/icon.tag.nft.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        z-index: 10;
+
+        &.required {
+            background-image: url('../../public/images/icons/icon.tag.nft.required.svg');
+        }
+    }
+
     img {
         border-radius: 16px;
         width: 100%;
+    }
+
+    .discount {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        position: absolute;
+        width: 85px;
+        height: 76px;
+        left: 0px;
+        top: 0px;
+
+        background-image: url('../../public/images/icons/icon.discount.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        z-index: 1;
+
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+        color: #FFFFFF;
     }
 
     .info {

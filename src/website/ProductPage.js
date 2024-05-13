@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "./Layout";
-import { Product, addToCart } from "../API";
+import { Product, addToCart, addToWishlist } from "../API";
 
 import '../css/product.css';
 
@@ -27,27 +27,6 @@ const ProductPage = () => {
     }
     return (
         <Layout>
-            {/* <div className="section-title">
-                        <h2 className="title">{data.name}</h2>
-                        <p style={{ marginBottom: '25px' }}>{data.categoryDetail}</p>
-                        <p>{data.name}</p>
-                        <p>{JSON.stringify(data.category)}</p>
-                        <p>{JSON.stringify(data.color)}</p>
-                        <p>{JSON.stringify(data.brand)}</p>
-                        <p>{JSON.stringify(data.material)}</p>
-                        <p>{data.rate}</p>
-                        <p>{data.stock}</p>
-                        <p>{data.hasStock}</p>
-                        <p>{data.image}</p>
-                        <p>{data.isNftRequired}</p>
-                        <p>{JSON.stringify(data.currentPrice)}</p>
-                        <p>{JSON.stringify(data.prices)}</p>
-                        <p>{JSON.stringify(data.comments)}</p>
-                        <p>{data.nftLink}</p>
-                        <p>{data.description}</p>
-                        <p>{JSON.stringify(data.album)}</p>
-                        <p>{JSON.stringify(data.specifications)}</p>
-                    </div> */}
             <section id="product" className="container">
                 <div className="product-content">
                     <div className="image">
@@ -114,10 +93,22 @@ const ProductPage = () => {
                     </div>
                 </div>
                 <div className="sidebar-menu">
-                    <button id="nft" className="btn md text gray active">
-                        <img src="/images/icons/icon.product.nft.svg" alt="" />
-                    </button>
-                    <button id="save" className="btn md text gray">
+                    {
+                        (data.nftLink) ? (
+                            <a href={data.nftLink}>
+                                <button id="nft" className="btn md text gray active">
+                                    {
+                                        (data.isNftRequired) ? (
+                                            <img src="/images/icons/icon.tag.nft.required.svg" alt="" />
+                                        ) : (
+                                            <img src="/images/icons/icon.tag.nft.svg" alt="" />
+                                        )
+                                    }
+                                </button>
+                            </a>
+                        ) : null
+                    }
+                    <button id="save" className="btn md text gray" onClick={() => addToWishlist(productId)}>
                         <img src="/images/icons/icon.product.heart.svg" alt="" />
                         Save
                     </button>
@@ -204,7 +195,7 @@ const ProductPage = () => {
             </section>
             <section className="cart container" id="addtocart">
                 <div className="">
-                    <div className="timer">
+                    {/* <div className="timer">
                         <h3 className="title pink">Amazing offer</h3>
                         <div className="digits-group">
                             <span className="digit pink">02</span>
@@ -212,10 +203,23 @@ const ProductPage = () => {
                             <span className="digit pink">44</span>
                             <span className="digit pink">21</span>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="cost">
-                        <p className="before">{data.currentPrice.price} MGC</p>
-                        <h2 className="after">{data.currentPrice.discount_price} MGC
+                        <p className="before">
+                            {
+                                (data.currentPrice.price !== null) ? (
+                                    ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.id : null)
+                                    + data.currentPrice.price
+                                ) : null
+                            }
+                        </p>
+                        <h2 className="after">
+                            {
+                                (data.currentPrice.price !== null) ? (
+                                    ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.id : null)
+                                    + data.currentPrice.discount_price
+                                ) : null
+                            }
                             <p className="dollar">($15.87)</p>
                         </h2>
                     </div>
@@ -233,7 +237,7 @@ const ProductPage = () => {
                     </div>
                 </div>
             </section>
-            <section id="similars" className="container">
+            {/* <section id="similars" className="container">
                 <div className="product-card">
                     <img src="/images/products/product.png" alt="" />
                     <div className="info">
@@ -314,7 +318,7 @@ const ProductPage = () => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
         </Layout>
     );
 }

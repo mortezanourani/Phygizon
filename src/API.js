@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 
 const baseUrl = 'https://phygizone.darkube.app/v1';
 const apiHeaders = {
@@ -239,6 +239,40 @@ export const Product = (id) => {
     };
 };
 
+/* api: prodcut_wishlist_add_to_wishlist */
+export const addToWishlist = (id) => {
+    let product = {};
+    axios.get(baseUrl + '/product/products/' + id + '/')
+        .then(response => {
+            if (response.status === 200) {
+                product = response.data;
+
+                axios.post(baseUrl + '/product/wishlist/1/add_to_wishlist/',
+                    {
+                        'product': {
+                            'name': product.name,
+                            'rate': product.rate,
+                            'current_price': product.currentPrice,
+                            'nft_link': product.nftLink,
+                            'is_nft_required': product.isNftRequired
+                        }
+                    },
+                    {
+                        headers: apiHeaders,
+                    })
+                    .then(response => {
+                        if (response.status === 201) {
+                            alert('Product added to your wishlist.');
+                        }
+                    }).catch(error => {
+                        if (error.response.status === 401) {
+                            return alert('You need to login.');
+                        }
+                        alert(error.message);
+                    });
+            }
+        }).catch(() => { })
+}
 
 export const Products = () => {
     const [count, setCount] = useState(null);

@@ -48,7 +48,7 @@ const PrimaryNav = () => {
                     navigate('/dashboard/', { replace: true });
                 }
             }).catch(error => {
-                alert(JSON.stringify(error.response.status));
+                alert(JSON.stringify(error));
             });
     }
 

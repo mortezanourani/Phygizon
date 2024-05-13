@@ -18,23 +18,39 @@ const ProductsPage = () => {
                     <div id="products">
                         {
                             products.map(product => (
-                                <div key={product.id} className="product-card">
-                                    <a href={"/product/" + product.id}>
+                                <div className="product-card">
+                                    {
+                                        (product.nft_link) ? (
+                                            <a href={product.nft_link}
+                                                className={"nft-link" + ((product.is_nft_required) ? " required" : "")}>
+                                            </a>
+                                        ) : null
+                                    }
+                                    <a href={"/product/" + product.id + "/"}>
+                                        {
+                                            (product.current_price.discount) ? (
+                                                <span className='discount'>
+                                                    {product.current_price.discount * 100} %
+                                                </span>
+                                            ) : null
+                                        }
                                         <img src={product.image} alt="" />
                                     </a>
                                     <div className="info">
-                                        <h4 className="title">{product.name}</h4>
+                                        <a href={"/product/" + product.id + "/"}>
+                                            <h4 className="title">{product.name}</h4>
+                                        </a>
                                         <div className="cart">
                                             <div className="cost">
-                                                <h5 className="off">{"$" + product.current_price.price}</h5>
-                                                <h4 className="final">{"$" + product.current_price.discount_price}</h4>
+                                                <h5 className="off">{product.current_price.currency.sign + product.current_price.price}</h5>
+                                                <h4 className="final">{product.current_price.currency.sign + product.current_price.discount_price}</h4>
                                             </div>
                                             <div className="buttons">
                                                 <button className="remove" onClick={() => removeFromCart(product.id)}>
-                                                    <img src="/images/icons/icon.recyclebin.svg" />
+                                                    <img src="/images/icons/icon.recyclebin.svg" alt="" />
                                                 </button>
                                                 <button className="add" onClick={() => addToCart(product.id)}>
-                                                    <img src="/images/icons/icon.addtocart.svg" />
+                                                    <img src="/images/icons/icon.addtocart.svg" alt="" />
                                                 </button>
                                             </div>
                                         </div>

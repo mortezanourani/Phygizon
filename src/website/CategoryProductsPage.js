@@ -29,15 +29,31 @@ const CategoryProductsPage = () => {
                         {
                             data.products.map(product => (
                                 <div className="product-card">
-                                    <a href={"/product/" + product.id}>
+                                    {
+                                        (product.nft_link) ? (
+                                            <a href={product.nft_link}
+                                                className={"nft-link" + ((product.is_nft_required) ? " required" : "")}>
+                                            </a>
+                                        ) : null
+                                    }
+                                    <a href={"/product/" + product.id + "/"}>
+                                        {
+                                            (product.current_price.discount) ? (
+                                                <span className='discount'>
+                                                    {product.current_price.discount * 100} %
+                                                </span>
+                                            ) : null
+                                        }
                                         <img src={product.image} alt="" />
                                     </a>
                                     <div className="info">
-                                        <h4 className="title">{product.name}</h4>
+                                        <a href={"/product/" + product.id + "/"}>
+                                            <h4 className="title">{product.name}</h4>
+                                        </a>
                                         <div className="cart">
                                             <div className="cost">
-                                                <h5 className="off">{"$" + product.current_price.price}</h5>
-                                                <h4 className="final">{"$" + product.current_price.discount_price}</h4>
+                                                <h5 className="off">{product.current_price.currency.sign + product.current_price.price}</h5>
+                                                <h4 className="final">{product.current_price.currency.sign + product.current_price.discount_price}</h4>
                                             </div>
                                             <div className="buttons">
                                                 <button className="remove" onClick={() => removeFromCart(product.id)}>
