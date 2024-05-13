@@ -8,8 +8,6 @@ const SignupVerifyPage = () => {
     const [type, setType] = useState(null);
     const [key, setKey] = useState(null);
     const [receiver, setReceiver] = useState(null);
-    const [code, setCode] = useState(null);
-    const [userCode, setUserCode] = useState(null);
 
     const navigate = useNavigate();
 
@@ -33,7 +31,6 @@ const SignupVerifyPage = () => {
                 setType(data.send_code_type);
                 setKey(data.key);
                 setReceiver(data.receiver);
-                setCode(data.code);
             }).catch(error => {
                 alert(error.message);
             });
@@ -46,7 +43,6 @@ const SignupVerifyPage = () => {
         for (let i = 0; i < inputDigits.length; i++) {
             inputCode += inputDigits[i].value;
         }
-        setUserCode(inputCode);
 
         if (e.target.nextSibling === null) {
             axios.post('https://phygizone.darkube.app/v1/user/register/check_code/',

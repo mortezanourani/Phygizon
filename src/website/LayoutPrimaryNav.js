@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import logo from '../logo.svg';
@@ -10,10 +10,6 @@ const PrimaryNav = () => {
     const categories = Categories();
 
     const parentCategories = categories.categories.filter(category => (category.parent === null));
-
-    const childLists = parentCategories.map((parent) => {
-        return categories.categories.filter(category => (category.parent === parent.id));
-    });
 
     const navigate = useNavigate();
 
@@ -89,13 +85,15 @@ const PrimaryNav = () => {
                     <img src={logo} alt='Phygizon' />
                 </a>
                 <button className="btn text gray" id="collapse-button" onClick={collapseMenu}>
-                    <img src="/images/icons/icon.hamburger.menu.svg" />
+                    <img src="/images/icons/icon.hamburger.menu.svg" alt="" />
                 </button>
                 <div id="primary-nav-menu" className="menu">
                     <ul className="main-menu">
                         <li className="menu-item">
                             <a href='/categories/' onClick={categoriesPopup}>
-                                <button className="btn lg text gray">Categories <img style={{ marginLeft: "12px" }} src="/images/icons/icon.categories.downarrow.svg" /></button>
+                                <button className="btn lg text gray">
+                                    Categories
+                                    <img style={{ marginLeft: "12px" }} src="/images/icons/icon.categories.downarrow.svg" alt="" /></button>
                             </a>
                         </li >
                         <div className="primary-nav-popup-menu" id="categories-popup">
@@ -127,19 +125,6 @@ const PrimaryNav = () => {
                                                 </div>
                                             )
                                         })
-                                        // childLists.map(childList => (
-                                        //     (childList.length !== 0) ? (
-                                        //         <div className="child-content" id={JSON.stringify(childList[0].parent)}>
-                                        //             {
-                                        //                 childList.map(list => (
-                                        //                     <div className="child-column">
-                                        //                         <a href={"/category/" + list.id}><h3>{list.name}</h3></a>
-                                        //                     </div>
-                                        //                 ))
-                                        //             }
-                                        //         </div>
-                                        //     ) : (null)
-                                        // ))
                                     }
                                 </div>
                             </div>
@@ -179,6 +164,13 @@ const PrimaryNav = () => {
                             </ul>
                         ) : (
                             <ul className="navigation-menu">
+                                <li className="menu-item">
+                                    <a href="/cart/">
+                                        <button className="btn md ghost gray dark">
+                                            <img src="/images/icons/icon.cart.svg" alt="" />
+                                        </button>
+                                    </a>
+                                </li>
                                 <li className="menu-item">
                                     <a href='/dashboard/'>
                                         <button className="btn md cta">Dashboard</button>
