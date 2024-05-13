@@ -219,6 +219,7 @@ body {
             border: 1px solid #189A8A;
             border-radius: 8px;
 
+            font-family: 'Hubot Sans';
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
@@ -228,16 +229,29 @@ body {
             padding: 8px;
 
             width: 100%;
+            height: auto;
         }
 
         .phone {
             display: flex;
             flex-direction: row;
+            align-items: stretch;
+            width: 100%;
 
-            .country {
+            .country,
+            .react-international-phone-country-selector {
                 flex-basis: 25%;
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
+                border: 1px solid #189A8A;
+                border-radius: 8px 0 0 8px;
+                /* overflow: hidden; */
+                text-align: center;
+
+                button {
+                    border: none;
+                    margin: auto;
+                }
             }
 
             .phonenumber {
@@ -247,7 +261,7 @@ body {
             }
         }
 
-        button {
+        >button {
             margin-top: 16px;
             width: 100%;
         }
