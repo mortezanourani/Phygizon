@@ -147,6 +147,7 @@ section.homepage-products {
                 justify-content: center;
                 align-items: center;
                 font-weight: normal;
+                text-wrap: nowrap;
                 gap: 15px;
                 padding: 22px 18px;
                 border-radius: 16px;

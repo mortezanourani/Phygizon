@@ -241,37 +241,23 @@ export const Product = (id) => {
 
 /* api: prodcut_wishlist_add_to_wishlist */
 export const addToWishlist = (id) => {
-    let product = {};
-    axios.get(baseUrl + '/product/products/' + id + '/')
+    axios.post(baseUrl + '/product/wishlist/add_to_wishlist/',
+        {
+            'product': id
+        },
+        {
+            headers: apiHeaders,
+        })
         .then(response => {
-            if (response.status === 200) {
-                product = response.data;
-
-                axios.post(baseUrl + '/product/wishlist/1/add_to_wishlist/',
-                    {
-                        'product': {
-                            'name': product.name,
-                            'rate': product.rate,
-                            'current_price': product.currentPrice,
-                            'nft_link': product.nftLink,
-                            'is_nft_required': product.isNftRequired
-                        }
-                    },
-                    {
-                        headers: apiHeaders,
-                    })
-                    .then(response => {
-                        if (response.status === 201) {
-                            alert('Product added to your wishlist.');
-                        }
-                    }).catch(error => {
-                        if (error.response.status === 401) {
-                            return alert('You need to login.');
-                        }
-                        alert(error.message);
-                    });
+            if (response.status === 201 || 200) {
+                return alert('Product added to your wishlist.');
             }
-        }).catch(() => { })
+        }).catch(error => {
+            if (error.response.status === 401) {
+                return alert('You need to login.');
+            }
+            alert(error.message);
+        });
 }
 
 export const Products = () => {
