@@ -63,24 +63,15 @@ export const GetDashboard = () => {
 
 /* api: product_homepage_list */
 export const HomePageData = () => {
-    const [slide, setSlide] = useState({});
-    const [banner, setBanner] = useState({});
     const [cats, setCats] = useState([]);
-    const [products, setProducts] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
+    const [nftProducts, setNftProducts] = useState([]);
+    const [recentProducts, setRecentProducts] = useState([]);
     const [brands, setBrands] = useState([]);
     const [orderCount, setOrderCount] = useState(null);
     const [productCount, setProductCount] = useState(null);
 
     useEffect(() => {
-        axios.get(baseUrl + '/product/products/?limit=2')
-            .then(response => {
-                setSlide(response.data.results[0]);
-                setBanner(response.data.results[1]);
-                setSlide({ id: 'slide' });
-                setBanner({ id: 'banner' });
-            })
-            .catch(() => { });
-
         axios.get(baseUrl + '/product/categories/')
             .then(response => {
                 const categories = response.data.results.filter(cat => (cat.parent === null));
@@ -90,24 +81,21 @@ export const HomePageData = () => {
 
         axios.get(baseUrl + '/product/homepage/')
             .then(response => {
+                setAllProducts(response.data.all_products);
+                setNftProducts(response.data.nft_products);
+                setRecentProducts(response.data.recent_products);
                 setBrands(response.data.brands);
                 setProductCount(response.data.product_counts);
                 setOrderCount(response.data.order_counts);
             })
             .catch(() => { });
-
-        axios.get(baseUrl + '/product/products/')
-            .then(response => {
-                setProducts(response.data.results);
-            })
-            .catch(() => { });
     }, []);
 
     return {
-        slide: slide,
-        banner: banner,
         categories: cats,
-        products: products,
+        allProducts: allProducts,
+        nftProducts: nftProducts,
+        recentProducts: recentProducts,
         brands: brands,
         orderCount: orderCount,
         productCount: productCount

@@ -7,10 +7,14 @@ import { FAQs, HomePageData, addToCart, removeFromCart } from '../API';
 
 const HomePage = () => {
     const data = HomePageData();
-    const allProducts = data.products.slice(0, 8);
-    const nftProducts = data.products.filter(product => (product.nft_link !== null)).slice(0, 8);
-    const offersProducts = data.products.filter(product => (product.current_price.discount !== 0)).slice(0, 8);
-    const latestProducts = data.products.sort((a, b) => b.id - a.id).slice(0, 8);
+    const categories = data.categories;
+    const allProducts = data.allProducts;
+    const nftProducts = data.nftProducts;
+    const offersProducts = [];
+    const latestProducts = data.recentProducts;
+    const brands = data.brands;
+    const orderCount = data.orderCount;
+    const productCount = data.productCount;
     const faqs = FAQs();
 
     const handleProducts = (e) => {
@@ -67,7 +71,7 @@ const HomePage = () => {
                     </div>
                     <div className="categories">
                         {
-                            data.categories.map(cat => (
+                            categories.map(cat => (
                                 <a href={"/category/" + cat.id + "/"}>
                                     <img className="icon" src={"/images/icons/icon.cat." + cat.id + ".svg"} />
                                     {cat.name}
@@ -290,7 +294,8 @@ const HomePage = () => {
                 </div>
                 <div id="brands-frame">
                     {
-                        data.brands.map(brand => (
+                        brands.map(brand => (
+                            // <img className='brand' id={brand.name} src={brand.logo} alt="" />
                             <img className='brand' id={brand.name} src={"/images/brands/" + brand.id + ".svg"} alt="" />
                         ))
                     }
@@ -301,11 +306,11 @@ const HomePage = () => {
                     <p className="description">Everything you need to convert, engage, and more users.</p>
                     <div id="values">
                         <div className="value">
-                            <h1>{data.productCount}</h1>
+                            <h1>{productCount}</h1>
                             <p>Successful sales</p>
                         </div>
                         <div className="value">
-                            <h1>{data.orderCount}</h1>
+                            <h1>{orderCount}</h1>
                             <p>Sellers</p>
                         </div>
                         <div className="value">
