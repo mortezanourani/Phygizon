@@ -208,7 +208,7 @@ const ProductPage = () => {
                         <p className="before">
                             {
                                 (data.currentPrice.price !== null) ? (
-                                    ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.id : null)
+                                    ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.name : null)
                                     + data.currentPrice.price
                                 ) : null
                             }
@@ -216,7 +216,7 @@ const ProductPage = () => {
                         <h2 className="after">
                             {
                                 (data.currentPrice.price !== null) ? (
-                                    ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.id : null)
+                                    ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.name : null)
                                     + data.currentPrice.discount_price
                                 ) : null
                             }

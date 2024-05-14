@@ -35,6 +35,8 @@ import ProductPage from './website/ProductPage';
 import CategoryProductsPage from './website/CategoryProductsPage';
 import CartPage from './website/CartPage';
 import ComingSoon from './ComingSoon';
+import SettingsPage from './dashboard/SettingsPage';
+import SavePage from './dashboard/SavePage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -70,6 +72,9 @@ root.render(
       <Route path="/dashboard/orders/inprogress/" Component={InProgressPage} />
       <Route path="/dashboard/orders/delivered/" Component={DeliveredsPage} />
       <Route path="/dashboard/order/*" Component={OrderDetailsPage} />
+      <Route path="/dashboard/save/" Component={SavePage} />
+      <Route path="/dashboard/settings/*" Component={SettingsPage} />
+
       <Route path="*" Component={NotFound} />
     </Routes>
   </BrowserRouter>

@@ -248,6 +248,41 @@ export const addToWishlist = (id) => {
         });
 }
 
+/* api: prodcut_wishlist_add_to_wishlist */
+export const WishList = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        axios.get(baseUrl + '/product/wishlist/get_wishlist/', {
+            headers: apiHeaders
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    setProducts(response.data.items);
+                }
+            }).catch(error => alert(error.message));
+    }, []);
+
+    return products;
+}
+
+/* api: */
+export const removeFromWishList = (id) => {
+    axios.post(baseUrl + '/product/wishlist/remove_from_wishlist/',
+        {
+            'product': id
+        },
+        {
+            headers: apiHeaders,
+        })
+        .then(response => {
+            if (response.status === 204 || 200) {
+                alert('Product removed from your wishlist.');
+                return window.location.replace('/dashboard/save/');
+            }
+        }).catch(error => alert(error.message));
+}
+
 export const Products = () => {
     const [count, setCount] = useState(null);
     const [products, setProducts] = useState([]);

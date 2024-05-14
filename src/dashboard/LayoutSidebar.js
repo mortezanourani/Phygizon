@@ -21,6 +21,7 @@ const Logout = (e) => {
                 window.location.replace('/');
             }
         }).catch(error => {
+            alert(JSON.stringify(error.response));
             alert('Something went wrong. Please try again.');
         });
 }
