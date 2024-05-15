@@ -26,13 +26,30 @@ const Logout = (e) => {
         });
 }
 
+const handleCollapse = () => {
+    const aside = document.querySelector('aside');
+    aside.classList.toggle('collapsed');
+}
+
 const Sidebar = () => {
     return (
         <aside>
             <nav>
-                <a href="/">
-                    <img src={logo} alt="" />
-                </a>
+                <div>
+                    <a className="brand" href="/">
+                        <img src={logo} alt="" />
+                    </a>
+                    <div>
+                        <a href="/cart/">
+                            <button className="btn text gray cart-button">
+                                <img src="/images/icons/icon.cart.svg" alt="" />
+                            </button>
+                        </a>
+                        <button className="btn text gray collaps-button" onClick={handleCollapse}>
+                            <img src="/images/icons/icon.hamburger.menu.svg" alt="" />
+                        </button>
+                    </div>
+                </div>
                 <ul>
                     <li>
                         <a href="/dashboard/">

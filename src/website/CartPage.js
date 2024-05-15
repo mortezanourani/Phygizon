@@ -4,7 +4,6 @@ import { Addresses, Cart, Pay, Payments } from "../API";
 
 import '../css/cart.css';
 
-
 const CartPage = () => {
     const addresses = Addresses();
     const cart = Cart();

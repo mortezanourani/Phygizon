@@ -6,7 +6,6 @@ import '../css/wishlist.css';
 
 const SavePage = () => {
     const items = WishList();
-    // alert(JSON.stringify(products));
     return (
         <Layout>
             <div id="wishlist">

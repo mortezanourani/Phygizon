@@ -42,8 +42,8 @@ const ProductsPage = () => {
                                         </a>
                                         <div className="cart">
                                             <div className="cost">
-                                                <h5 className="off">{product.current_price.currency.name + product.current_price.price}</h5>
-                                                <h4 className="final">{product.current_price.currency.name + product.current_price.discount_price}</h4>
+                                                <h5 className="off">{(product.current_price.discount !== 0) ? product.current_price.price + " " + product.current_price.currency.name : null}</h5>
+                                                <h4 className="final">{((product.current_price.discount !== 0) ? product.current_price.discount_price : product.current_price.price) + " " + product.current_price.currency.name}</h4>
                                             </div>
                                             <div className="buttons">
                                                 <button className="remove" onClick={() => removeFromCart(product.id)}>

@@ -162,3 +162,50 @@
         }
     }
 }
+
+@media screen and (max-width: 480px) {
+
+    #addresses,
+    #addaddress {
+        margin-top: 64px;
+        padding: 8px;
+        box-shadow: none;
+        background: none;
+        backdrop-filter: none;
+        border-radius: 0;
+        min-height: 100vh;
+    }
+
+    #addresses {
+        .addresses-frame {
+            margin-top: 32px;
+
+            .address {
+                >div {
+                    span {
+                        flex-direction: column;
+                    }
+
+                    ul {
+                        flex-direction: column;
+                        align-items: flex-start;
+                    }
+                }
+            }
+        }
+    }
+
+    #addaddress {
+        .form-control {
+            flex-direction: column;
+            align-items: stretch;
+            padding: 0;
+            gap: 8px;
+            margin-bottom: 24px;
+
+            &.buttons {
+                flex-direction: column-reverse;
+            }
+        }
+    }
+}

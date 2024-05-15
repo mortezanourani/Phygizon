@@ -28,7 +28,6 @@ const OrdersPage = (e) => {
                     <button id="6" className="btn md text gray" onClick={filterOrders}>Canceled</button>
                 </nav>
                 <div className="records">
-                    {JSON.stringify(orders)}
                     {
                         orders === null ? (
                             <h3>Loading...</h3>

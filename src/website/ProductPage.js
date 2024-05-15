@@ -205,22 +205,30 @@ const ProductPage = () => {
                         </div>
                     </div> */}
                     <div className="cost">
-                        <p className="before">
-                            {
-                                (data.currentPrice.price !== null) ? (
-                                    ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.name : null)
-                                    + data.currentPrice.price
-                                ) : null
-                            }
-                        </p>
+                        {
+                            (data.currentPrice.discount !== 0) ? (
+                                <p className="before">
+                                    {
+                                        data.currentPrice.price
+                                        + " "
+                                        + ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.name : null)
+                                    }
+                                </p>
+                            ) : null
+                        }
                         <h2 className="after">
                             {
-                                (data.currentPrice.price !== null) ? (
-                                    ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.name : null)
-                                    + data.currentPrice.discount_price
-                                ) : null
+                                (data.currentPrice.discount !== 0) ? (
+                                    data.currentPrice.discount_price
+                                    + " "
+                                    + ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.name : null)
+                                ) : (
+                                    data.currentPrice.price
+                                    + " "
+                                    + ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.name : null)
+                                )
                             }
-                            <p className="dollar">($15.87)</p>
+                            {/* <p className="dollar">($15.87)</p> */}
                         </h2>
                     </div>
                     <div className="action">

@@ -5,10 +5,16 @@
     padding: 32px;
     gap: 32px;
 
+    .collaps-button,
+    .cart-button {
+        display: none;
+    }
+
     aside {
         position: sticky;
         top: 32px;
         width: 268px;
+        min-width: 268px;
         padding: 32px;
         border-radius: 32px;
         height: calc(100vh - 64px);
@@ -238,7 +244,7 @@
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            overflow-x: scroll;
+            overflow-x: auto;
             gap: 12px;
             flex-grow: 1;
         }
@@ -252,7 +258,7 @@
 
             background: #FFFFFF;
             border-radius: 24px;
-            aspect-ratio: 8 / 10;
+            flex-basis: 150px;
 
             * {
                 text-wrap: nowrap;
@@ -458,7 +464,7 @@
             object-fit: cover;
         }
 
-        button {
+        a {
             position: absolute;
             left: 10%;
             bottom: 15%;
@@ -652,6 +658,145 @@
 
             .btn {
                 width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .dashboard {
+        padding: 16px;
+
+        aside {
+            position: fixed;
+            top: 0;
+            bottom: calc(100vh - 60px);
+            left: 0;
+            right: 0;
+            width: auto;
+            height: auto;
+            overflow: hidden;
+            z-index: 998;
+            border-radius: 0;
+            background: #eff8f5;
+            padding: 0 16px;
+
+            backdrop-filter: blur(20px);
+            transition: all ease 600ms;
+
+            nav {
+                >div {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    height: 60px;
+                    position: relative;
+
+                    a.brand img {
+                        height: 60px;
+                        padding: 10px 0;
+                    }
+
+                    >div {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 8px;
+                        align-items: center;
+
+                        button.collaps-button,
+                        a button.cart-button {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 5px;
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+
+                ul {
+                    padding: 16px;
+                    margin-bottom: 16px;
+                }
+            }
+
+            &.collapsed {
+                bottom: 0;
+            }
+        }
+
+        main {
+            max-width: 100vw;
+            overflow: hidden;
+
+            >nav {
+                display: none;
+            }
+
+            #dashboard {
+                margin-top: 64px;
+
+                .orders {
+                    padding: 16px;
+                    flex-direction: column;
+
+                    .all {
+                        align-items: flex-start;
+                        font-family: 'Hubot Sans';
+                        font-style: normal;
+                        font-weight: 800;
+                        font-size: 40px;
+                        line-height: 48px;
+                        color: #101828;
+                        flex-basis: auto;
+                    }
+
+                    .filters {
+                        max-width: 100%;
+                        overflow-x: auto;
+
+                        .card {
+                            aspect-ratio: 4 / 5;
+                        }
+                    }
+                }
+
+                .wallet {
+                    flex-grow: 1;
+                    gap: 32px;
+
+                    .number {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 16px;
+                    }
+
+                    .balance {
+                        flex-direction: column;
+                        align-items: stretch;
+                        flex-wrap: nowrap;
+                        gap: 32px;
+                    }
+                }
+
+                .banner {
+                    flex-basis: 100%;
+                    aspect-ratio: 3/2;
+                    margin: 32px auto;
+                }
+
+                .products {
+                    flex-basis: 100%;
+                    aspect-ratio: 1;
+                }
+
+                .discounts {
+                    max-width: 100%;
+                    overflow-x: auto;
+                }
             }
         }
     }

@@ -7,36 +7,6 @@ import { GetDashboard } from '../API';
 import Layout from './Layout';
 
 const Dashboard = () => {
-    // const [profile, setProfile] = useState({});
-    // const [orders, setOrders] = useState({});
-
-    // const [avatar, setAvatar] = useState("");
-    // const [totalOrderCount, setTotalOrderCount] = useState(0);
-
-    // useEffect(() => {
-    //     axios.get('https://phygizone.darkube.app/v1/user/profile/info/', {
-    //         headers: {
-    //             'Authorization': localStorage.getItem('authorization')
-    //         }
-    //     }).then(response => {
-    //         setAvatar(response.data.avatar);
-    //         // setProfile(response.data);
-    //     }).catch(error => {
-    //         throw error;
-    //     });
-
-    //     axios.get('https://phygizone.darkube.app/v1/user/profile/dashboard/', {
-    //         headers: {
-    //             'Authorization': localStorage.getItem('authorization')
-    //         }
-    //     }).then(response => {
-    //         // setOrders(response.data);
-    //         setTotalOrderCount(response.data.total_orders.total_order_count);
-    //     }).catch(error => {
-    //         throw error;
-    //     });
-    // });
-
     const info = GetDashboard();
 
     return (
@@ -49,10 +19,10 @@ const Dashboard = () => {
                     <span>
                         <p>Hi, Welcome</p>
                         <h3>{info.name}!
-                            <span className='lvl'>
+                            {/* <span className='lvl'>
                                 <p className='number'>L9</p>
                                 <img src="/images/icons/icon.profile.level.tag.svg" />
-                            </span>
+                            </span> */}
                         </h3>
                     </span>
                 </div>
@@ -123,15 +93,15 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="banner">
-                    <img src="" alt="" />
-                    <button className="btn text xl">Go to Ranking</button>
+                    <img src="/images/banners/ranking.png" alt="" />
+                    <a href="https://https://ranking.rz-game.com/" className="btn text gray dark xl">Go to Ranking                    </a>
                 </div>
                 <div className="products">
                     <h3 className="title">The new Product
                         <a href="/" className="lnk gray">See all</a>
                     </h3>
                     <div className="product">
-                        <img src="" alt="" />
+                        <img src="/images/products/5-1.png" alt="" />
                         <h3 className="title">
                             Title
                             <p>-12%</p>

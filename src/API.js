@@ -61,6 +61,58 @@ export const GetDashboard = () => {
     };
 };
 
+/* Get Settings Options */
+export const Settings = () => {
+    const [avatar, setAvatar] = useState(null);
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [mobile, setMobile] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [newsNotification, setNewsNotification] = useState(false);
+
+
+    useEffect(() => {
+        axios.get(baseUrl + '/user/profile/info/', {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                let data = response.data;
+                setAvatar(data.avatar);
+                setFirstname(data.first_name);
+                setLastname(data.last_name);
+                setEmail(data.email);
+                setMobile(data.phone_number);
+                setNewsNotification(data.push_notification);
+            }
+        }).catch(() => { });
+    }, []);
+
+    return Promise.resolve({
+        avatar: avatar,
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        mobile: mobile,
+        notifications: newsNotification
+    });
+};
+
+/* api: user_address_create */
+export const UpdateSettings = (data) => {
+    axios.patch(baseUrl + '/user/profile/info/',
+        data,
+        {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                window.location.replace('/dashboard/settings/');
+            }
+        }).catch(error => {
+            // alert(error.message);
+            alert(JSON.stringify(error));
+        });
+};
+
 /* api: product_homepage_list */
 export const HomePageData = () => {
     const [cats, setCats] = useState([]);
@@ -266,7 +318,7 @@ export const WishList = () => {
     return products;
 }
 
-/* api: */
+/* api: product_wishlist_remove_from_wishlist */
 export const removeFromWishList = (id) => {
     axios.post(baseUrl + '/product/wishlist/remove_from_wishlist/',
         {
@@ -312,26 +364,15 @@ export const Cart = () => {
     const [price, setPrice] = useState("");
 
     useEffect(() => {
-        axios.get(baseUrl + '/order/carts/', {
+        axios.get(baseUrl + '/order/carts/get_cart/', {
             headers: apiHeaders,
         }).then(response => {
-            if (response.status === 200) {
-                axios.get(baseUrl + '/order/carts/' + response.data.results[0].id, {
-                    headers: apiHeaders,
-                }).then(response => {
-                    setUser(response.data.user);
-                    setStatus(response.data.status);
-                    setItems(response.data.items);
-                    setPrice(response.data.total_price);
-                }).catch(error => {
-                    alert(error.message);
-                });
-            }
+            let data = response.data;
+            setUser(data.user);
+            setStatus(data.status);
+            setItems(data.items);
+            setPrice(data.total_price);
         }).catch(error => {
-            if (error.response.status === 404) {
-                alert('Your cart is empty.');
-                return window.location.replace('/');
-            }
             alert(error.message);
         });
     }, []);

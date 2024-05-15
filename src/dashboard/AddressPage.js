@@ -41,19 +41,19 @@ const AddressPage = () => {
                                         </span>
                                         <ul>
                                             <li>
-                                                <img src="/images/icon.address.svg" alt="" />
+                                                <img src="/images/icons/icon.address.zip.svg" alt="" />
                                                 <p>{address.postal_code}</p>
                                             </li>
                                             <li>
-                                                <img src="/images/icon.phone.svg" alt="" />
+                                                <img src="/images/icons/icon.address.phone.svg" alt="" />
                                                 <p>+2-1547896632</p>
                                             </li>
                                             <li>
-                                                <img src="/images/icon.address.svg" alt="" />
+                                                <img src="/images/icons/icon.address.svg" alt="" />
                                                 <p>{address.user}</p>
                                             </li>
                                             <li>
-                                                <img src="/images/icon.postal.code.svg" alt="" />
+                                                <img src="/images/icons/icon.address.number.svg" alt="" />
                                                 <p>{address.postal_code}</p>
                                             </li>
                                         </ul>
