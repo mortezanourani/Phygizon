@@ -30,7 +30,10 @@ const CartPage = () => {
                                 <h3>Loading...</h3>
                             ) : (
                                 addresses.items.length < 1 ? (
-                                    <h3>There is no shipping address.</h3>
+                                    <div className="no-address">
+                                        <h3>There is no shipping address.</h3>
+                                        <a href="/dashboard/address/add/" className="btn ghost gray sm dark">Add an address</a>
+                                    </div>
                                 ) : (
                                     addresses.items.map(address => (
                                         <div>

@@ -3,6 +3,7 @@ import Layout from "./Layout"
 
 import '../css/address.css';
 import { Addresses, DeleteAddress } from "../API";
+import { AddressCard } from "../components/Address";
 
 const AddressPage = () => {
     const address = Addresses();
@@ -26,39 +27,8 @@ const AddressPage = () => {
                             </div>
                         ) : (
                             address.items.map(address => (
-                                <div className="address">
-                                    <span className="titlebar">
-                                        <h3>{address.title}</h3>
-                                        <menu>
-                                            {/* <a href={"/dashboard/address/" + address.id + "/"} className="lnk sm">Edit</a> */}
-                                            <a onClick={() => DeleteAddress(address.id)} className="lnk destruction sm">Delete</a>
-                                        </menu>
-                                    </span>
-                                    <div>
-                                        <span>
-                                            <h3>{address.user}</h3>
-                                            <p>{address.postal_address}</p>
-                                        </span>
-                                        <ul>
-                                            <li>
-                                                <img src="/images/icons/icon.address.zip.svg" alt="" />
-                                                <p>{address.postal_code}</p>
-                                            </li>
-                                            <li>
-                                                <img src="/images/icons/icon.address.phone.svg" alt="" />
-                                                <p>+2-1547896632</p>
-                                            </li>
-                                            <li>
-                                                <img src="/images/icons/icon.address.svg" alt="" />
-                                                <p>{address.user}</p>
-                                            </li>
-                                            <li>
-                                                <img src="/images/icons/icon.address.number.svg" alt="" />
-                                                <p>{address.postal_code}</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <AddressCard
+                                    address={address} />
                             ))
                         )
 

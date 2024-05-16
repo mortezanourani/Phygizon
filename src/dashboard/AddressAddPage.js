@@ -36,10 +36,10 @@ const AddressAddPage = () => {
                     <label for="">Address title</label>
                     <input type="text" name="title" id="" onChange={handleChange} />
                 </div>
-                {/* <div className="form-control">
+                <div className="form-control">
                     <label for="">Reciepient full name</label>
-                    <input type="text" name="user" id="" onChange={handleChange} />
-                </div> */}
+                    <input type="text" name="recipient_full_name" id="" onChange={handleChange} />
+                </div>
                 <div className="form-control">
                     <label for="">Postal code</label>
                     <input type="text" name="postal_code" id="" onChange={handleChange} />
