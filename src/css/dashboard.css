@@ -19,6 +19,7 @@
         border-radius: 32px;
         height: calc(100vh - 64px);
         background-color: #ffffff;
+        z-index: 998;
 
         nav {
             height: 100%;
@@ -66,6 +67,7 @@
     main {
         position: relative;
         flex-grow: 1;
+        max-width: calc(100% - 300px);
 
         nav {
             position: relative;
@@ -234,7 +236,7 @@
         align-items: stretch;
         padding: 24px;
         gap: 8px;
-        flex-basis: 100%;
+        max-width: 100%;
 
         background: rgba(255, 255, 255, 0.3);
         border: 1px solid #FFFFFF;
@@ -255,6 +257,8 @@
             align-items: flex-start;
             padding: 24px;
             gap: 8px;
+
+            aspect-ratio: 3.3;
 
             background: #FFFFFF;
             border-radius: 24px;
@@ -734,12 +738,14 @@
 
             >nav {
                 display: none;
+                max-height: 0px;
             }
 
             #dashboard {
                 margin-top: 64px;
 
                 .orders {
+                    max-width: 100%;
                     padding: 16px;
                     flex-direction: column;
 
@@ -758,9 +764,7 @@
                         max-width: 100%;
                         overflow-x: auto;
 
-                        .card {
-                            aspect-ratio: 4 / 5;
-                        }
+                        .card {}
                     }
                 }
 

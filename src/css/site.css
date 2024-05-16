@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'Hubot Sans';
-    src: url(../fonts/Hubot-Sans.woff2);
+    src: url('../assets/fonts/Hubot-Sans.woff2');
 }
 
 body {

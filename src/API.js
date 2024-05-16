@@ -29,8 +29,7 @@ export const GetUserId = () => {
 /* Get Dashboard Items */
 export const GetDashboard = () => {
     const [name, setName] = useState(null);
-    const [totalCount, setTotalCount] = useState(null);
-    const [statusCount, setStatusCount] = useState([]);
+    const [ordersCounts, setOrdersCounts] = useState(null);
     const [avatar, setAvatar] = useState(null);
 
     useEffect(() => {
@@ -39,8 +38,7 @@ export const GetDashboard = () => {
         }).then(response => {
             if (response.status === 200) {
                 setName(response.data.user);
-                setTotalCount(response.data.total_orders.total_order_count);
-                setStatusCount(response.data.total_orders.order_counts_by_status);
+                setOrdersCounts(response.data.total_orders);
             }
         }).catch(() => { });
 
@@ -56,8 +54,7 @@ export const GetDashboard = () => {
     return {
         name: name,
         avatar: avatar,
-        total: totalCount,
-        statusCount: statusCount,
+        ordersCounts: ordersCounts,
     };
 };
 

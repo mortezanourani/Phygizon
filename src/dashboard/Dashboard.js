@@ -1,81 +1,41 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import Layout from './Layout';
 
 import { GetDashboard } from '../API';
-
-import Layout from './Layout';
+import { OrderCards } from "../components/Dashboard";
 
 const Dashboard = () => {
     const info = GetDashboard();
+    const avatar = info.avatar;
+    const counts = info.ordersCounts;
+
+    if (info.ordersCounts === null) {
+        return;
+    }
 
     return (
         <Layout>
             <div id="dashboard">
                 <div className="name">
                     <div className="picture">
-                        <img src={"/images/users/" + info.avatar + ".png"} alt="" />
+                        <img src={avatar} alt="" />
                     </div>
                     <span>
                         <p>Hi, Welcome</p>
                         <h3>{info.name}!
-                            {/* <span className='lvl'>
+                            {/* 
+                            <span className='lvl'>
                                 <p className='number'>L9</p>
                                 <img src="/images/icons/icon.profile.level.tag.svg" />
-                            </span> */}
+                            </span>
+                            */}
                         </h3>
                     </span>
                 </div>
-                <div className="orders">
-                    <div className="card all">
-                        <h1>{info.total}</h1>
-                        <p>All Orders</p>
-                        {/* <h3>22.94 MGC</h3>
-                        <p>$7322.123</p> */}
-                    </div>
-                    <div className="filters">
-                        {
-                            info.statusCount.map(order => (
-                                <div className="card">
-                                    <img src="/images/icons/icon.dashboard.orders.current.svg" alt="" />
-                                    <p>{order.order_status__text}</p>
-                                    <h3>{order.count}</h3>
-                                    <a href="/dashboard/orders/" className="lnk sm gray">See all</a>
-                                </div>
-                            ))
-                        }
-                        {/* <div className="card">
-                            <img src="/images/icons/icon.dashboard.orders.current.svg" alt="" />
-                            <p>Current</p>
-                            <h3>24</h3>
-                            <a href="/dashboard/orders/current/" className="lnk sm gray">See all</a>
-                        </div>
-                        <div className="card">
-                            <img src="/images/icons/icon.dashboard.orders.delivered.svg" alt="" />
-                            <p>Delivered</p>
-                            <h3>12</h3>
-                            <a href="/dashboard/orders/delivered/" className="lnk sm gray">See all</a>
-                        </div>
-                        <div className="card">
-                            <img src="/images/icons/icon.dashboard.orders.returned.svg" alt="" />
-                            <p>Returned</p>
-                            <h3>2</h3>
-                            <a href="/dashboard/orders/returned/" className="lnk sm gray">See all</a>
-                        </div>
-                        <div className="card">
-                            <img src="/images/icons/icon.dashboard.orders.returned.svg" alt="" />
-                            <p>NFT</p>
-                            <h3>8</h3>
-                            <a href="/dashboard/orders/nft/" className="lnk sm gray">See all</a>
-                        </div>
-                        <div className="card">
-                            <img src="/images/icons/icon.dashboard.orders.keeper.svg" alt="" />
-                            <p>The Keeper</p>
-                            <h3>4</h3>
-                            <a href="/dashboard/orders/keeper/" className="lnk sm gray">See all</a>
-                        </div> */}
-                    </div>
-                </div>
+                <OrderCards
+                    title="Current"
+                    counts={counts}
+                />
                 <div className="wallet">
                     <div className="number">
                         <h5><img src="/images/icons/icon.metamask.svg" alt="" /> Metamask</h5>

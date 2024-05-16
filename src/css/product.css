@@ -258,15 +258,92 @@
         flex-grow: 1;
 
         .image {
+            position: relative;
             border-radius: 32px;
             overflow: hidden;
             width: 45%;
             aspect-ratio: 1;
 
-            img {
+            .images {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    opacity: 0;
+
+                    transition: opacity ease-in-out 300ms;
+
+                    &.active {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .controllers {
+                position: absolute;
+                bottom: 0;
+                height: 15%;
+                width: 100%;
+                left: 0;
+                z-index: 10;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                backdrop-filter: blur(10px);
+                background: rgba(0, 0, 0, .1);
+
+                .control {
+                    outline: none;
+                    border: none;
+                    background: none;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: 15px;
+                    padding: 32px;
+
+                    transition: all ease 300ms;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    &.next {
+                        right: 0;
+                        background-image: url('../assets/icons/product/next_controller_icon.svg');
+                    }
+
+                    &.prev {
+                        left: 0;
+                        background-image: url('../assets/icons/product/prev_controller_icon.svg');
+                    }
+                }
+
+                .pointers {
+                    position: relative;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+
+                    i {
+                        width: 24px;
+                        height: 4px;
+                        border-radius: 6px;
+                        background: black;
+
+                        &.active {
+                            background: white;
+                        }
+                    }
+                }
             }
         }
 

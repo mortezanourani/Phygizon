@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import { Product, addToCart, addToWishlist } from "../API";
 
 import '../css/product.css';
+import { ImagesSlider } from "../components/Product";
 
 const ProductPage = () => {
     const url = window.location;
@@ -12,6 +13,10 @@ const ProductPage = () => {
         : urlParameters[urlParameters.length - 1];
 
     const data = Product(productId);
+
+    if (data.image === null) {
+        return;
+    }
 
     const handleTab = (e) => {
         const tabLinks = document.getElementsByClassName('tab-link');
@@ -29,9 +34,10 @@ const ProductPage = () => {
         <Layout>
             <section id="product" className="container">
                 <div className="product-content">
-                    <div className="image">
-                        <img src={data.image} alt="" />
-                    </div>
+                    <ImagesSlider
+                        image={data.image}
+                        album={data.album}
+                    />
                     <div className="product-info">
                         <h2 className="product-title">{data.name}</h2>
                         <div className="information">
