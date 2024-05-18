@@ -4,6 +4,8 @@ import Layout from './Layout';
 import { GetDashboard } from '../API';
 import { OrderCards } from "../components/Dashboard";
 
+import defaultAvatar from '../assets/icons/dashboard/default_avatar.png';
+
 const Dashboard = () => {
     const info = GetDashboard();
     const avatar = info.avatar;
@@ -18,7 +20,12 @@ const Dashboard = () => {
             <div id="dashboard">
                 <div className="name">
                     <div className="picture">
-                        <img src={avatar} alt="" />
+                        {
+                            (avatar)
+                                ? (<img src={avatar} alt="" />)
+                                : (<img src={defaultAvatar} alt="" />)
+                        }
+
                     </div>
                     <span>
                         <p>Hi, Welcome</p>
