@@ -1,9 +1,11 @@
 import React from "react"
+import { Addresses } from "../API";
+import { AddressCard } from "../components/Address";
+
 import Layout from "./Layout"
 
 import '../css/address.css';
-import { Addresses, DeleteAddress } from "../API";
-import { AddressCard } from "../components/Address";
+
 
 const AddressPage = () => {
     const address = Addresses();

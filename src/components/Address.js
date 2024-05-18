@@ -1,6 +1,12 @@
 import { Component } from "react";
 import { DeleteAddress } from "../API";
 
+import locationIcon from '../assets/icons/address/location_icon.svg';
+import numberIcon from '../assets/icons/address/number_icon.svg';
+import mobileIcon from '../assets/icons/address/mobile_icon.svg';
+import userIcon from '../assets/icons/address/user_icon.svg';
+import zipcodeIcon from '../assets/icons/address/zip_code_icon.svg';
+
 class AddressCard extends Component {
     constructor(props) {
         super(props)
@@ -25,19 +31,19 @@ class AddressCard extends Component {
                     </span>
                     <ul>
                         <li>
-                            <img src="/images/icons/icon.address.zip.svg" alt="" />
+                            <img src={zipcodeIcon} alt="" />
                             <p>{address.postal_code}</p>
                         </li>
                         <li>
-                            <img src="/images/icons/icon.address.phone.svg" alt="" />
-                            <p>+2-1547896632</p>
+                            <img src={mobileIcon} alt="" />
+                            <p>{address.phone_number}</p>
                         </li>
                         <li>
-                            <img src="/images/icons/icon.address.svg" alt="" />
-                            <p>{address.user}</p>
+                            <img src={userIcon} alt="" />
+                            <p>{address.recipient_full_name}</p>
                         </li>
                         <li>
-                            <img src="/images/icons/icon.address.number.svg" alt="" />
+                            <img src={locationIcon} alt="" />
                             <p>{address.postal_code}</p>
                         </li>
                     </ul>

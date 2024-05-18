@@ -600,7 +600,8 @@ export const SetAddress = (address) => {
                 window.location.replace('/dashboard/address/');
             }
         }).catch(error => {
-            alert(error.message);
+            alert(JSON.stringify(error.response))
+            // alert(error.message);
         });
 };
 
