@@ -166,7 +166,7 @@ const PrimaryNav = () => {
                             <ul className="navigation-menu">
                                 <li className="menu-item">
                                     <a href="/cart/">
-                                        <button className="btn md ghost gray dark">
+                                        <button className="btn sm ghost gray dark">
                                             <img src="/images/icons/icon.cart.svg" alt="" />
                                         </button>
                                     </a>

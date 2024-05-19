@@ -16,13 +16,68 @@
     }
 
     .shipping {
-        padding: 32px;
+        padding: 48px 92px;
+
+        .section-title {
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: #101828;
+            margin-bottom: 36px;
+        }
 
         .no-address {
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+            margin-bottom: 36px;
+        }
+
+        .shipping-address {
+            input {
+                display: none;
+            }
+
+            label {
+                padding: 8px 0;
+                margin-bottom: 8px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+
+                .radio-button {
+                    width: 20px;
+                    height: 20px;
+                    border: 1px solid #D0D5DD;
+                    border-radius: 50%;
+                }
+
+                .address-info {
+                    flex-grow: 1;
+                    gap: 8px;
+
+                    .address {
+                        display: flex;
+                        font-family: 'Hubot Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #101828;
+                    }
+                }
+            }
+
+            input:checked+label {
+                .radio-button {
+                    border: 6px solid #189A8A;
+                }
+            }
         }
 
         .records {
@@ -30,84 +85,110 @@
             flex-direction: column;
             gap: 16px;
 
+            .section-title {
+                margin-bottom: 4px;
+            }
+
             .cart-item {
                 border: none;
                 background: #FFFFFF;
                 border: 1px solid #EAECF0;
                 box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
-                border-radius: 24px;
+                border-radius: 16px;
                 overflow: hidden;
-                padding: 8px 24px;
 
+                padding: 8px 12px 4px;
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                gap: 32px;
+                gap: 8px;
 
-                >div {
+                img {
+                    width: 48px;
+                    height: 48px;
+                    border: 0.75px solid rgba(0, 0, 0, 0.08);
+                    border-radius: 12px;
+                }
+
+                .item-info {
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
                     justify-content: space-between;
-                    align-items: stretch;
-                    flex-basis: 25%;
+                    align-items: flex-start;
+                    gap: 32px;
 
-                    p {
-                        /* Text xs/Regular */
-                        font-family: 'Hubot Sans';
-                        font-style: normal;
-                        font-weight: 400;
-                        font-size: 12px;
-                        line-height: 18px;
+                    >div {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: stretch;
+                        gap: 8px;
+                        flex-basis: 25%;
 
-                        color: #667085;
-
-                        text-wrap: nowrap;
-                        text-align: left;
-                        align-content: center;
-                        height: 36px;
-
-                        b {
+                        .name {
                             font-family: 'Hubot Sans';
                             font-style: normal;
                             font-weight: 400;
-                            font-size: 16px;
-                            line-height: 150%;
-
+                            font-size: 14px;
+                            line-height: 20px;
                             color: #101828;
-
-                            margin-left: 8px;
+                            text-wrap: nowrap;
                         }
 
-                        span.badge {
-                            margin-left: 8px;
+                        .number,
+                        .item-price,
+                        .quantity,
+                        .sub-total {
+                            font-family: 'Hubot Sans';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 12px;
+                            line-height: 18px;
+                            color: #667085;
+                            text-wrap: nowrap;
+
+                            .nft-link {
+                                font-family: 'Hubot Sans';
+                                font-style: normal;
+                                font-weight: 600;
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #12786C;
+                                margin-left: 8px;
+                            }
+
+                            .value {
+                                font-weight: 600;
+                                font-size: 13px;
+                                color: #0A0003;
+                            }
                         }
-                    }
 
-                    div.album {
-                        position: relative;
-                        text-wrap: nowrap;
-                        display: flex;
-                        gap: 4px;
-                        height: 48px;
 
-                        img {
+                        div.album {
                             position: relative;
-                            aspect-ratio: 1 / 1;
-                            object-fit: cover;
-                            border-radius: 12px;
-                            height: inherit;
+                            text-wrap: nowrap;
+                            display: flex;
+                            gap: 4px;
+                            height: 48px;
+
+                            img {
+                                position: relative;
+                                aspect-ratio: 1 / 1;
+                                object-fit: cover;
+                                border-radius: 12px;
+                                height: inherit;
+                            }
+                        }
+
+                        .action {
+                            text-wrap: nowrap;
+                            display: flex;
+                            align-items: self-end;
+                            justify-content: center;
                         }
                     }
 
-                    .action {
-                        text-wrap: nowrap;
-                        display: flex;
-                        align-items: self-end;
-                        justify-content: center;
-                    }
                 }
-
             }
 
         }
@@ -115,13 +196,122 @@
 
     .payments {
         background: #EFF8F5;
-        padding: 24px;
+        padding: 48px 92px;
 
-        .method {
-            border: 1px solid lightgray;
-            padding: 36px;
-            border-radius: 24px;
-            background: #ffffff;
+        .section-title {
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: #0A0003;
+
+        }
+
+        .payment-method {
+            input {
+                display: none;
+            }
+
+            label {
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                align-items: stretch;
+                padding: 16px;
+                gap: 12px;
+
+                background: #FFFFFF;
+                border: 1px solid #EAECF0;
+                border-radius: 12px;
+
+                .payment-method-logo {
+                    width: 46px;
+                    height: 32px;
+
+                    background: #FFFFFF;
+                    border: 1px solid #EAECF0;
+                    border-radius: 4px;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .payment-method-info {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    padding: 0px;
+                    flex-grow: 1;
+
+                    .name {
+                        font-family: 'Hubot Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 20px;
+                        color: #344054;
+                    }
+
+                    .desc {
+                        font-family: 'Hubot Sans';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 20px;
+                        color: #475467;
+                    }
+
+                    .set-default {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-start;
+                        padding: 0px;
+                        gap: 12px;
+                        margin-top: 8px;
+
+                        .text {
+                            font-family: 'Hubot Sans';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 14px;
+                            line-height: 20px;
+                            color: #475467;
+                        }
+
+                        .lnk {
+                            font-family: 'Hubot Sans';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 14px;
+                            line-height: 20px;
+                            color: #12786C;
+                        }
+                    }
+                }
+
+                .radio-button {
+                    width: 16px;
+                    height: 16px;
+                    aspect-ratio: 1;
+                    border: 1px solid #D0D5DD;
+                    border-radius: 4px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+            input:checked+label {
+                background: #FFFFFF;
+                border: 2px solid #189A8A;
+
+                .radio-button {
+                    background: #189A8A;
+                }
+            }
         }
 
         .total {

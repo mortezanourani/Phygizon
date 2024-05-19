@@ -112,6 +112,8 @@ export const UpdateSettings = (data) => {
 
 /* api: product_homepage_list */
 export const HomePageData = () => {
+    const [loading, setLoading] = useState(true);
+
     const [cats, setCats] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
     const [nftProducts, setNftProducts] = useState([]);
@@ -137,10 +139,12 @@ export const HomePageData = () => {
                 setProductCount(response.data.product_counts);
                 setOrderCount(response.data.order_counts);
             })
-            .catch(() => { });
+            .catch(() => { })
+            .finally(() => setLoading(false));
     }, []);
 
     return {
+        loading: loading,
         categories: cats,
         allProducts: allProducts,
         nftProducts: nftProducts,
@@ -177,6 +181,7 @@ export const Categories = () => {
 
 /* api: product_categories_read */
 export const CategoryProducts = (catId) => {
+    const [loading, setLoading] = useState(true);
     const [categoryName, setCategoryName] = useState("");
     const [categoryDetail, setCategoryDetail] = useState("");
     const [categoryProducts, setCategoryProducts] = useState([]);
@@ -191,15 +196,27 @@ export const CategoryProducts = (catId) => {
                 if (response.status === 200) {
                     setCategoryName(response.data.name);
                     setCategoryDetail(response.data.detail);
-                    setCategoryProducts(response.data.products);
                 }
             })
             .catch(error => {
                 alert(error.response.status);
+            }).finally(() => {
+                axios.get(baseUrl + '/product/categories/' + catId + '/products/')
+                    .then(response => {
+                        if (response.status === 200) {
+                            setCategoryProducts(response.data.results);
+
+                        }
+                    })
+                    .catch(error => {
+                        alert(error.response.status);
+                    })
+                    .finally(() => setLoading(false));
             });
     }, [catId]);
 
     return {
+        loading: loading,
         categoryId: catId,
         categoryName: categoryName,
         categoryDetail: categoryDetail,
@@ -355,6 +372,8 @@ export const Products = () => {
 
 /* api: order_carts_read */
 export const Cart = () => {
+    const [loading, setLoading] = useState(true);
+
     const [user, setUser] = useState("");
     const [status, setStatus] = useState("");
     const [items, setItems] = useState([]);
@@ -363,18 +382,22 @@ export const Cart = () => {
     useEffect(() => {
         axios.get(baseUrl + '/order/carts/get_cart/', {
             headers: apiHeaders,
-        }).then(response => {
-            let data = response.data;
-            setUser(data.user);
-            setStatus(data.status);
-            setItems(data.items);
-            setPrice(data.total_price);
-        }).catch(error => {
-            alert(error.message);
-        });
+        })
+            .then(response => {
+                let data = response.data;
+                setUser(data.user);
+                setStatus(data.status);
+                setItems(data.items);
+                setPrice(data.total_price);
+            })
+            .catch(error => {
+                alert(error.message);
+            })
+            .finally(() => setLoading(false));
     }, []);
 
     return {
+        loading: loading,
         user: user,
         status: status,
         items: items,
@@ -384,21 +407,27 @@ export const Cart = () => {
 
 /* api: user_address_list */
 export const Addresses = () => {
+    const [loading, setLoading] = useState(true);
+
     const [count, setCount] = useState(null);
     const [addresses, setAddresses] = useState([]);
 
     useEffect(() => {
         axios.get(baseUrl + '/user/address/', {
             headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                setCount(response.data.count);
-                setAddresses(response.data.results);
-            }
-        });
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    setCount(response.data.count);
+                    setAddresses(response.data.results);
+                }
+            })
+            .catch(() => { })
+            .finally(() => setLoading(false));
     }, []);
 
     return {
+        loading: loading,
         count: count,
         items: addresses,
     };
@@ -517,23 +546,29 @@ export const FAQs = () => {
 
 /* api: order_payments_list */
 export const Payments = () => {
+    const [loading, setLoading] = useState(true);
+
     const [count, setCount] = useState(null);
     const [methods, setMethods] = useState([]);
 
     useEffect(() => {
         axios.get(baseUrl + '/order/payments/', {
             headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                setCount(response.data.count);
-                setMethods(response.data.results);
-            }
-        }).catch(error => {
-            alert(error.response.status);
-        });
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    setCount(response.data.count);
+                    setMethods(response.data.results);
+                }
+            })
+            .catch(error => {
+                alert(error.response.status);
+            })
+            .finally(() => setLoading(false));
     }, []);
 
     return {
+        loading: loading,
         count: count,
         methods: methods
     };

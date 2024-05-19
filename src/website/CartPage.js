@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Layout from "./Layout";
 import { Addresses, Cart, Pay, Payments } from "../API";
+import Loading from '../components/Loading';
 
 import '../css/cart.css';
+import { CartItem, PaymentMethods, ShippingAddress } from "../components/Cart";
+import { json } from "react-router-dom";
 
 const CartPage = () => {
     const addresses = Addresses();
@@ -21,74 +24,37 @@ const CartPage = () => {
     }
 
     return (
-        <Layout>
-            <div className="cart container">
-                <div className="shipping">
-                    <div className="addresses">
-                        {
-                            addresses.count === null ? (
-                                <h3>Loading...</h3>
-                            ) : (
-                                addresses.items.length < 1 ? (
-                                    <div className="no-address">
-                                        <h3>There is no shipping address.</h3>
-                                        <a href="/dashboard/address/add/" className="btn ghost gray sm dark">Add an address</a>
-                                    </div>
-                                ) : (
-                                    addresses.items.map(address => (
-                                        <div>
-                                            <h5>{address.title}</h5>
-                                            <p>{address.postal_address + "- " + address.city + "- " + address.state + "- " + address.country}</p>
-                                        </div>
-                                    )))
-                            )
-                        }
+        (cart.loading) ?
+            <Loading />
+            :
+            <Layout>
+                <div className="cart">
+                    <div className="shipping">
+                        <div className="addresses">
+                            <h3 className="section-title">Shipping Address</h3>
+                            <ShippingAddress />
+                        </div>
+
+                        <div className="records">
+                            <h3 className="section-title">All Cart items</h3>
+                            {
+                                cart.items.map(item => (
+                                    <CartItem
+                                        item={item} />
+                                ))
+                            }
+                        </div>
                     </div>
-                    <div className="records">
-                        {
-                            cart.items.map(item => (
-                                item.is_active ? (
-                                    <div className="cart-item">
-                                        <div>
-                                            <p><b>{item.product_name}</b></p>
-                                            <p>#<b>{item.id}</b></p>
-                                        </div>
-                                        <div>
-                                            <p>Item Price <b>{item.product_price}</b></p>
-                                            <p><b></b></p>
-                                        </div>
-                                        {/* <div>
-                                            <p>Asset <span className="badge green">NFT</span></p>
-                                            <p>Status <span className="badge red">Waiting</span></p>
-                                        </div> */}
-                                        <div>
-                                            <p>Qty: <b>{item.quantity}</b></p>
-                                            <p>Subtotal: <b>{item.price}</b></p>
-                                        </div>
-                                    </div>
-                                ) : (null)
-                            ))
-                        }
+
+                    <div className="payments">
+                        <h3 className="section-title">Choose a Payment Method</h3>
+                        <PaymentMethods
+                            onChange={handleChange} />
+                        <p className="total container">Total <b>${cart.totalPrice}</b></p>
+                        <button className="btn lg cta" onClick={handleSubmit}>Confirm and continue</button>
                     </div>
                 </div>
-                <div className="payments">
-                    <h3>Payment methods:</h3>
-                    {
-                        payments.methods.map(method => (
-                            <label for={method.code} className="method">
-                                <input type="radio" name="method" id={method.code} value={method.code} onChange={handleChange} />
-                                <div>
-                                    <h3>{method.name}</h3>
-                                    <p>{method.description}</p>
-                                </div>
-                            </label>
-                        ))
-                    }
-                    <p className="total container">Total <b>${cart.totalPrice}</b></p>
-                    <button className="btn lg cta" onClick={handleSubmit}>Confirm and continue</button>
-                </div>
-            </div>
-        </Layout>
+            </Layout>
     )
 }
 
