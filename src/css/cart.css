@@ -90,107 +90,193 @@
             }
 
             .cart-item {
-                border: none;
-                background: #FFFFFF;
-                border: 1px solid #EAECF0;
-                box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
-                border-radius: 16px;
-                overflow: hidden;
-
-                padding: 8px 12px 4px;
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 gap: 8px;
 
-                img {
-                    width: 48px;
-                    height: 48px;
-                    border: 0.75px solid rgba(0, 0, 0, 0.08);
-                    border-radius: 12px;
-                }
+                .cart-item-product {
+                    border: none;
+                    background: #FFFFFF;
+                    border: 1px solid #EAECF0;
+                    box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+                    border-radius: 16px;
+                    overflow: hidden;
 
-                .item-info {
+                    padding: 16px 14px 12px;
                     display: flex;
                     flex-direction: row;
-                    justify-content: space-between;
-                    align-items: flex-start;
-                    gap: 32px;
+                    gap: 8px;
 
-                    >div {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
-                        align-items: stretch;
-                        gap: 8px;
-                        flex-basis: 25%;
-
-                        .name {
-                            font-family: 'Hubot Sans';
-                            font-style: normal;
-                            font-weight: 400;
-                            font-size: 14px;
-                            line-height: 20px;
-                            color: #101828;
-                            text-wrap: nowrap;
-                        }
-
-                        .number,
-                        .item-price,
-                        .quantity,
-                        .sub-total {
-                            font-family: 'Hubot Sans';
-                            font-style: normal;
-                            font-weight: 400;
-                            font-size: 12px;
-                            line-height: 18px;
-                            color: #667085;
-                            text-wrap: nowrap;
-
-                            .nft-link {
-                                font-family: 'Hubot Sans';
-                                font-style: normal;
-                                font-weight: 600;
-                                font-size: 14px;
-                                line-height: 20px;
-                                color: #12786C;
-                                margin-left: 8px;
-                            }
-
-                            .value {
-                                font-weight: 600;
-                                font-size: 13px;
-                                color: #0A0003;
-                            }
-                        }
-
-
-                        div.album {
-                            position: relative;
-                            text-wrap: nowrap;
-                            display: flex;
-                            gap: 4px;
-                            height: 48px;
-
-                            img {
-                                position: relative;
-                                aspect-ratio: 1 / 1;
-                                object-fit: cover;
-                                border-radius: 12px;
-                                height: inherit;
-                            }
-                        }
-
-                        .action {
-                            text-wrap: nowrap;
-                            display: flex;
-                            align-items: self-end;
-                            justify-content: center;
-                        }
+                    img {
+                        width: 48px;
+                        height: 48px;
+                        border: 0.75px solid rgba(0, 0, 0, 0.08);
+                        border-radius: 12px;
                     }
 
+                    .item-info {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        flex-grow: 1;
+                        gap: 32px;
+
+                        >div {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            align-items: stretch;
+                            gap: 8px;
+                            flex-basis: 25%;
+
+                            .name {
+                                font-family: 'Hubot Sans';
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #101828;
+                                text-wrap: nowrap;
+                            }
+
+                            .number,
+                            .item-price,
+                            .quantity,
+                            .sub-total {
+                                font-family: 'Hubot Sans';
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 12px;
+                                line-height: 18px;
+                                color: #667085;
+                                text-wrap: nowrap;
+
+                                .nft-link {
+                                    font-family: 'Hubot Sans';
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    color: #12786C;
+                                    margin-left: 8px;
+                                }
+
+                                .value {
+                                    font-weight: 600;
+                                    font-size: 13px;
+                                    color: #0A0003;
+                                }
+                            }
+
+                            .quantity {
+                                text-align: right;
+                            }
+
+
+                            div.album {
+                                position: relative;
+                                text-wrap: nowrap;
+                                display: flex;
+                                gap: 4px;
+                                height: 48px;
+
+                                img {
+                                    position: relative;
+                                    aspect-ratio: 1 / 1;
+                                    object-fit: cover;
+                                    border-radius: 12px;
+                                    height: inherit;
+                                }
+                            }
+
+                            .action {
+                                text-wrap: nowrap;
+                                display: flex;
+                                align-items: self-end;
+                                justify-content: center;
+                            }
+                        }
+
+                    }
+                }
+
+                .cart-item-nft {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 12px 10px 8px;
+                    background: #F2F4F7;
+                    border-radius: 12px;
+                    gap: 8px;
+
+                    img {
+                        width: 32px;
+                        height: 32px;
+                        border: 1px solid rgba(0, 0, 0, 0.08);
+                        border-radius: 8px;
+                    }
+
+                    .nft-info {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        flex-grow: 1;
+                        gap: 32px;
+
+                        >div {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            align-items: stretch;
+                            flex-basis: 25%;
+
+                            .collection-name {
+                                font-family: 'Hubot Sans';
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 12px;
+                                line-height: 18px;
+                                color: #101828;
+                                text-wrap: nowrap;
+                            }
+
+                            .collection-number {
+                                font-family: 'Hubot Sans';
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 12px;
+                                line-height: 18px;
+                                color: #667085;
+                            }
+
+                            &.nft-link {
+                                .price {
+                                    font-family: 'Hubot Sans';
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    text-align: right;
+                                    color: #101828;
+                                }
+
+                                a {
+                                    font-family: 'Hubot Sans';
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    font-size: 12px;
+                                    line-height: 18px;
+                                    text-align: right;
+                                    color: #2970FF;
+                                }
+                            }
+                        }
+                    }
                 }
             }
-
         }
     }
 

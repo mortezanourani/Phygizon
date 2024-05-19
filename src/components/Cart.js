@@ -80,38 +80,65 @@ class CartItem extends Component {
         this.quantity = item.quantity;
         this.subTotal = item.price;
 
+        this.nft = {
+            image: '/images/nft/nft.image.png',
+            name: 'Mah Collection',
+            number: '930811306',
+            price: 30,
+        }
     }
 
     render() {
         return (
             (this.isActive) ?
-
                 <div className="cart-item">
-                    <div>
-                        <img src={this.image} alt="" />
-                    </div>
-                    <div className="item-info">
+                    <div className="cart-item-product">
                         <div>
-                            <h4 className="name">{this.name}</h4>
-                            <p className="number">#{this.id}
-                                {(this.nftLink) ?
-                                    <a href={this.nftLink} className="lnk cta nft-link">NFT</a>
-                                    : null
-                                }
-                            </p>
+                            <img src={this.image} alt="" />
                         </div>
-                        <div>
-                            <p className="item-price">Item Price <b className="value">{this.discountPrice}</b></p>
-                        </div>
-                        {/* <div>
+                        <div className="item-info">
+                            <div>
+                                <h4 className="name">{this.name}</h4>
+                                <p className="number">#{this.id}
+                                    {(this.nftLink)
+                                        ?
+                                        <a className="lnk cta nft-link">NFT</a>
+                                        : null
+                                    }
+                                </p>
+                            </div>
+                            <div>
+                                <p className="item-price">Item Price <b className="value">{this.discountPrice}</b></p>
+                            </div>
+                            {/* <div>
                                             <p>Asset <span className="badge green">NFT</span></p>
                                             <p>Status <span className="badge red">Waiting</span></p>
                                         </div> */}
-                        <div>
-                            <p className="quantity">Qty: {this.quantity}</p>
-                            <p className="sub-total">Subtotal: <b className="value">{this.subTotal}</b></p>
+                            <div>
+                                <p className="quantity">Qty: {this.quantity}</p>
+                                <p className="sub-total">Subtotal: <b className="value">{this.subTotal}</b></p>
+                            </div>
                         </div>
                     </div>
+                    {(this.nftLink)
+                        ?
+                        <div className="cart-item-nft">
+                            <div>
+                                <img src={this.nft.image} alt="" />
+                            </div>
+                            <div className="nft-info">
+                                <div className="nft-collection-name">
+                                    <h4 className="collection-name">{this.nft.name}</h4>
+                                    <p className="collection-number">#{this.nft.number}</p>
+                                </div>
+                                <div className="nft-link">
+                                    <h4 className="price">${this.nft.price}</h4>
+                                    <a href={this.nftLink}>Link to NFT</a>
+                                </div>
+                            </div>
+                        </div>
+                        : null
+                    }
                 </div>
                 : null
         )
