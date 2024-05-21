@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { json, useNavigate } from "react-router-dom";
 
-const baseUrl = 'https://phygizone.darkube.app/v1';
-const apiHeaders = {
+export const baseUrl = 'https://phygizone.darkube.app/v1';
+export const apiHeaders = {
     'accept': 'application/json',
-    'Authorization': localStorage.getItem('authorization'),
+    'Authorization': localStorage.getItem('Authorization'),
     'Content-Type': 'application/json'
 };
 
@@ -16,11 +15,13 @@ export const GetUserId = () => {
     useEffect(() => {
         axios.get(baseUrl + '/user/profile/info', {
             headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                setUserId(response.data.id);
-            }
-        }).catch(() => { });
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    setUserId(response.data.id);
+                }
+            })
+            .catch(() => { });
     }, []);
 
     return userId;
@@ -188,7 +189,7 @@ export const CategoryProducts = (catId) => {
 
     useEffect(() => {
         if (catId === null) {
-            throw 'Error: Category id is required.';
+            throw new Error({ message: 'Error: Category id is required.' });
         }
 
         axios.get(baseUrl + '/product/categories/' + catId)

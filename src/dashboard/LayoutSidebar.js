@@ -1,30 +1,7 @@
 import React from "react";
+import { useAuth } from "../AuthProvider";
 
 import logo from '../logo.svg';
-import axios from "axios";
-
-const Logout = (e) => {
-    e.preventDefault();
-
-    axios.post('https://phygizone.darkube.app/v1/user/profile/logout/',
-        {
-        },
-        {
-            headers: {
-                'accept': 'application/json',
-                'Authorization': localStorage.getItem('authorization'),
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            if (response.status === 200) {
-                localStorage.removeItem('authorization');
-                window.location.replace('/');
-            }
-        }).catch(error => {
-            alert(JSON.stringify(error.response));
-            alert('Something went wrong. Please try again.');
-        });
-}
 
 const handleCollapse = () => {
     const aside = document.querySelector('aside');
@@ -32,6 +9,8 @@ const handleCollapse = () => {
 }
 
 const Sidebar = () => {
+    const auth = useAuth();
+
     return (
         <aside>
             <nav>
@@ -94,7 +73,7 @@ const Sidebar = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="#" onClick={Logout}>
+                        <a onClick={() => auth.logOut()}>
                             <img src="/images/icons/icon.logout.svg" alt="" />
                             Log Out
                         </a>
