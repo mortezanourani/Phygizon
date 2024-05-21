@@ -60,7 +60,7 @@ const OrderDetailsPage = () => {
                             <p>Mobile number</p>
                             <h4>{details.address}</h4>
                         </span>
-                        <h4 className="ttl bt">Shippinh</h4>
+                        <h4 className="ttl bt">Shipping</h4>
                         <span>
                             <p>Keeper Address</p>
                             <h4>{details.address}</h4>

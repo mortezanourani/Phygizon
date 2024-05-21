@@ -80,7 +80,7 @@ const ProductPage = () => {
                             <div className="material">
                                 <h4 className="option-title">Material</h4>
                                 <div className="option-value active">
-                                    <p>{data.brand.name}</p>
+                                    <p>{data.material.name}</p>
                                 </div>
                             </div>
                         </div>
