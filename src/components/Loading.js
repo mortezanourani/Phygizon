@@ -4,7 +4,7 @@ import { GridLoader } from 'react-spinners';
 const style = {
     loadingWrapper: {
         position: 'fixed',
-        width: '100vw',
+        width: '100%',
         minHeight: '100vh',
         left: 0,
         top: 0,

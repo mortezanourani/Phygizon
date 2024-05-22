@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 export const baseUrl = 'https://phygizone.darkube.app/v1';
 export const apiHeaders = {
@@ -406,53 +407,6 @@ export const Cart = () => {
     };
 };
 
-/* api: user_address_list */
-export const Addresses = () => {
-    const [loading, setLoading] = useState(true);
-
-    const [count, setCount] = useState(null);
-    const [addresses, setAddresses] = useState([]);
-
-    useEffect(() => {
-        axios.get(baseUrl + '/user/address/', {
-            headers: apiHeaders,
-        })
-            .then(response => {
-                if (response.status === 200) {
-                    setCount(response.data.count);
-                    setAddresses(response.data.results);
-                }
-            })
-            .catch(() => { })
-            .finally(() => setLoading(false));
-    }, []);
-
-    return {
-        loading: loading,
-        count: count,
-        items: addresses,
-    };
-};
-
-/* api: user_address_read */
-export const GetAddress = (id) => {
-    const [address, setAddress] = useState({});
-
-    useEffect(() => {
-        axios.get(baseUrl + '/user/address/' + id, {
-            headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                setAddress(response.data);
-            }
-        }).catch(error => {
-            alert(error.response.status);
-        });
-    }, [id]);
-
-    return address;
-};
-
 /* api: user_orders_list */
 export const GetOrders = () => {
     const [count, setCount] = useState(null);
@@ -626,6 +580,53 @@ export const removeFromCart = (id) => {
         });
 };
 
+/* api: user_address_list */
+export const Addresses = () => {
+    const [loading, setLoading] = useState(true);
+
+    const [count, setCount] = useState(null);
+    const [addresses, setAddresses] = useState([]);
+
+    useEffect(() => {
+        axios.get(baseUrl + '/user/address/', {
+            headers: apiHeaders,
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    setCount(response.data.count);
+                    setAddresses(response.data.results);
+                }
+            })
+            .catch(() => { })
+            .finally(() => setLoading(false));
+    }, []);
+
+    return {
+        loading: loading,
+        count: count,
+        items: addresses,
+    };
+};
+
+/* api: user_address_read */
+export const GetAddress = (id) => {
+    const [address, setAddress] = useState({});
+
+    useEffect(() => {
+        axios.get(baseUrl + '/user/address/' + id, {
+            headers: apiHeaders,
+        }).then(response => {
+            if (response.status === 200) {
+                setAddress(response.data);
+            }
+        }).catch(error => {
+            alert(error.response.status);
+        });
+    }, [id]);
+
+    return address;
+};
+
 /* api: user_address_create */
 export const SetAddress = (address) => {
     axios.post(baseUrl + '/user/address/', address,
@@ -635,10 +636,7 @@ export const SetAddress = (address) => {
             if (response.status === 201) {
                 window.location.replace('/dashboard/address/');
             }
-        }).catch(error => {
-            alert(JSON.stringify(error.response))
-            // alert(error.message);
-        });
+        }).catch(() => { });
 };
 
 /* api: user_address_update */
@@ -650,23 +648,24 @@ export const UpdateAddress = (id, address) => {
             if (response.status === 200) {
                 window.location.replace('/dashboard/address/');
             }
-        }).catch(error => {
+        }).catch((error => {
             alert(error.message);
-        });
+        }));
 };
 
-/* api: user_address_delete */
+/* api: user_address_partial_update */
 export const DeleteAddress = (id) => {
-    axios.delete(baseUrl + '/user/address/' + id,
+    axios.patch(baseUrl + '/user/address/' + id + '/',
+        {
+            is_active: false
+        },
         {
             headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 204) {
-                window.location.replace('/dashboard/address/');
-            }
-        }).catch(error => {
-            alert(error.message);
-        });
+        })
+        .then(() => {
+            window.location.replace('/dashboard/address/');
+        })
+        .catch(() => { });
 };
 
 /* api: order_payments_save_payment */

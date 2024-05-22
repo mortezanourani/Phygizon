@@ -1,6 +1,6 @@
 import React from "react"
 import { Addresses } from "../API";
-import { AddressCard } from "../components/Address";
+import { AddressesList } from "../components/Address";
 
 import Layout from "./Layout"
 
@@ -18,23 +18,7 @@ const AddressPage = () => {
                     <a className="btn md ghost gray dark" href="/dashboard/address/add/">Add new address</a>
                 </div>
                 <div className="addresses-frame">
-                    {
-                        address.count === null ? (
-                            <div>
-                                Loading...
-                            </div>
-                        ) : address.count === 0 ? (
-                            <div>
-                                There is no address.
-                            </div>
-                        ) : (
-                            address.items.map(address => (
-                                <AddressCard
-                                    address={address} />
-                            ))
-                        )
-
-                    }
+                    <AddressesList />
                 </div>
             </div>
         </Layout>

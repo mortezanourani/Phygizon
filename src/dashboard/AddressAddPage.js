@@ -7,10 +7,6 @@ import Layout from "./Layout"
 
 import '../css/address.css';
 
-const DefaultLocation = {
-    lat: 35.79839796311011,
-    lng: 51.41385087540654
-};
 const DefaultZoom = 20;
 
 const AddressAddPage = () => {
@@ -37,27 +33,21 @@ const AddressAddPage = () => {
             state: state,
             city: city,
             postal_address: postalAddress,
-            latitude: location.lat.toString().substring(0, 10),
-            longitude: location.lng.toString().substring(0, 10),
+            latitude: latitude.toString().substring(0, 9),
+            longitude: longitude.toString().substring(0, 9),
         });
     }
 
     const googleApiKey = 'AIzaSyD07E1VvpsN_0FvsmKAj4nK9GnLq-9jtj8'
-    const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
-    const [location, setLocation] = useState(defaultLocation);
     const [zoom, setZoom] = useState(DefaultZoom);
 
     function handleChangeLocation(lat, lng) {
-        setLocation({ lat: lat, lng: lng });
+        setLatitude(lat);
+        setLongitude(lng);
     }
 
     function handleChangeZoom(newZoom) {
         setZoom(newZoom);
-    }
-
-    function handleResetLocation() {
-        setDefaultLocation({ ...DefaultLocation });
-        setZoom(DefaultZoom);
     }
 
     return (
@@ -116,10 +106,13 @@ const AddressAddPage = () => {
                 </div>
                 <div className="form-control">
                     <MapPicker
-                        defaultLocation={defaultLocation}
+                        defaultLocation={{
+                            lat: latitude,
+                            lng: longitude,
+                        }}
                         zoom={zoom}
                         mapTypeId="roadmap"
-                        style={{ height: '160px', borderRadius: '8px' }}
+                        style={{ height: '160px', width: '560px', margin: 'auto', borderRadius: '8px' }}
                         onChangeLocation={handleChangeLocation}
                         onChangeZoom={handleChangeZoom}
                         apiKey={googleApiKey} />
