@@ -13,7 +13,7 @@ function AddressesList() {
     return (
         addresses.loading
             ?
-            <Loading />
+            <Loading component />
             :
             !addresses.items.filter(address => address.is_active).length
                 ?

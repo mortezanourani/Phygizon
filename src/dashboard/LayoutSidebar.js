@@ -73,7 +73,7 @@ const Sidebar = () => {
                         </a>
                     </li>
                     <li>
-                        <a onClick={() => auth.logOut()}>
+                        <a href="/" onClick={() => auth.logOut()}>
                             <img src="/images/icons/icon.logout.svg" alt="" />
                             Log Out
                         </a>

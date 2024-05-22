@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { GridLoader } from 'react-spinners';
+import { BeatLoader, GridLoader } from 'react-spinners';
 
 const style = {
     loadingWrapper: {
@@ -19,6 +19,21 @@ const style = {
     },
 }
 
+const componentStyle = {
+    loadingWrapper: {
+        position: 'relative',
+        width: '100%',
+        Height: '100%',
+        minHeight: '160px',
+    },
+    loadingDiv: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: 'inherit'
+    },
+}
+
 class Loading extends Component {
     constructor(props) {
         super(props);
@@ -26,17 +41,30 @@ class Loading extends Component {
 
     render() {
         return (
-            <div style={style.loadingWrapper}>
-                <div style={style.loadingDiv}>
-                    <GridLoader
-                        color="#1AA998"
-                        loading={true}
-                        size={20}
-                        aria-label="Loading Spinner"
-                        data-testid="loader"
-                    />
+            (this.props.component) ?
+                <div style={componentStyle.loadingWrapper}>
+                    <div style={componentStyle.loadingDiv}>
+                        <BeatLoader
+                            color="#1AA998"
+                            loading={true}
+                            size={16}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
+                    </div>
                 </div>
-            </div>
+                :
+                <div style={style.loadingWrapper}>
+                    <div style={style.loadingDiv}>
+                        <GridLoader
+                            color="#1AA998"
+                            loading={true}
+                            size={20}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
+                    </div>
+                </div>
         )
     }
 }

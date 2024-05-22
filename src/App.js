@@ -68,6 +68,7 @@ function App() {
                         <Route path="/dashboard/finance/" Component={PaymentHistoryPage} />
                         <Route path="/dashboard/finance/wallet/" Component={WalletPage} />
                         <Route path="/dashboard/orders/" Component={PendingsPage} />
+                        <Route path="/dashboard/orders/pending/" Component={PendingsPage} />
                         <Route path="/dashboard/orders/waiting/" Component={WaitingsPage} />
                         <Route path="/dashboard/orders/inprogress/" Component={InProgressPage} />
                         <Route path="/dashboard/orders/delivered/" Component={DeliveredsPage} />

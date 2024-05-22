@@ -30,35 +30,51 @@ export const GetUserId = () => {
 
 /* Get Dashboard Items */
 export const GetDashboard = () => {
+    const [loading, setLoading] = useState(true);
     const [name, setName] = useState(null);
     const [ordersCounts, setOrdersCounts] = useState(null);
     const [avatar, setAvatar] = useState(null);
 
     useEffect(() => {
-        axios.get(baseUrl + '/user/profile/dashboard/', {
-            headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                setName(response.data.user);
-                setOrdersCounts(response.data.total_orders);
-            }
-        }).catch(() => { });
-
         axios.get(baseUrl + '/user/profile/info/', {
             headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                setAvatar(response.data.avatar);
-            }
-        }).catch(() => { });
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    const data = response.data;
+                    setName(data.first_name + ' ' + data.last_name);
+                    setAvatar(data.avatar);
+                }
+            })
+            .catch(() => { })
+            .finally(() => setLoading(false));
     }, []);
 
     return {
+        loading: loading,
         name: name,
         avatar: avatar,
-        ordersCounts: ordersCounts,
     };
 };
+
+export const GetOrdersCounts = () => {
+    const [loading, setLoading] = useState(true);
+    const [orders, setOrders] = useState(null);
+
+    useEffect(() => {
+        axios.get(baseUrl + '/user/profile/dashboard/', {
+            headers: apiHeaders,
+        })
+            .then(response => setOrders(response.data.total_orders))
+            .catch(() => { })
+            .finally(() => setLoading(false));
+    }, []);
+
+    return {
+        loading: loading,
+        orders: orders,
+    };
+}
 
 /* Get Settings Options */
 export const Settings = () => {
