@@ -675,11 +675,10 @@
         aside {
             position: fixed;
             top: 0;
-            bottom: calc(100vh - 60px);
             left: 0;
             right: 0;
             width: auto;
-            height: auto;
+            height: 60px;
             overflow: hidden;
             z-index: 998;
             border-radius: 0;
@@ -729,7 +728,7 @@
             }
 
             &.collapsed {
-                bottom: 0;
+                height: 100vh;
             }
         }
 
