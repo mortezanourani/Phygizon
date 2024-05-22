@@ -6,6 +6,7 @@ import { OrderCounts } from "../components/Orders";
 
 import defaultAvatar from '../assets/icons/dashboard/default_avatar.png';
 import Loading from "../components/Loading";
+import { WalletCard } from "../components/WalletCard";
 
 const Dashboard = () => {
     const data = GetDashboard();
@@ -45,22 +46,9 @@ const Dashboard = () => {
                         title="Current"
                         counts={counts}
                     />
-                    <div className="wallet">
-                        <div className="number">
-                            <h5><img src="/images/icons/icon.metamask.svg" alt="" /> Metamask</h5>
-                            <p>0xsjkdf8j3or8j398329jfjewijf
-                                <a href=""></a>
-                            </p>
-                        </div>
-                        <div className="balance">
-                            <h3 className="title"><img src="/images/icons/icon.dashboard.wallet.svg" alt="" />Wallet Balance</h3>
-                            <h2>
-                                12.94 MGC
-                                <p>$4322.123</p>
-                            </h2>
-                            <button className="btn sm cta" id="addcredit">Add Credit</button>
-                        </div>
-                    </div>
+
+                    <WalletCard />
+
                     <div className="banner">
                         <img src="/images/banners/ranking.png" alt="" />
                         <a href="https://https://ranking.rz-game.com/" className="btn text gray dark xl">Go to Ranking                    </a>
