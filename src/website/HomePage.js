@@ -1,10 +1,11 @@
 import React from 'react';
 import Layout from './Layout';
-import { FAQs, HomePageData, addToCart, removeFromCart } from '../API';
+import { FAQs, HomePageData } from '../API';
 
 import Loading from '../components/Loading';
 
 import '../css/homepage.css';
+import { ProductCard } from '../components/Product';
 
 
 const HomePage = () => {
@@ -58,14 +59,14 @@ const HomePage = () => {
                 <header className="container header homepage-header">
                     <div className="slider">
                         <img className="slide" src={"/images/slides/slide.png"} alt="" />
-                        <a /*href={"/product/" + data.slide.id}*/>Shop now
+                        {/* <a href={"/product/" + data.slide.id}>Shop now
                             <img src="/images/icons/btnarrow.svg" alt="" />
-                        </a>
+                        </a> */}
                     </div>
                     <div className="banner">
-                        <a /*href={"/product/" + data.banner.id}*/>
-                            <img src={"/images/banners/banner.png"} alt="" />
-                        </a>
+                        {/* <a href={"/product/" + data.banner.id}> */}
+                        <img src={"/images/banners/banner.png"} alt="" />
+                        {/* </a> */}
                     </div>
                 </header >
                 <section className="homepage-products container">
@@ -78,7 +79,7 @@ const HomePage = () => {
                             {
                                 categories.map(cat => (
                                     <a href={"/category/" + cat.id + "/"}>
-                                        <img className="icon" src={"/images/icons/icon.cat." + cat.id + ".svg"} />
+                                        <img className="icon" src={"/images/icons/icon.cat." + cat.id + ".svg"} alt='' />
                                         {cat.name}
                                     </a>
                                 ))
@@ -86,13 +87,13 @@ const HomePage = () => {
                         </div>
                     </div>
                     <div className="images">
-                        <a className="img-link">
+                        <a href='/' className="img-link">
                             <img src="/images/products/cat1.png" alt="" />
                         </a>
-                        <a className="img-link">
+                        <a href='/' className="img-link">
                             <img src="/images/products/cat2.png" alt="" />
                         </a>
-                        <a className="img-link">
+                        <a href='/' className="img-link">
                             <img src="/images/products/cat3.png" alt="" />
                         </a>
                     </div>
@@ -113,179 +114,32 @@ const HomePage = () => {
                             <div className="products" id="all">
                                 {
                                     allProducts.map(product => (
-                                        <div
-                                            className="product-card">
-                                            {
-                                                (product.nft_link) ? (
-                                                    <a href={product.nft_link}
-                                                        className={"nft-link" + ((product.is_nft_required) ? " required" : "")}>
-                                                    </a>
-                                                ) : null
-                                            }
-                                            <a href={"/product/" + product.id + "/"}>
-                                                {
-                                                    (product.current_price.discount) ? (
-                                                        <span className='discount'>
-                                                            {product.current_price.discount * 100} %
-                                                        </span>
-                                                    ) : null
-                                                }
-                                                <img src={product.image} alt="" />
-                                            </a>
-                                            <div className="info">
-                                                <a href={"/product/" + product.id + "/"}>
-                                                    <h4 className="title">{product.name}</h4>
-                                                </a>
-                                                <div className="cart">
-                                                    <div className="cost">
-                                                        <h5 className="off">{product.current_price.currency.sign + product.current_price.price}</h5>
-                                                        <h4 className="final">{product.current_price.currency.sign + product.current_price.discount_price}</h4>
-                                                    </div>
-                                                    <div className="buttons">
-                                                        <button className="remove" onClick={() => removeFromCart(product.id)}>
-                                                            <img src="/images/icons/icon.recyclebin.svg" />
-                                                        </button>
-                                                        <button className="add" onClick={() => addToCart(product.id)}>
-                                                            <img src="/images/icons/icon.addtocart.svg" />
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <ProductCard
+                                            product={product} />
                                     ))
                                 }
                             </div>
                             <div className="products" id="nft">
                                 {
                                     nftProducts.map(product => (
-                                        <div
-                                            className="product-card">
-                                            {
-                                                (product.nft_link) ? (
-                                                    <a href={product.nft_link}
-                                                        className={"nft-link" + ((product.is_nft_required) ? " required" : "")}>
-                                                    </a>
-                                                ) : null
-                                            }
-                                            <a href={"/product/" + product.id + "/"}>
-                                                {
-                                                    (product.current_price.discount) ? (
-                                                        <span className='discount'>
-                                                            {product.current_price.discount * 100} %
-                                                        </span>
-                                                    ) : null
-                                                }
-                                                <img src={product.image} alt="" />
-                                            </a>
-                                            <div className="info">
-                                                <a href={"/product/" + product.id + "/"}>
-                                                    <h4 className="title">{product.name}</h4>
-                                                </a>
-                                                <div className="cart">
-                                                    <div className="cost">
-                                                        <h5 className="off">{product.current_price.currency.sign + product.current_price.price}</h5>
-                                                        <h4 className="final">{product.current_price.currency.sign + product.current_price.discount_price}</h4>
-                                                    </div>
-                                                    <div className="buttons">
-                                                        <button className="remove" onClick={() => removeFromCart(product.id)}>
-                                                            <img src="/images/icons/icon.recyclebin.svg" />
-                                                        </button>
-                                                        <button className="add" onClick={() => addToCart(product.id)}>
-                                                            <img src="/images/icons/icon.addtocart.svg" />
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <ProductCard
+                                            product={product} />
                                     ))
                                 }
                             </div>
                             <div className="products" id="offers">
                                 {
                                     offersProducts.map(product => (
-                                        <div
-                                            className="product-card">
-                                            {
-                                                (product.nft_link) ? (
-                                                    <a href={product.nft_link}
-                                                        className={"nft-link" + ((product.is_nft_required) ? " required" : "")}>
-                                                    </a>
-                                                ) : null
-                                            }
-                                            <a href={"/product/" + product.id + "/"}>
-                                                {
-                                                    (product.current_price.discount) ? (
-                                                        <span className='discount'>
-                                                            {product.current_price.discount * 100} %
-                                                        </span>
-                                                    ) : null
-                                                }
-                                                <img src={product.image} alt="" />
-                                            </a>
-                                            <div className="info">
-                                                <a href={"/product/" + product.id + "/"}>
-                                                    <h4 className="title">{product.name}</h4>
-                                                </a>
-                                                <div className="cart">
-                                                    <div className="cost">
-                                                        <h5 className="off">{product.current_price.currency.sign + product.current_price.price}</h5>
-                                                        <h4 className="final">{product.current_price.currency.sign + product.current_price.discount_price}</h4>
-                                                    </div>
-                                                    <div className="buttons">
-                                                        <button className="remove" onClick={() => removeFromCart(product.id)}>
-                                                            <img src="/images/icons/icon.recyclebin.svg" />
-                                                        </button>
-                                                        <button className="add" onClick={() => addToCart(product.id)}>
-                                                            <img src="/images/icons/icon.addtocart.svg" />
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <ProductCard
+                                            product={product} />
                                     ))
                                 }
                             </div>
                             <div className="products" id="latest">
                                 {
                                     latestProducts.map(product => (
-                                        <div className="product-card">
-                                            {
-                                                (product.nft_link) ? (
-                                                    <a href={product.nft_link}
-                                                        className={"nft-link" + ((product.is_nft_required) ? " required" : "")}>
-                                                    </a>
-                                                ) : null
-                                            }
-                                            <a href={"/product/" + product.id + "/"}>
-                                                {
-                                                    (product.current_price.discount) ? (
-                                                        <span className='discount'>
-                                                            {product.current_price.discount * 100} %
-                                                        </span>
-                                                    ) : null
-                                                }
-                                                <img src={product.image} alt="" />
-                                            </a>
-                                            <div className="info">
-                                                <a href={"/product/" + product.id + "/"}>
-                                                    <h4 className="title">{product.name}</h4>
-                                                </a>
-                                                <div className="cart">
-                                                    <div className="cost">
-                                                        <h5 className="off">{product.current_price.currency.sign + product.current_price.price}</h5>
-                                                        <h4 className="final">{product.current_price.currency.sign + product.current_price.discount_price}</h4>
-                                                    </div>
-                                                    <div className="buttons">
-                                                        <button className="remove" onClick={() => removeFromCart(product.id)}>
-                                                            <img src="/images/icons/icon.recyclebin.svg" />
-                                                        </button>
-                                                        <button className="add" onClick={() => addToCart(product.id)}>
-                                                            <img src="/images/icons/icon.addtocart.svg" />
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <ProductCard
+                                            product={product} />
                                     ))
                                 }
                             </div>
@@ -448,7 +302,7 @@ const HomePage = () => {
                         <img src='/images/icons/icon.homepage.getintouch.png' alt="" />
                         <h3>Still have questions?</h3>
                         <p>Can’t find the answer you’re looking for? Please chat to our friendly team.</p>
-                        <a href="#" className='btn cta xxl'>Get in touch</a>
+                        <a href="/contact/" className='btn cta xxl'>Get in touch</a>
                     </div>
                 </section>
 

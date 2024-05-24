@@ -244,6 +244,8 @@ export const CategoryProducts = (catId) => {
 
 /* api: product_products_read */
 export const Product = (id) => {
+    const [loading, setLoading] = useState(true);
+
     const [name, setName] = useState("");
     const [category, setCategory] = useState({});
     const [color, setColor] = useState({});
@@ -287,10 +289,12 @@ export const Product = (id) => {
             })
             .catch(error => {
                 alert(error.response.status);
-            });
+            })
+            .finally(() => setLoading(false));
     }, [id]);
 
     return {
+        loading: loading,
         name: name,
         category: category,
         color: color,
@@ -368,8 +372,10 @@ export const removeFromWishList = (id) => {
 }
 
 export const Products = () => {
-    const [count, setCount] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [count, setCount] = useState('?');
     const [products, setProducts] = useState([]);
+
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -382,10 +388,11 @@ export const Products = () => {
                 console.error(err);
             }
         };
-        fetchProducts();
+        fetchProducts()
+            .finally(() => setLoading(false));
     }, []); // Empty array ensures it only runs once
 
-    return { count, products };
+    return { loading, count, products };
 };
 
 /* api: order_carts_read */

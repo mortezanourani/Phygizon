@@ -1,8 +1,8 @@
 import React from "react";
 import Layout from "./Layout";
+import Loading from '../components/Loading';
 import { Product, addToCart, addToWishlist } from "../API";
 
-import '../css/product.css';
 import { ImagesSlider } from "../components/Product";
 
 const ProductPage = () => {
@@ -14,8 +14,8 @@ const ProductPage = () => {
 
     const data = Product(productId);
 
-    if (data.image === null) {
-        return;
+    if (data.loading) {
+        return <Loading />;
     }
 
     const handleTab = (e) => {
@@ -224,15 +224,9 @@ const ProductPage = () => {
                         }
                         <h2 className="after">
                             {
-                                (data.currentPrice.discount !== 0) ? (
-                                    data.currentPrice.discount_price
-                                    + " "
-                                    + ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.name : null)
-                                ) : (
-                                    data.currentPrice.price
-                                    + " "
-                                    + ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.name : null)
-                                )
+                                data.currentPrice.discount_price
+                                + " "
+                                + ((data.currentPrice.currency !== undefined) ? data.currentPrice.currency.name : null)
                             }
                             {/* <p className="dollar">($15.87)</p> */}
                         </h2>

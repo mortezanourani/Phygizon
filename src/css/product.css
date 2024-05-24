@@ -121,6 +121,7 @@
                     font-weight: 700;
                     font-size: 20px;
                     line-height: 30px;
+                    text-wrap: nowrap;
                     /* identical to box height, or 150% */
 
                     color: #101828;
