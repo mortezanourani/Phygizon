@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-import Layout from "./Layout";
-
-const SignupPage = () => {
+const SetPassword = () => {
     const navigate = useNavigate();
 
     if (localStorage.getItem('authorization') !== null) {
@@ -55,7 +53,7 @@ const SignupPage = () => {
     }
 
     return (
-        <Layout>
+        <>
             <div id="signup-password-page">
                 <form className="signup-password-form" onSubmit={handleSubmit}>
                     <img className="logo" src="/logomini.svg" alt="" />
@@ -69,8 +67,8 @@ const SignupPage = () => {
                     <button type="submit" className="btn cta lg">Continue</button>
                 </form>
             </div>
-        </Layout>
+        </>
     )
 }
 
-export default SignupPage;
+export default SetPassword;

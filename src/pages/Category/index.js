@@ -1,13 +1,11 @@
 import React from "react";
-import Layout from "./Layout";
-import Loading from "../components/Loading";
-import { CategoryProducts, addToCart, removeFromCart } from "../API";
+import Loading from "../../components/Loading";
+import { CategoryProducts } from "../../API";
 
-import '../css/product.css';
-import { ProductCard } from "../components/Product";
+import { ProductCard } from "../../components/Product";
 
 
-const CategoryProductsPage = () => {
+const Category = () => {
     const url = window.location;
     const urlParameters = url.toString().trim().split('/');
     const categoryId = urlParameters[urlParameters.length - 1].length < 1
@@ -18,9 +16,9 @@ const CategoryProductsPage = () => {
 
     return (
         (data.loading) ?
-            <Loading />
+            <Loading component />
             :
-            <Layout>
+            <>
                 <section className="products">
                     <div className="main container">
                         <div className="section-title">
@@ -38,8 +36,8 @@ const CategoryProductsPage = () => {
                         </div>
                     </div>
                 </section>
-            </Layout >
+            </>
     );
 }
 
-export default CategoryProductsPage;
+export default Category;

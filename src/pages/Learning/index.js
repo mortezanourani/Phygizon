@@ -1,15 +1,14 @@
 import React from "react";
-import Layout from './Layout';
-import HeroHeader from "./HeroHeader";
+import HeroHeader from "../../components/HeroHeader";
 
-import '../css/learning.css';
+import './learning.css';
 
-const LearningPage = () => {
+function Learning() {
     const root = document.getElementById('root');
     root.classList.add('learning');
 
     return (
-        <Layout>
+        <>
             <HeroHeader
                 title="Learning"
                 description="Comprehensive tutorials and Contents" />
@@ -161,8 +160,8 @@ const LearningPage = () => {
                     </div>
                 </div>
             </section>
-        </Layout>
+        </>
     );
 }
 
-export default LearningPage;
+export default Learning;

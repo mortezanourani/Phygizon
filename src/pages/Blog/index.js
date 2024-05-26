@@ -1,15 +1,14 @@
 import React from "react";
-import Layout from './Layout';
-import HeroHeader from "./HeroHeader";
+import HeroHeader from "../../components/HeroHeader";
 
-import '../css/blog.css';
+import './blog.css';
 
-const BlogPage = () => {
+function Blog() {
     const root = document.getElementById('root');
     root.classList.add('blogpage');
 
     return (
-        <Layout>
+        <>
             <HeroHeader
                 title="Our Blog"
                 description="Resources and insights" />
@@ -111,8 +110,8 @@ const BlogPage = () => {
                     </div>
                 </div>
             </section>
-        </Layout>
+        </>
     );
 }
 
-export default BlogPage;
+export default Blog;

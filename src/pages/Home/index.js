@@ -1,14 +1,12 @@
 import React from 'react';
-import Layout from './Layout';
-import { FAQs, HomePageData } from '../API';
+import { FAQs, HomePageData } from '../../API';
 
-import Loading from '../components/Loading';
+import Loading from '../../components/Loading';
 
-import '../css/homepage.css';
-import { ProductCard } from '../components/Product';
+import './homepage.css';
+import { ProductCard } from '../../components/Product';
 
-
-const HomePage = () => {
+const Home = () => {
     const data = HomePageData();
     const categories = data.categories;
     const allProducts = data.allProducts;
@@ -55,7 +53,7 @@ const HomePage = () => {
         data.loading ?
             <Loading />
             :
-            <Layout>
+            <>
                 <header className="container header homepage-header">
                     <div className="slider">
                         <img className="slide" src={"/images/slides/slide.png"} alt="" />
@@ -355,8 +353,8 @@ const HomePage = () => {
                 <section id="world" className="container">
                     <img src="/images/best.arts.and.products.png" alt="" />
                 </section>
-            </Layout>
+            </>
     );
 }
 
-export default HomePage;
+export default Home;

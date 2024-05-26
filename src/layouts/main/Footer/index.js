@@ -1,10 +1,11 @@
 import React from "react";
 
-import logo from '../logo.svg';
-import '../css/footer.css';
-import { Categories } from "../API";
+import logo from '../../../logo.svg';
+import './footer.css';
 
-const Footer = () => {
+import { Categories } from "../../../API";
+
+function Footer() {
     const cats = Categories();
 
     return (
@@ -91,6 +92,6 @@ const Footer = () => {
             </div>
         </footer>
     );
-}
+};
 
 export default Footer;

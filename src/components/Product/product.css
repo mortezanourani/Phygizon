@@ -36,14 +36,14 @@
         background: rgba(0, 0, 0, 0.2);
         backdrop-filter: blur(4px);
         border-radius: 12px;
-        background-image: url('../../public/images/icons/icon.tag.nft.svg');
+        background-image: url('../../../public/images/icons/icon.tag.nft.svg');
         background-repeat: no-repeat;
         background-position: center center;
 
         z-index: 10;
 
         &.required {
-            background-image: url('../../public/images/icons/icon.tag.nft.required.svg');
+            background-image: url('../../../public/images/icons/icon.tag.nft.required.svg');
         }
     }
 
@@ -65,7 +65,7 @@
         left: 0px;
         top: 0px;
 
-        background-image: url('../../public/images/icons/icon.discount.svg');
+        background-image: url('../../../public/images/icons/icon.discount.svg');
         background-repeat: no-repeat;
         background-position: center center;
 
@@ -317,12 +317,12 @@
 
                     &.next {
                         right: 0;
-                        background-image: url('../assets/icons/product/next_controller_icon.svg');
+                        background-image: url('../../assets/icons/product/next_controller_icon.svg');
                     }
 
                     &.prev {
                         left: 0;
-                        background-image: url('../assets/icons/product/prev_controller_icon.svg');
+                        background-image: url('../../assets/icons/product/prev_controller_icon.svg');
                     }
                 }
 

@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-import Layout from './Layout';
-import HeroHeader from "./HeroHeader";
+import React from "react";
+import HeroHeader from "../../components/HeroHeader";
 
-import '../css/faq.css';
-import { FAQs } from "../API";
+import './faq.css';
+import { FAQs } from "../../API";
 
-const FaqPage = () => {
+function FAQ() {
     const faqs = FAQs();
 
     return (
-        <Layout>
+        <>
             <HeroHeader
                 title="Frequently Asked Questions"
                 description="Resources and insights" />
@@ -70,8 +69,8 @@ const FaqPage = () => {
                     </div>
                 </div>
             </section>
-        </Layout>
+        </>
     );
 }
 
-export default FaqPage;
+export default FAQ;

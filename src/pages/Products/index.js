@@ -1,16 +1,14 @@
 import React from "react";
-import Layout from "./Layout";
-import Loading from '../components/Loading';
-import { Products } from "../API";
+import Loading from '../../components/Loading';
+import { Products } from "../../API";
 
-import '../css/product.css';
-import { ProductCard } from "../components/Product";
+import { ProductCard } from "../../components/Product";
 
-const ProductsPage = () => {
+const AllProducts = () => {
     const { loading, count, products } = Products();
 
     return (
-        <Layout>
+        <>
             <section className="products">
                 <div className="main container">
                     <div className="section-title">
@@ -33,8 +31,8 @@ const ProductsPage = () => {
                     }
                 </div>
             </section>
-        </Layout >
+        </>
     );
 }
 
-export default ProductsPage;
+export default AllProducts;

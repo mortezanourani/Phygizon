@@ -1,4 +1,4 @@
-import { Categories } from "../API";
+import { Categories } from "../../../API";
 
 function MainMenu() {
     const categories = Categories();

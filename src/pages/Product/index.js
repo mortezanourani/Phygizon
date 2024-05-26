@@ -1,11 +1,10 @@
 import React from "react";
-import Layout from "./Layout";
-import Loading from '../components/Loading';
-import { Product, addToCart, addToWishlist } from "../API";
+import Loading from '../../components/Loading';
+import { Product, addToCart, addToWishlist } from "../../API";
 
-import { ImagesSlider } from "../components/Product";
+import ImagesSlider from "./ImagesSlider";
 
-const ProductPage = () => {
+const SingleProduct = () => {
     const url = window.location;
     const urlParameters = url.toString().trim().split('/');
     const productId = urlParameters[urlParameters.length - 1].length < 1
@@ -15,7 +14,7 @@ const ProductPage = () => {
     const data = Product(productId);
 
     if (data.loading) {
-        return <Loading />;
+        return <Loading component />;
     }
 
     const handleTab = (e) => {
@@ -31,7 +30,7 @@ const ProductPage = () => {
         tabContents.classList.add(e.target.id.replace('product-', ''));
     }
     return (
-        <Layout>
+        <>
             <section id="product" className="container">
                 <div className="product-content">
                     <ImagesSlider
@@ -327,8 +326,8 @@ const ProductPage = () => {
                     </div>
                 </div>
             </section> */}
-        </Layout>
+        </>
     );
 }
 
-export default ProductPage;
+export default SingleProduct;

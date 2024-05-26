@@ -1,15 +1,14 @@
 import React from "react";
-import Layout from './Layout';
-import HeroHeader from './HeroHeader';
+import HeroHeader from '../../components/HeroHeader';
 
-import '../css/helpcenter.css';
+import './helpcenter.css';
 
-const HelpCenterPage = () => {
+function HelpCenter() {
     const root = document.getElementById('root');
     root.classList.add('helpcenter');
 
     return (
-        <Layout>
+        <>
             <HeroHeader
                 background="/images/banners/hero.background.png"
                 title="Hello, How can we help you?" />
@@ -56,9 +55,9 @@ const HelpCenterPage = () => {
                     <img src="/images/icons/helpcenter.ticket.section.icon.svg" alt="" />
                 </div>
             </section>
-        </Layout>
+        </>
 
     );
 }
 
-export default HelpCenterPage;
+export default HelpCenter;

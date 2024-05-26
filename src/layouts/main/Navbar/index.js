@@ -1,11 +1,12 @@
 import React from "react";
-import NavigationMenu from "../components/NavigationMenu";
-import MainMenu from "../components/MainMenu";
 
-import logo from '../logo.svg';
-import '../css/primarynav.css';
+import MainMenu from './MainMenu';
+import NavigationMenu from './NavigationMenu';
 
-const PrimaryNav = () => {
+import logo from '../../../logo.svg';
+import './navbar.css';
+
+const Navbar = () => {
     const collapseMenu = (e) => {
         e.preventDefault();
 
@@ -31,4 +32,4 @@ const PrimaryNav = () => {
     );
 }
 
-export default PrimaryNav;
+export default Navbar;

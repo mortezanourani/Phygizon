@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-import Layout from "./Layout";
 import { PhoneInput } from "react-international-phone";
 import 'react-international-phone/style.css';
 
-const SignupPage = () => {
+const Signup = () => {
     const navigate = useNavigate();
 
-    if (localStorage.getItem('authorization') !== null) {
+    if (localStorage.getItem('Authorization') !== null) {
         window.location.replace('/dashboard/');
     }
 
@@ -40,7 +39,7 @@ const SignupPage = () => {
     }
 
     return (
-        <Layout>
+        <>
             <div id="signup-page">
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <img className="logo" src="/logomini.svg" alt="" />
@@ -63,8 +62,8 @@ const SignupPage = () => {
                     <button type="submit" className="btn cta lg">Continue</button>
                 </form>
             </div>
-        </Layout>
+        </>
     )
 }
 
-export default SignupPage;
+export default Signup;

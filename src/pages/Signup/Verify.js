@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-import Layout from "./Layout";
-
-const SignupVerifyPage = () => {
+const Verify = () => {
     const [type, setType] = useState(null);
     const [key, setKey] = useState(null);
     const [receiver, setReceiver] = useState(null);
 
     const navigate = useNavigate();
 
-    if (localStorage.getItem('authorization') !== null) {
+    if (localStorage.getItem('Authorization') !== null) {
         navigate('/dashboard/', { replace: true });
     }
 
@@ -72,7 +70,7 @@ const SignupVerifyPage = () => {
     }
 
     return (
-        <Layout>
+        <>
             <div id="signup-verification-page">
                 <form className="signup-verification-form">
                     <img className="logo" src="/logomini.svg" alt="" />
@@ -89,8 +87,8 @@ const SignupVerifyPage = () => {
                     </div>
                 </form>
             </div>
-        </Layout>
+        </>
     )
 }
 
-export default SignupVerifyPage;
+export default Verify;
