@@ -3,7 +3,7 @@ import { FAQs, HomePageData } from '../../API';
 
 import Loading from '../../components/Loading';
 
-import './homepage.css';
+import './index.css';
 import { ProductCard } from '../../components/Product';
 
 const Home = () => {

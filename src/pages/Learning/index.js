@@ -1,7 +1,7 @@
 import React from "react";
 import HeroHeader from "../../components/HeroHeader";
 
-import './learning.css';
+import './index.css';
 
 function Learning() {
     const root = document.getElementById('root');

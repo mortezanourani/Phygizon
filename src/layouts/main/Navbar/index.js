@@ -4,7 +4,7 @@ import MainMenu from './MainMenu';
 import NavigationMenu from './NavigationMenu';
 
 import logo from '../../../logo.svg';
-import './navbar.css';
+import './index.css';
 
 const Navbar = () => {
     const collapseMenu = (e) => {

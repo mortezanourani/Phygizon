@@ -1,7 +1,7 @@
 import React from "react";
 import HeroHeader from "../../components/HeroHeader";
 
-import './blog.css';
+import './index.css';
 
 function Blog() {
     const root = document.getElementById('root');

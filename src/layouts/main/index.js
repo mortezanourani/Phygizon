@@ -6,7 +6,7 @@ function Layout() {
     return (
         <>
             <Navbar />
-            <main>
+            <main style={{ minHeight: 'calc(100vh - 70px)' }}>
                 <Outlet />
             </main>
             <Footer />

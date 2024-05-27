@@ -1,7 +1,7 @@
 import React from "react";
 import HeroHeader from "../../components/HeroHeader";
 
-import './faq.css';
+import './index.css';
 import { FAQs } from "../../API";
 
 function FAQ() {

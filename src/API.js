@@ -338,6 +338,7 @@ export const addToWishlist = (id) => {
 
 /* api: prodcut_wishlist_add_to_wishlist */
 export const WishList = () => {
+    const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -348,10 +349,12 @@ export const WishList = () => {
                 if (response.status === 200) {
                     setProducts(response.data.items);
                 }
-            }).catch(error => alert(error.message));
+            })
+            .catch(error => alert(error.message))
+            .finally(() => setLoading(false));
     }, []);
 
-    return products;
+    return { loading, products };
 }
 
 /* api: product_wishlist_remove_from_wishlist */
@@ -396,7 +399,7 @@ export const Products = () => {
 };
 
 /* api: order_carts_read */
-export const Cart = () => {
+export const GetCart = () => {
     const [loading, setLoading] = useState(true);
 
     const [user, setUser] = useState("");
@@ -432,25 +435,30 @@ export const Cart = () => {
 
 /* api: user_orders_list */
 export const GetOrders = () => {
-    const [count, setCount] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [count, setCount] = useState(0);
     const [items, setItems] = useState([]);
 
     useEffect(() => {
         axios.get(baseUrl + '/user/orders/', {
             headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                setCount(response.data.count);
-                setItems(response.data.results);
-            }
-        }).catch(error => {
-            alert(error.response.status);
-        });
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    setCount(response.data.count);
+                    setItems(response.data.results);
+                }
+            })
+            .catch(error => {
+                alert(error.response.status);
+            })
+            .finally(() => setLoading(false));
     }, []);
 
     return {
+        loading: loading,
         count: count,
-        items: items,
+        orders: items,
     };
 };
 

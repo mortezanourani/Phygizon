@@ -1,0 +1,119 @@
+#addresses,
+#addaddress {
+    .addresses-frame {
+        .address {
+            margin-bottom: 36px;
+
+            .titlebar {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+
+                h3 {
+                    /* Text lg/Bold */
+                    font-family: 'Hubot Sans';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 28px;
+
+                    color: #344054;
+
+                    /* &::before {} */
+                }
+
+                a {
+                    font-size: 12px;
+                }
+            }
+
+            >div {
+                background: #FFFFFF;
+                border: 1px solid #66C5BA;
+                border-radius: 15px;
+                padding: 24px;
+
+                span {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: baseline;
+                    gap: 12px;
+
+                    h3 {
+                        /* Display xs/Semibold */
+                        font-family: 'Hubot Sans';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 24px;
+                        line-height: 32px;
+
+                        color: #101828;
+                    }
+
+                    p {
+                        /* Text xl/Regular */
+                        font-family: 'Hubot Sans';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 20px;
+                        line-height: 30px;
+                        /* identical to box height, or 150% */
+
+                        color: #101828;
+                    }
+                }
+
+                ul {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: 24px;
+                    padding: 24px 0 0;
+                    list-style: none;
+
+                    li {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+                        gap: 8px;
+
+                        p {
+                            /* Text md/Regular */
+                            font-family: 'Hubot Sans';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 24px;
+
+                            color: #101828;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #addresses {
+        .addresses-frame {
+            margin-top: 32px;
+
+            .address {
+                >div {
+                    span {
+                        flex-direction: column;
+                    }
+
+                    ul {
+                        flex-direction: column;
+                        align-items: flex-start;
+                    }
+                }
+            }
+        }
+    }
+}

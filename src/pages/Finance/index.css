@@ -1,0 +1,23 @@
+.finance {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 4px 19.4px rgba(0, 0, 0, 0.09);
+    backdrop-filter: blur(13.1px);
+    border-radius: 32px;
+    padding: 24px;
+    margin-top: 24px;
+
+    nav.finance-navbar {
+        /* Auto layout */
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 6px;
+        gap: 12px;
+        margin-bottom: 28px;
+
+        background: #F9FAFB;
+        border: 1px solid #EAECF0;
+        border-radius: 12px;
+    }
+}
