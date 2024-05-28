@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FAQs, HomePageData } from '../../API';
 
 import Loading from '../../components/Loading';
 
 import './index.css';
 import { ProductCard } from '../../components/Product';
+import Categories from './Categories';
+import FAQ from './FAQ';
 
 const Home = () => {
     const data = HomePageData();
@@ -29,26 +31,6 @@ const Home = () => {
         e.target.className += ' active';
     }
 
-    const handleFaqs = (e) => {
-        let tablinks = document.getElementsByClassName('faqs-tab-link');
-        for (let i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(' active', '');
-        }
-
-        let tabcontent = document.querySelector('#faqs .tab-content');
-        tabcontent.className = "tab-content " + e.target.id;
-        e.target.className += ' active';
-    }
-
-    const faqToggle = (e) => {
-        const questions = document.getElementsByClassName('question');
-        for (let i = 0; i < questions.length; i++) {
-            questions[i].classList.remove('collapsed');
-        }
-
-        e.target.parentElement.classList.toggle('collapsed');
-    }
-
     return (
         data.loading ?
             <Loading />
@@ -67,35 +49,8 @@ const Home = () => {
                         {/* </a> */}
                     </div>
                 </header >
-                <section className="homepage-products container">
-                    <div className="products">
-                        <div className="section-header">
-                            <h2 className="title">Products</h2>
-                            <a href="/products/">Show all</a>
-                        </div>
-                        <div className="categories">
-                            {
-                                categories.map(cat => (
-                                    <a href={"/category/" + cat.id + "/"}>
-                                        <img className="icon" src={"/images/icons/icon.cat." + cat.id + ".svg"} alt='' />
-                                        {cat.name}
-                                    </a>
-                                ))
-                            }
-                        </div>
-                    </div>
-                    <div className="images">
-                        <a href='/' className="img-link">
-                            <img src="/images/products/cat1.png" alt="" />
-                        </a>
-                        <a href='/' className="img-link">
-                            <img src="/images/products/cat2.png" alt="" />
-                        </a>
-                        <a href='/' className="img-link">
-                            <img src="/images/products/cat3.png" alt="" />
-                        </a>
-                    </div>
-                </section>
+
+                <Categories />
 
                 <section id="featured">
                     <div className='container'>
@@ -271,38 +226,7 @@ const Home = () => {
                     </div>
                 </section>
 
-                <section id="faqs" className="container">
-                    <div className="section-title">
-                        <h2 className="title">Frequently Asked Questions</h2>
-                        <span className="tab t2">
-                            <button className='faqs-tab-link active' id="general" onClick={handleFaqs}>General</button>
-                            <button className='faqs-tab-link' id="getstart" onClick={handleFaqs}>Get start</button>
-                            <button className='faqs-tab-link' id="create" onClick={handleFaqs}>Create</button>
-                            <button className='faqs-tab-link' id="campaign" onClick={handleFaqs}>Campaign</button>
-                            <button className='faqs-tab-link' id="listing" onClick={handleFaqs}>Listing</button>
-                        </span>
-                    </div>
-                    <div className='tab-content general'>
-                        <div id='general'>
-                            {
-                                faqs.items.map(faq => (
-                                    <div className='question'>
-                                        <h3 onClick={faqToggle}>{faq.question}</h3>
-                                        <p>{faq.answer}</p>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                        <div id='getstart'></div>
-                        <div id='campaign'></div>
-                    </div>
-                    <div className='getintouch'>
-                        <img src='/images/icons/icon.homepage.getintouch.png' alt="" />
-                        <h3>Still have questions?</h3>
-                        <p>Can’t find the answer you’re looking for? Please chat to our friendly team.</p>
-                        <a href="/contact/" className='btn cta xxl'>Get in touch</a>
-                    </div>
-                </section>
+                <FAQ />
 
                 <section id="rayzon" className="container">
                     <img src='/images/banners/rayzon.png' alt='' />

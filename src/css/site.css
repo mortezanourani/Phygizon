@@ -59,6 +59,7 @@ body {
 
     main {
         /* min-height: 100vh; */
+        z-index: auto;
     }
 }
 

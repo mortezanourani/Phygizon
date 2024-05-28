@@ -40,14 +40,14 @@ class ProductCard extends Component {
                             {
                                 (this.data.current_price.discount !== 0) ? (
                                     <h5 className="off">
-                                        {this.data.current_price.price
+                                        {this.data.current_price.price.toFixed(2)
                                             + ' '
                                             + this.data.current_price.currency.name}
                                     </h5>
                                 ) : null
                             }
                             <h4 className="final">
-                                {this.data.current_price.discount_price
+                                {this.data.current_price.discount_price.toFixed(2)
                                     + " "
                                     + ((this.data.current_price.currency !== undefined) ? this.data.current_price.currency.name : null)}
                             </h4>

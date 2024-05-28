@@ -10,6 +10,7 @@ const style = {
         top: 0,
         background: 'rgba(255, 255, 255, 0.3)',
         backdropFilter: 'blur(16px)',
+        zIndex: '999',
     },
     loadingDiv: {
         display: 'flex',
