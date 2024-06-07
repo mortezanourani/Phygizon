@@ -149,6 +149,8 @@
             right: 0;
             width: auto;
             height: 60px;
+            min-height: auto;
+            max-height: auto;
             overflow: hidden;
             z-index: 998;
             border-radius: 0;
@@ -164,6 +166,7 @@
                     flex-direction: row;
                     justify-content: space-between;
                     align-items: center;
+                    width: 100%;
                     height: 60px;
                     position: relative;
 
@@ -193,7 +196,6 @@
 
                 ul {
                     padding: 16px;
-                    margin-bottom: 16px;
                 }
             }
 
