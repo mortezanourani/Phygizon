@@ -27,12 +27,12 @@ const NavigationMenu = () => {
             password: password,
         });
 
-        if (localStorage.getItem('User') !== null)
-            return closePopup();
-        return;
+        if (auth.token !== null) {
+            closePopup();
+        }
     }
 
-    auth.validateToken();
+    // auth.validateToken();
 
     return (
         (!auth.token) ? (

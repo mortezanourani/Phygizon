@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import useCart from "../../hooks/useCart";
+
 import { GetCart, Pay } from "../../API";
+
+import ShippingAddress from "./ShippingAddress";
+import PaymentMethods from "./Payment";
+import CartItem from "./CartItem";
+
 import Loading from '../../components/Loading';
 
 import './index.css';
 
-import ShippingAddress from "./ShippingAddress";
-import CartItem from "./CartItem";
-import PaymentMethods from "./Payment";
-
 const Cart = () => {
-    const cart = GetCart();
+    const { cart } = useCart();
 
     const [method, setMethod] = useState("");
 

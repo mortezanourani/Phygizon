@@ -1,10 +1,12 @@
-import React from "react";
+import useCart from "../../hooks/useCart";
+import { Product, addToWishlist } from "../../API";
+
 import Loading from '../../components/Loading';
-import { Product, addToCart, addToWishlist } from "../../API";
 
 import ImagesSlider from "./ImagesSlider";
 
 const SingleProduct = () => {
+    const { addToCart } = useCart();
     const url = window.location;
     const urlParameters = url.toString().trim().split('/');
     const productId = urlParameters[urlParameters.length - 1].length < 1

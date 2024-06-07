@@ -1,9 +1,12 @@
-import { WishList, addToCart, removeFromWishList } from "../../API";
+import useCart from "../../hooks/useCart";
+import { WishList, removeFromWishList } from "../../API";
+
 import Loading from "../../components/Loading";
 
 import './index.css';
 
 const Wishlist = () => {
+    const { addToCart } = useCart();
     const { loading, products } = WishList();
 
     return (

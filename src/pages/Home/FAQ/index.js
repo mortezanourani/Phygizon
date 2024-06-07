@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useFAQ from "./useFAQ";
+import useFAQ from "../../../hooks/useFAQ";
 
 import "./index.css";
 import Loading from "../../../components/Loading";

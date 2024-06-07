@@ -8,7 +8,7 @@ import "./index.css";
 
 function PanelLayout() {
     const user = useAuth();
-    user.validateToken();
+    // user.validateToken();
 
     if (!user.token) return <Navigate to="/" />;
 

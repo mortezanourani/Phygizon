@@ -2,8 +2,7 @@ import React from "react";
 import Loading from "../../components/Loading";
 import { CategoryProducts } from "../../API";
 
-import { ProductCard } from "../../components/Product";
-
+import ProductCard from "../../components/ProductCard";
 
 const Category = () => {
     const url = window.location;

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
-import { apiHeaders, baseUrl } from "./API";
+import { baseUrl } from "./API";
+import { apiHeaders } from "./hooks/apiUrls";
 
 const AuthContext = createContext();
 
@@ -12,12 +13,10 @@ const AuthProvider = ({ children }) => {
         await axios.post(baseUrl + '/user/login/check_password/',
             data)
             .then(response => {
-                if (response.status === 200) {
-                    setUser(response.data.user_info.first_name + ' ' + response.data.user_info.last_name);
-                    setToken(response.data.token_info.token);
-                    localStorage.setItem('User', response.data.user_info.first_name + ' ' + response.data.user_info.last_name);
-                    localStorage.setItem('Authorization', 'token ' + response.data.token_info.token);
-                }
+                setUser(response.data.user_info.first_name + ' ' + response.data.user_info.last_name);
+                setToken(response.data.token_info.token);
+                localStorage.setItem('User', response.data.user_info.first_name + ' ' + response.data.user_info.last_name);
+                localStorage.setItem("Authorization", "token " + response.data.token_info.token);
             })
             .catch((error) => {
                 alert(error.message);
@@ -25,10 +24,11 @@ const AuthProvider = ({ children }) => {
     };
 
     const validateToken = async () => {
-        await axios.post(baseUrl + '/user/profile/info', apiHeaders)
+        await axios.get(baseUrl + '/user/profile/info', apiHeaders)
             .catch((error) => {
-                if (error.response.status === 401)
+                if (error.response.status === 401) {
                     logOut();
+                }
             });
     }
 

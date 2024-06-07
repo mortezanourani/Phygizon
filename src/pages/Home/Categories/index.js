@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useCategories from "./useCategories";
+import useCategories from "../../../hooks/useCategories";
 
 import "./index.css";
 import Loading from "../../../components/Loading";
@@ -7,6 +7,8 @@ import Loading from "../../../components/Loading";
 function Categories() {
     const { loading, data } = useCategories();
     const [images, setImages] = useState(null);
+
+    const categories = data.filter(category => category.parent === null);
     return (
         <section className="homepage-products container">
             <div className="products">
@@ -19,7 +21,7 @@ function Categories() {
                         loading
                             ? <Loading component />
                             : (
-                                data.map(item => (
+                                categories.map(item => (
                                     <a href={"/category/" + item.id + "/"} onMouseOver={() => setImages(item.images)}>
                                         <img className="icon" src={"/images/icons/icon.cat." + item.id + ".svg"} alt='' />
                                         {item.name}

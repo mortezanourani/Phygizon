@@ -2,7 +2,7 @@ import React from "react";
 import Loading from '../../components/Loading';
 import { Products } from "../../API";
 
-import { ProductCard } from "../../components/Product";
+import ProductCard from "../../components/ProductCard";
 
 const AllProducts = () => {
     const { loading, count, products } = Products();

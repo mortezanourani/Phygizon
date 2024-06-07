@@ -4,9 +4,9 @@ import { Navigate } from "react-router-dom";
 
 export const baseUrl = 'https://phygizone.darkube.app/v1';
 export const apiHeaders = {
-    'accept': 'application/json',
-    'Authorization': localStorage.getItem('Authorization'),
-    'Content-Type': 'application/json'
+    "accept": "application/json",
+    "Authorization": localStorage.getItem("Authorization"),
+    "Content-Type": "application/json"
 };
 
 /* Get User ID */
@@ -126,75 +126,6 @@ export const UpdateSettings = (data) => {
             // alert(error.message);
             alert(JSON.stringify(error));
         });
-};
-
-/* api: product_homepage_list */
-export const HomePageData = () => {
-    const [loading, setLoading] = useState(true);
-
-    const [cats, setCats] = useState([]);
-    const [allProducts, setAllProducts] = useState([]);
-    const [nftProducts, setNftProducts] = useState([]);
-    const [recentProducts, setRecentProducts] = useState([]);
-    const [brands, setBrands] = useState([]);
-    const [orderCount, setOrderCount] = useState(null);
-    const [productCount, setProductCount] = useState(null);
-
-    useEffect(() => {
-        axios.get(baseUrl + '/product/categories/')
-            .then(response => {
-                const categories = response.data.results.filter(cat => (cat.parent === null));
-                setCats(categories);
-            })
-            .catch(() => { });
-
-        axios.get(baseUrl + '/product/homepage/')
-            .then(response => {
-                setAllProducts(response.data.all_products);
-                setNftProducts(response.data.nft_products);
-                setRecentProducts(response.data.recent_products);
-                setBrands(response.data.brands);
-                setProductCount(response.data.product_counts);
-                setOrderCount(response.data.order_counts);
-            })
-            .catch(() => { })
-            .finally(() => setLoading(false));
-    }, []);
-
-    return {
-        loading: loading,
-        categories: cats,
-        allProducts: allProducts,
-        nftProducts: nftProducts,
-        recentProducts: recentProducts,
-        brands: brands,
-        orderCount: orderCount,
-        productCount: productCount
-    };
-};
-
-/* api: product_categories_list */
-export const Categories = () => {
-    const [count, setCount] = useState(null);
-    const [categories, setCategories] = useState([]);
-
-    useEffect(() => {
-        axios.get(baseUrl + '/product/categories/')
-            .then(response => {
-                if (response.status === 200) {
-                    setCount(response.data.count);
-                    setCategories(response.data.results);
-                }
-            })
-            .catch(error => {
-                alert(error.response.status);
-            });
-    }, []);
-
-    return {
-        count: count,
-        categories: categories,
-    };
 };
 
 /* api: product_categories_read */
@@ -398,41 +329,6 @@ export const Products = () => {
     return { loading, count, products };
 };
 
-/* api: order_carts_read */
-export const GetCart = () => {
-    const [loading, setLoading] = useState(true);
-
-    const [user, setUser] = useState("");
-    const [status, setStatus] = useState("");
-    const [items, setItems] = useState([]);
-    const [price, setPrice] = useState("");
-
-    useEffect(() => {
-        axios.get(baseUrl + '/order/carts/get_cart/', {
-            headers: apiHeaders,
-        })
-            .then(response => {
-                let data = response.data;
-                setUser(data.user);
-                setStatus(data.status);
-                setItems(data.items);
-                setPrice(data.total_price);
-            })
-            .catch(error => {
-                alert(error.message);
-            })
-            .finally(() => setLoading(false));
-    }, []);
-
-    return {
-        loading: loading,
-        user: user,
-        status: status,
-        items: items,
-        totalPrice: price,
-    };
-};
-
 /* api: user_orders_list */
 export const GetOrders = () => {
     const [loading, setLoading] = useState(true);
@@ -509,27 +405,6 @@ export const OrderDetails = (id) => {
     };
 };
 
-/* api: user_faqs_list */
-export const FAQs = () => {
-    const [count, setCount] = useState(null);
-    const [questions, setQuestions] = useState([]);
-
-    useEffect(() => {
-        axios.get(baseUrl + '/user/faqs/')
-            .then(response => {
-                if (response.status === 200) {
-                    setCount(response.data.count);
-                    setQuestions(response.data.results);
-                }
-            }).catch(() => { });
-    }, []);
-
-    return {
-        count: count,
-        items: questions,
-    };
-};
-
 /* api: order_payments_list */
 export const Payments = () => {
     const [loading, setLoading] = useState(true);
@@ -560,57 +435,6 @@ export const Payments = () => {
     };
 };
 
-/* api: order_cart_add_to_cart */
-export const addToCart = (id) => {
-    axios.post(baseUrl + '/order/carts/add_to_cart/',
-        {
-            "product": id,
-        },
-        {
-            headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                alert('Product got added to your cart.');
-            }
-        }).catch(error => {
-            let errorCode = error.response.status;
-            switch (errorCode) {
-                case (401):
-                    alert('You need to be logged in.');
-                    break;
-                default:
-                    alert(error.response.data.message);
-            }
-        });
-};
-
-/* api: order_carts_update_cart_item */
-export const removeFromCart = (id) => {
-    axios.patch(baseUrl + '/order/carts/update_cart_item/',
-        {
-            "product": id,
-        },
-        {
-            headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                alert('Product got removed from your cart.');
-            }
-        }).catch(error => {
-            let errorCode = error.response.status;
-            switch (errorCode) {
-                case (401):
-                    alert('You need to be logged in.');
-                    break;
-                case (500):
-                    alert('This product is not in your cart.');
-                    break;
-                default:
-                    alert(error.response.status);
-            }
-        });
-};
-
 /* api: user_address_list */
 export const Addresses = () => {
     const [loading, setLoading] = useState(true);
@@ -625,7 +449,7 @@ export const Addresses = () => {
             .then(response => {
                 if (response.status === 200) {
                     setCount(response.data.count);
-                    setAddresses(response.data.results);
+                    setAddresses(response.data.results.filter(address => address.is_active === true));
                 }
             })
             .catch(() => { })

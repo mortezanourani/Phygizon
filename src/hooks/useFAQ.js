@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { faqAPI } from "../../../global";
+import { faqAPI } from "./apiUrls";
 
 function useFAQ() {
     const [data, setData] = useState(null);

@@ -1,10 +1,10 @@
-import { Categories } from "../../../API";
+import useCategories from "../../../hooks/useCategories";
 
 function MainMenu() {
-    const categories = Categories();
-    const parentCategories = categories.categories.filter(category => (category.parent === null));
+    const { loading, data } = useCategories();
+    const parentCategories = data.filter(category => (category.parent === null));
 
-    const categoriesPopup = (e) => {
+    const categoriesCollapse = (e) => {
         e.preventDefault();
 
         const catPopup = document.getElementById("categories-popup");
@@ -30,7 +30,7 @@ function MainMenu() {
     return (
         <ul className="main-menu">
             <li className="menu-item">
-                <a href='/categories/' onClick={categoriesPopup}>
+                <a href='/categories/' onClick={categoriesCollapse}>
                     <button className="btn lg text gray">
                         Categories
                         <img style={{ marginLeft: "12px" }} src="/images/icons/icon.categories.downarrow.svg" alt="" /></button>

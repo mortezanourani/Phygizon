@@ -1,12 +1,11 @@
-import React from "react";
+import useCategories from "../../../hooks/useCategories";
 
 import logo from '../../../logo.svg';
 import './index.css';
 
-import { Categories } from "../../../API";
-
 function Footer() {
-    const cats = Categories();
+    const { loading, data } = useCategories();
+    const cats = data;
 
     return (
         <footer>
@@ -25,7 +24,7 @@ function Footer() {
                         <h4>Shopping</h4>
                         <ul>
                             {
-                                cats.categories
+                                cats
                                     .filter(category => category.parent === null)
                                     .sort((a, b) => a.id - b.id)
                                     .map(category => (
