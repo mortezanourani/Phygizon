@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../../AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavigationMenu = () => {
     const auth = useAuth();
@@ -71,9 +71,10 @@ const NavigationMenu = () => {
                     </a>
                 </li>
                 <li className="menu-item">
-                    <a href='/dashboard/'>
+                    <Link
+                        to="/customer/dashboard/">
                         <button className="btn md cta">Dashboard</button>
-                    </a>
+                    </Link>
                 </li>
             </ul>
         )

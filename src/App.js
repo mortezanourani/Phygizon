@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthProvider from "./AuthProvider";
 
 import "./css/site.css";
-// import "./css/dashboard.css";
 
 import Layout from "./layouts/main";
 import Home from "./pages/Home";
@@ -17,7 +16,7 @@ import Category from "./pages/Category";
 import Products from "./pages/Products";
 import SingleProduct from "./pages/Product";
 
-import PanelLayout from "./layouts/dashboard";
+import CustomerLayout from "./layouts/customer";
 import Dashboard from "./pages/Dashboard";
 import Orders from "./pages/Orders";
 import Playground from "./pages/Playground";
@@ -27,8 +26,12 @@ import AddAddress from "./pages/Address/AddAddress";
 import Settings from "./pages/Settings";
 import Wishlist from "./pages/Wishlist";
 
+import SellerLayout from "./layouts/seller";
+import Seller from "./pages/Seller";
+
 import UnderConstruction from "./components/UnderConstruction";
 import NotFound from './components/404';
+
 import Cart from "./pages/Cart";
 
 function App() {
@@ -57,17 +60,22 @@ function App() {
                         <Route path="/cart/" element={<Cart />} />
                     </Route>
 
-                    <Route path="/dashboard/" element={<PanelLayout />}>
-                        <Route index element={<Dashboard />} />
-                        <Route path="/dashboard/orders/" element={<Orders />} />
-                        <Route path="/dashboard/playground/" element={<Playground />} />
-                        <Route path="/dashboard/finance/" element={<Finance />} />
-                        <Route path="/dashboard/address/" element={<Address />} />
-                        <Route path="/dashboard/address/add/" element={<AddAddress />} />
-                        <Route path="/dashboard/settings/" element={<Settings />} />
-                        <Route path="/dashboard/wishlist/" element={<Wishlist />} />
+                    <Route element={<CustomerLayout />}>
+                        <Route exact path="/customer/dashboard/" element={<Dashboard />} />
+                        <Route path="/customer/orders/" element={<Orders />} />
+                        <Route path="/customer/playground/" element={<Playground />} />
+                        <Route path="/customer/finance/" element={<Finance />} />
+                        <Route path="/customer/address/" element={<Address />} />
+                        <Route path="/customer/address/add/" element={<AddAddress />} />
+                        <Route path="/customer/settings/" element={<Settings />} />
+                        <Route path="/customer/wishlist/" element={<Wishlist />} />
 
-                        <Route path="/dashboard/support/" element={<UnderConstruction />} />
+                        <Route path="/customer/support/" element={<UnderConstruction />} />
+                    </Route>
+
+                    <Route element={<SellerLayout />}>
+                        <Route exact path="/seller/dashboard/" element={<Seller />} />
+                        <Route path="/seller/orders/" element={<Orders />} />
                     </Route>
 
                     <Route element={<Layout />}>
