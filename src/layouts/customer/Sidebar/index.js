@@ -143,7 +143,8 @@ const Sidebar = () => {
                     </Link>
 
                     <Link
-                        className="logout">
+                        className="logout"
+                        onClick={() => auth.logOut()}>
                         <button>
                             <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.40039 6.56219C7.71039 2.96219 9.56039 1.49219 13.6104 1.49219H13.7404C18.2104 1.49219 20.0004 3.28219 20.0004 7.75219V14.2722C20.0004 18.7422 18.2104 20.5322 13.7404 20.5322H13.6104C9.59039 20.5322 7.74039 19.0822 7.41039 15.5422" stroke="#344054" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -155,7 +156,7 @@ const Sidebar = () => {
                     </Link>
                 </ul>
             </nav>
-        </aside>
+        </aside >
     );
 }
 

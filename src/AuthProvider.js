@@ -37,6 +37,7 @@ const AuthProvider = ({ children }) => {
         setToken("");
         localStorage.removeItem("User");
         localStorage.removeItem("Authorization");
+        document.location.replace('/');
     };
 
     return (
