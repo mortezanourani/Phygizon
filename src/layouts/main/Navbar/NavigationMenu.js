@@ -32,8 +32,6 @@ const NavigationMenu = () => {
         }
     }
 
-    // auth.validateToken();
-
     return (
         (!auth.token) ? (
             <ul className="navigation-menu">

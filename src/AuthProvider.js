@@ -20,25 +20,35 @@ const AuthProvider = ({ children }) => {
             })
             .catch((error) => {
                 alert(error.message);
-            });
+            })
     };
 
     const validateToken = async () => {
-        await axios.get(baseUrl + '/user/profile/info', apiHeaders)
+        const updatedHeader = {
+            "accept": "application/json",
+            "Authorization": localStorage.getItem("Authorization"),
+            "Content-Type": "application/json"
+        };
+
+        axios.get(baseUrl + '/user/profile/info', { headers: updatedHeader })
             .catch((error) => {
                 if (error.response.status === 401) {
-                    logOut();
+                    clearAuthorization();
                 }
             });
     }
 
     const logOut = () => {
+        clearAuthorization();
+        document.location.replace('/');
+    };
+
+    const clearAuthorization = () => {
         setUser(null);
         setToken("");
         localStorage.removeItem("User");
         localStorage.removeItem("Authorization");
-        document.location.replace('/');
-    };
+    }
 
     return (
         <AuthContext.Provider value={{ token, user, loginAction, validateToken, logOut }}>
