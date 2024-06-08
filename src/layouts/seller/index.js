@@ -7,10 +7,10 @@ import Header from "./Header";
 import "./index.css";
 
 function SellerLayout() {
-    // const user = useAuth();
-    // user.validateToken();
+    const user = useAuth();
+    user.validateToken();
 
-    // if (!user.token) return <Navigate to="/" />;
+    if (!user.token) return <Navigate to="/" />;
 
     return (
         <div className="seller">

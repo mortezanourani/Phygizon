@@ -17,6 +17,7 @@ const AuthProvider = ({ children }) => {
                 setToken(response.data.token_info.token);
                 localStorage.setItem('User', response.data.user_info.first_name + ' ' + response.data.user_info.last_name);
                 localStorage.setItem("Authorization", "token " + response.data.token_info.token);
+                apiHeaders.Authorization = localStorage.getItem("Authorization");
             })
             .catch((error) => {
                 alert(error.message);
