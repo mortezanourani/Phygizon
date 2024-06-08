@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
-import { baseUrl } from "./API";
-import { apiHeaders } from "./hooks/apiUrls";
+import { apiHeaders, baseUrl } from "./API";
+import { headers } from "./hooks/apiUrls";
 
 const AuthContext = createContext();
 
@@ -17,6 +17,7 @@ const AuthProvider = ({ children }) => {
                 setToken(response.data.token_info.token);
                 localStorage.setItem('User', response.data.user_info.first_name + ' ' + response.data.user_info.last_name);
                 localStorage.setItem("Authorization", "token " + response.data.token_info.token);
+                headers.Authorization = localStorage.getItem("Authorization");
                 apiHeaders.Authorization = localStorage.getItem("Authorization");
             })
             .catch((error) => {
@@ -25,13 +26,7 @@ const AuthProvider = ({ children }) => {
     };
 
     const validateToken = async () => {
-        const updatedHeader = {
-            "accept": "application/json",
-            "Authorization": localStorage.getItem("Authorization"),
-            "Content-Type": "application/json"
-        };
-
-        axios.get(baseUrl + '/user/profile/info', { headers: updatedHeader })
+        axios.get(baseUrl + '/user/profile/info', { headers })
             .catch((error) => {
                 if (error.response.status === 401) {
                     clearAuthorization();

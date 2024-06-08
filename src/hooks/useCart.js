@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import { getCartAPI, addToCartAPI, removeFromCartAPI, apiHeaders } from "./apiUrls";
+import { getCartAPI, addToCartAPI, removeFromCartAPI, headers } from "./apiUrls";
 
 function useCart() {
     const [loading, setLoading] = useState(true);
@@ -11,8 +11,7 @@ function useCart() {
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
-        axios.get(getCartAPI,
-            { headers: apiHeaders })
+        axios.get(getCartAPI, { headers })
             .then(response => {
                 let data = response.data;
                 setStatus(data.status);
@@ -26,9 +25,7 @@ function useCart() {
     }, []);
 
     const addToCart = (itemId) => {
-        axios.post(addToCartAPI,
-            { "product": itemId },
-            { headers: apiHeaders })
+        axios.post(addToCartAPI, { "product": itemId }, { headers })
             .then(response => {
                 /* Display error box */
                 alert('Product got added to your cart.');
@@ -48,9 +45,7 @@ function useCart() {
     }
 
     const removeFromCart = (itemId) => {
-        axios.patch(removeFromCartAPI,
-            { "product": itemId },
-            { headers: apiHeaders })
+        axios.patch(removeFromCartAPI, { "product": itemId }, { headers })
             .then(response => {
                 if (response.status === 200) {
                     alert('Product got removed from your cart.');

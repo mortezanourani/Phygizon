@@ -1,4 +1,4 @@
-export const apiHeaders = {
+export const headers = {
     "accept": "application/json",
     "Authorization": localStorage.getItem("Authorization"),
     "Content-Type": "application/json"
