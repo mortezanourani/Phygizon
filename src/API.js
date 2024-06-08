@@ -57,25 +57,6 @@ export const GetDashboard = () => {
     };
 };
 
-export const GetOrdersCounts = () => {
-    const [loading, setLoading] = useState(true);
-    const [orders, setOrders] = useState(null);
-
-    useEffect(() => {
-        axios.get(baseUrl + '/user/profile/dashboard/', {
-            headers: apiHeaders,
-        })
-            .then(response => setOrders(response.data.total_orders))
-            .catch(() => { })
-            .finally(() => setLoading(false));
-    }, []);
-
-    return {
-        loading: loading,
-        orders: orders,
-    };
-}
-
 /* Get Settings Options */
 export const Settings = () => {
     const [avatar, setAvatar] = useState(null);

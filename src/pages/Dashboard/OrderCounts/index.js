@@ -1,4 +1,7 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
+import { apiHeaders, orderCountsAPI } from "../../../hooks/apiUrls";
+import useFetchData from "../../../hooks/useFetchData";
 
 import pending from '../../../assets/icons/dashboard/pending_orders_icon.svg';
 import waiting from '../../../assets/icons/dashboard/waiting_orders_icon.svg';
@@ -6,17 +9,15 @@ import current from '../../../assets/icons/dashboard/current_orders_icon.svg';
 import delivered from '../../../assets/icons/dashboard/delivered_orders_icon.svg';
 import canceled from '../../../assets/icons/dashboard/canceled_orders_icon.svg';
 import returned from '../../../assets/icons/dashboard/returned_orders_icon.svg';
-import { GetOrdersCounts } from "../../../API";
 import Loading from "../../../components/Loading";
 
 import "./index.css";
-import { Link } from "react-router-dom";
 
 function OrderCounts() {
-    const data = GetOrdersCounts();
+    const { data, loading, error } = useFetchData(orderCountsAPI, apiHeaders);
 
     return (
-        (data.loading)
+        (loading)
             ?
             <div className="orders" style={{ width: '100vw' }}>
                 <Loading component />
@@ -24,7 +25,7 @@ function OrderCounts() {
             :
             <div className="orders">
                 <div className="card all">
-                    <h1>{data.orders.total_order_count}</h1>
+                    <h1>{data.total_orders?.total_order_count}</h1>
                     <p>All Orders</p>
                     {/* <h3>22.94 MGC</h3>
                         <p>$7322.123</p>  */}
@@ -32,32 +33,32 @@ function OrderCounts() {
                 <div className="filters">
                     <OrderCount
                         title="Pending"
-                        count={data.orders.pending_orders_count}
+                        count={data.total_orders.pending_orders_count}
                         icon={pending}
                     />
                     <OrderCount
                         title="Waiting"
-                        count={data.orders.waiting_orders_count}
+                        count={data.total_orders.waiting_orders_count}
                         icon={waiting}
                     />
                     <OrderCount
                         title="Current"
-                        count={data.orders.current_orders_count}
+                        count={data.total_orders.current_orders_count}
                         icon={current}
                     />
                     <OrderCount
                         title="Delivered"
-                        count={data.orders.delivered_orders_count}
+                        count={data.total_orders.delivered_orders_count}
                         icon={delivered}
                     />
                     <OrderCount
                         title="Returned"
-                        count={data.orders.returned_orders_count}
+                        count={data.total_orders.returned_orders_count}
                         icon={returned}
                     />
                     <OrderCount
                         title="Canceled"
-                        count={data.orders.canceled_orders_count}
+                        count={data.total_orders.canceled_orders_count}
                         icon={canceled}
                     />
                 </div>
