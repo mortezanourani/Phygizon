@@ -22,7 +22,7 @@ function useFetchData(url) {
             .finally(() => {
                 setLoading(false);
             });
-    }, [url, headers]);
+    }, [url]);
 
     return { data, loading, error };
 }

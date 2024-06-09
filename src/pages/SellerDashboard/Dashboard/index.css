@@ -1,0 +1,17 @@
+    .seller-dashboard {
+        width: inherit;
+        height: 888px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: auto;
+
+        .content {
+            margin: auto;
+            height: 666px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }

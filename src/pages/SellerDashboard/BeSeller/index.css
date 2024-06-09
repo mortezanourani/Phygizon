@@ -213,7 +213,31 @@
                     color: #475467;
                 }
 
-                .form {
+                label {
+                    font-family: 'Hubot Sans';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #344054;
+                }
+
+                p.link,
+                p.link a {
+                    font-family: 'Hubot Sans';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #475467;
+                    margin-top: 12px;
+
+                    a {
+                        text-decoration: underline;
+                    }
+                }
+
+                .input {
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
@@ -240,6 +264,88 @@
                         justify-content: flex-start;
                         align-items: center;
                     }
+
+                    &.email {
+                        position: relative;
+
+                        input {
+                            padding-left: 48px;
+                        }
+
+                        img {
+                            position: absolute;
+                            bottom: 0;
+                            z-index: 1;
+                            margin: 13px;
+                        }
+                    }
+
+                    .react-international-phone-input-container {
+                        height: 44px;
+
+                        .react-international-phone-country-selector button {
+                            width: 76px;
+                            height: 44px;
+                            border-radius: 10px 0 0 10px;
+                        }
+
+                        .react-international-phone-input {
+                            padding-left: 16px;
+                            font-family: 'Hubot Sans';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 16px;
+                            line-height: 24px;
+                            color: #101828;
+                            height: inherit;
+                            flex-grow: 1;
+                            border-radius: 0 10px 10px 0;
+                        }
+                    }
+                }
+
+                .digits-group {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 8px;
+
+                    .digit {
+                        outline: none;
+                        width: 90px;
+                        height: 80px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 16px;
+                        gap: 8px;
+                        background: #FFFFFF;
+                        border: 1px solid #D0D5DD;
+                        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+                        border-radius: 10px;
+
+                        font-family: 'Hubot Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 48px;
+                        line-height: 60px;
+                        text-align: center;
+
+                        &:focus {
+                            border: 2px solid #3BCE99;
+                            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05), 0px 0px 0px 4px rgba(119, 237, 187, 0.24);
+                            color: #189A8A;
+                        }
+                    }
+                }
+
+                .verified {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: -24px;
                 }
             }
 
