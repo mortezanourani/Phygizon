@@ -27,7 +27,7 @@ import Settings from "./pages/Settings";
 import Wishlist from "./pages/Wishlist";
 
 import SellerLayout from "./layouts/seller";
-import Seller from "./pages/Seller";
+import SellerDashboard from "./pages/SellerDashboard";
 
 import UnderConstruction from "./components/UnderConstruction";
 import NotFound from './components/404';
@@ -74,7 +74,7 @@ function App() {
                     </Route>
 
                     <Route element={<SellerLayout />}>
-                        <Route exact path="/seller/dashboard/" element={<Seller />} />
+                        <Route exact path="/seller/dashboard/" element={<SellerDashboard />} />
                         <Route path="/seller/orders/" element={<Orders />} />
                     </Route>
 

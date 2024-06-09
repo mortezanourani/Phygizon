@@ -141,6 +141,99 @@
     }
 }
 
+#login-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(12, 17, 29, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+
+    display: none;
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 16px;
+        margin: auto;
+
+        background: #FFFFFF;
+        background-image: url('/public/images/comments.background.png');
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: contain;
+        box-shadow: 0px 20px 24px -4px rgba(16, 24, 40, 0.08), 0px 8px 8px -4px rgba(16, 24, 40, 0.03);
+        backdrop-filter: blur(5.45px);
+        border-radius: 24px;
+        order: 1;
+        align-self: stretch;
+        flex-grow: 0;
+        z-index: 1;
+
+        width: 360px;
+        height: 380px;
+
+        padding: 32px;
+
+        .close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            margin: 0;
+        }
+
+        h4 {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 28px;
+            text-align: center;
+            color: #101828;
+
+        }
+
+        p {
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            color: #475467;
+        }
+
+        input {
+            outline: none;
+            border: 1px solid #189A8A;
+            border-radius: 8px;
+
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+            resize: none;
+
+            padding: 8px;
+
+            width: 100%;
+        }
+
+        button {
+            margin-top: 16px;
+            width: 100%;
+        }
+    }
+}
+
 @media screen and (max-width: 600px) {
     .primary-nav {
         padding: 0;
