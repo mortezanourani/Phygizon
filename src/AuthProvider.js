@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
                 const data = response.data;
                 setUser(data.user_info.first_name + ' ' + data.user_info.last_name);
                 setToken(data.token_info.token);
-                localStorage.setItem('User', data.user_info.first_name + ' ' + data.user_info.last_name);
+                localStorage.setItem('User', data.user_info.first_name);
                 localStorage.setItem("Authorization", "token " + data.token_info.token);
                 headers.Authorization = localStorage.getItem("Authorization");
                 apiHeaders.Authorization = localStorage.getItem("Authorization");
@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
                     });
             })
             .catch((error) => {
-                alert(error.message);
+                alert(JSON.stringify(error));
             })
     };
 

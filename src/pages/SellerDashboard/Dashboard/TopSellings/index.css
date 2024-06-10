@@ -1,0 +1,101 @@
+.top-selling-product {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 16px;
+
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #D0D5DD;
+
+    &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    img {
+        width: 84px;
+        height: 84px;
+        border-radius: 16px;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .product-details {
+        flex-grow: 1;
+        align-items: flex-start;
+
+        h4 {
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 28px;
+            color: #101828;
+        }
+
+        p {
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            color: #344054;
+        }
+
+        .tag {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 2px 8px;
+
+            background: #F9FAFB;
+            border: 1px solid #EAECF0;
+            border-radius: 99px;
+
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 18px;
+            text-align: center;
+            color: #344054;
+        }
+    }
+
+    .sale-details {
+        flex-grow: 0;
+        align-items: flex-end;
+
+        h4.nft-price {
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 24px;
+            text-align: right;
+            color: #101828;
+        }
+
+        p.price,
+        p.view {
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            color: #344054;
+        }
+
+        p.view::before {
+            content: url("./assets/view_icon.svg");
+            vertical-align: sub;
+            margin-right: 4px;
+        }
+    }
+}

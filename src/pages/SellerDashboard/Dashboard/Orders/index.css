@@ -1,0 +1,47 @@
+.order-card {
+    flex-grow: 1;
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 16px;
+
+    min-height: 173px;
+
+    background: #FFFFFF;
+    border-radius: 24px;
+
+    label {
+        width: 100%;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: #475467;
+        text-align: left;
+    }
+
+    h3 {
+        width: 100%;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        color: #101828;
+    }
+
+    img {
+        /* display: none; */
+        width: 70%;
+    }
+
+    a {
+        font-family: 'Hubot Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        color: #475467;
+        margin-top: auto;
+    }
+}

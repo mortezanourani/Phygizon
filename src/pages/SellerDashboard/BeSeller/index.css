@@ -1,6 +1,10 @@
 .beseller {
     width: inherit;
     height: 888px;
+    margin-top: 24px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 19px rgba(0, 0, 0, 0.09);
+    border-radius: 32px;
     display: flex;
     align-items: center;
     justify-content: center;

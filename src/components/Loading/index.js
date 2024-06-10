@@ -21,17 +21,12 @@ const style = {
 }
 
 const componentStyle = {
-    loadingWrapper: {
-        position: 'relative',
-        width: '100%',
-        Height: '100%',
-        minHeight: '160px',
-    },
     loadingDiv: {
+        width: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: 'inherit'
+        margin: 'auto',
     },
 }
 
@@ -43,16 +38,14 @@ class Loading extends Component {
     render() {
         return (
             (this.props.component) ?
-                <div style={componentStyle.loadingWrapper}>
-                    <div style={componentStyle.loadingDiv}>
-                        <BeatLoader
-                            color="#1AA998"
-                            loading={true}
-                            size={16}
-                            aria-label="Loading Spinner"
-                            data-testid="loader"
-                        />
-                    </div>
+                <div style={componentStyle.loadingDiv}>
+                    <GridLoader
+                        color="#1AA998"
+                        loading={true}
+                        size={10}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                    />
                 </div>
                 :
                 <div style={style.loadingWrapper}>

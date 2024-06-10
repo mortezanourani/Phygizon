@@ -1,17 +1,170 @@
-    .seller-dashboard {
-        width: inherit;
-        height: 888px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: auto;
+.seller-dashboard {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    background-color: transparent;
 
-        .content {
-            margin: auto;
-            height: 666px;
+    .profile {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 16px;
+
+        .picture {
+            position: relative;
+            width: 136px;
+            height: 136px;
+
+            &::before {
+                content: url('../../../../public/images/shadow.dashboard.profile.picture.svg');
+            }
+
+            img {
+                width: 64px;
+                height: 64px;
+                aspect-ratio: 1 / 1;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin: -32px;
+                border-radius: 50%;
+            }
+        }
+
+        span {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
+
+            p {
+                font-family: 'Hubot Sans';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 24px;
+
+                color: #101828;
+            }
+
+            h3 {
+                font-family: 'Hubot Sans';
+                font-style: normal;
+                font-weight: 900;
+                font-size: 32px;
+                line-height: 38px;
+
+                color: #DFB64B;
+
+                display: flex;
+                align-items: center;
+                gap: 16px;
+
+                .lvl {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .number {
+                        position: absolute;
+                        color: #ffffff;
+                        font-weight: 600;
+                        z-index: 1;
+                    }
+
+                    img {
+                        font-size: 20px;
+                        color: #FFFFFF;
+                        content: url('../../../../public/images/icons/icon.profile.level.tag.svg');
+                        z-index: 0;
+                        right: 0;
+                    }
+                }
+            }
         }
     }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 8px;
+
+        .card-title {
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 24px;
+            color: #344054;
+        }
+
+        .card-content {
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid #FFFFFF;
+            border-radius: 32px;
+        }
+    }
+
+    .seller-orders {
+        flex-basis: 100%;
+
+        .card-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 16px 24px;
+            gap: 24px;
+
+            min-height: 172px;
+        }
+    }
+
+    .nft-marketplace {
+        flex-basis: 55%;
+
+        .card-title {
+            text-transform: uppercase;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 16px 24px;
+            gap: 24px;
+            min-height: 450px;
+
+            background: #F9FAFB;
+        }
+    }
+
+    .top-selling {
+        flex-grow: 1;
+        flex-basis: 40%;
+
+        .card-content {
+            padding: 24px;
+            height: 450px;
+            background: #F9FAFB;
+
+            >div {
+                height: 402px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: stretch;
+
+                overflow-y: hidden;
+            }
+        }
+    }
+}
