@@ -33,6 +33,8 @@ import UnderConstruction from "./components/UnderConstruction";
 import NotFound from './components/404';
 
 import Cart from "./pages/Cart";
+import SellerFinance from "./pages/SellerFinance";
+import SellerFinanceWallet from "./pages/SellerFinance/Wallet";
 
 function App() {
     return (
@@ -75,7 +77,9 @@ function App() {
 
                     <Route element={<SellerLayout />}>
                         <Route exact path="/seller/dashboard/" element={<SellerDashboard />} />
-                        <Route path="/seller/orders/" element={<Orders />} />
+                        <Route element={<SellerFinance />}>
+                            <Route path="/seller/finance/wallet" element={<SellerFinanceWallet />} />
+                        </Route>
                     </Route>
 
                     <Route element={<Layout />}>

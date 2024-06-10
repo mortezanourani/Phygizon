@@ -92,7 +92,7 @@ const Sidebar = () => {
                     </li>
                     <li>
                         <NavLink
-                            to="/seller/finance/">
+                            to="/seller/finance/wallet/">
                             <button>
                                 <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9.75159 14.8594V16.8894C9.75159 18.6094 8.15158 19.9994 6.18158 19.9994C4.21158 19.9994 2.60156 18.6094 2.60156 16.8894V14.8594C2.60156 16.5794 4.20158 17.7994 6.18158 17.7994C8.15158 17.7994 9.75159 16.5694 9.75159 14.8594Z" stroke="#344054" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />

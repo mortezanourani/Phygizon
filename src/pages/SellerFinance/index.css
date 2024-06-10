@@ -1,0 +1,13 @@
+.seller-finance {
+    padding: 24px;
+    margin-top: 24px;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.09);
+    backdrop-filter: blur(13px);
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 24px;
+}
