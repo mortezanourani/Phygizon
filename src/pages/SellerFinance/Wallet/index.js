@@ -11,7 +11,7 @@ function SellerFinanceWallet() {
     return (
         <div className="seller-finance-wallet">
             <div className="wallet-container">
-                <div className="wallet">
+                <div className="wallet-box">
                     <div className="wallet-address">
                         <div className="wallet-status">
                             <img src={metamaskIcon} alt="" />
@@ -22,7 +22,7 @@ function SellerFinanceWallet() {
                     <button className="link-wallet">Link Wallet</button>
                 </div>
 
-                <div className="balance">
+                <div className="seller-finance-balance">
                     <BalanceItem
                         title="Charge wallet"
                         text="www.sarafi.com"

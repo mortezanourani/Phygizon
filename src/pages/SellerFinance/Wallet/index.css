@@ -20,13 +20,13 @@
         border: 1px solid #FFFFFF;
         border-radius: 32px;
 
-        .wallet {
-            flex-grow: 1;
-            flex-basis: 100%;
+        .wallet-box {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
+            flex-basis: 100%;
+            flex-grow: 1;
 
             .wallet-address {
                 display: flex;
@@ -90,7 +90,7 @@
             }
         }
 
-        .balance {
+        .seller-finance-balance {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
