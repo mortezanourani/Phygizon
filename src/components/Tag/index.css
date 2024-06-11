@@ -1,0 +1,25 @@
+.tag {
+    &.waiting {
+        content: url("../../assets/icons/tag/tag_waiting_content.svg");
+    }
+
+    &.completed {
+        content: url("../../assets/icons/tag/tag_completed_content.svg");
+    }
+
+    &.expired {
+        content: url("../../assets/icons/tag/tag_expired_content.svg");
+    }
+
+    &.nft {
+        content: url("../../assets/icons/tag/tag_nft_content.svg");
+    }
+
+    &.connect {
+        content: url("../../assets/icons/tag/tag_connect_content.svg");
+    }
+
+    &.disconnect {
+        content: url("../../assets/icons/tag/tag_disconnect_content.svg");
+    }
+}

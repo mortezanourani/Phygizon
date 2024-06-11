@@ -1,0 +1,51 @@
+.seller-finance-payment-history {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 32px;
+
+    .payment-history-export-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        flex-basis: 100%;
+
+        label {
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #344054;
+            flex-grow: 1;
+        }
+
+        .payment-history-export-menu {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+
+            button {
+                background: #FFFFFF !important;
+                margin: auto;
+                flex-grow: 0;
+                height: 48px;
+
+                &.filter {
+                    width: 48px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid #D0D5DD;
+                    flex-grow: 0;
+                }
+            }
+        }
+    }
+}

@@ -7,6 +7,8 @@ import chargeWalletIcon from "./assets/cahrge_wallet_icon.svg";
 import walletBalanceIcon from "./assets/wallet_balance_icon.svg";
 import exchangeMGCIcon from "./assets/exchange_mgc_icon.svg";
 
+import Tag from "../../../components/Tag";
+
 function SellerFinanceWallet() {
     return (
         <div className="seller-finance-wallet">
@@ -15,7 +17,7 @@ function SellerFinanceWallet() {
                     <div className="wallet-address">
                         <div className="wallet-status">
                             <img src={metamaskIcon} alt="" />
-                            <span className="tag dc">Disconnect</span>
+                            <Tag type="disconnect" />
                         </div>
                         <label>No wallet connected.</label>
                     </div>
