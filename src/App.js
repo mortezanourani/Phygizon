@@ -48,9 +48,9 @@ function App() {
                         <Route path="/helpcenter/learning/" element={<Learning />} />
                         <Route path="/helpcenter/blog/" element={<Blog />} />
                         <Route path="/helpcenter/faq/" element={<FAQ />} />
-                        <Route path="/category/*" element={<Category />} />
+                        <Route path="/category/:id" element={<Category />} />
                         <Route path="/products/" element={<Products />} />
-                        <Route path="/product/*" element={<SingleProduct />} />
+                        <Route path="/product/:id" element={<SingleProduct />} />
 
                         <Route path="/signup/" element={<Signup />} />
                         <Route path="/signup/verify/" element={<Verify />} />

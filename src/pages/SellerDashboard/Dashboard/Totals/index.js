@@ -1,4 +1,4 @@
-import { orderCountsAPI } from "../../../../hooks/apiUrls"
+import { userOrderCountsAPI } from "../../../../hooks/apiUrls"
 import useFetchData from "../../../../hooks/useFetchData"
 
 import "./index.css";
@@ -9,7 +9,7 @@ import totalExpensesIcon from "./assets/dashboard_total_expenses.svg";
 import totalTaxesIcon from "./assets/dashboard_total_taxes.svg";
 
 function Totals() {
-    const { loading, data, error } = useFetchData(orderCountsAPI);
+    const { loading, data, error } = useFetchData(userOrderCountsAPI);
 
     return (
         <div className="totals">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { userRegisterSetPassword } from "../../hooks/apiUrls";
 
 const SetPassword = () => {
     const navigate = useNavigate();
@@ -31,10 +32,7 @@ const SetPassword = () => {
             return;
         }
 
-        await axios.post('https://phygizone.darkube.app/v1/user/register/set_password/',
-            {
-                password: formData.password,
-            },
+        await axios.post(userRegisterSetPassword, { password: formData.password },
             {
                 headers: {
                     'accept': 'application/json',

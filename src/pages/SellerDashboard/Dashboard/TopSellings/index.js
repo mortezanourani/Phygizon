@@ -1,12 +1,11 @@
-import { Link } from "react-router-dom";
 import useFetchData from "../../../../hooks/useFetchData";
-import { orderCountsAPI } from "../../../../hooks/apiUrls";
+import { userOrderCountsAPI } from "../../../../hooks/apiUrls";
 
 import "./index.css";
 import Loading from "../../../../components/Loading"
 
 function TopSellings() {
-    const { loading, data, error } = useFetchData(orderCountsAPI);
+    const { loading, data, error } = useFetchData(userOrderCountsAPI);
 
     return (
         (loading)

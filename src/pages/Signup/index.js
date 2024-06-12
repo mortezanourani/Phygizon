@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import { PhoneInput } from "react-international-phone";
 import 'react-international-phone/style.css';
+import { userRegisterAPI } from "../../hooks/apiUrls";
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Signup = () => {
             country: document.querySelector('.phone button').getAttribute('data-country'),
             phone_number: phone,
         };
-        await axios.post('https://phygizone.darkube.app/v1/user/register/user/', formData
+        await axios.post(userRegisterAPI, formData
         ).then(response => {
             if (response.status === 201) {
                 localStorage.setItem('register', 'token ' + response.data.token_info.token);

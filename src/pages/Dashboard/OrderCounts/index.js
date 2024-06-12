@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import { orderCountsAPI } from "../../../hooks/apiUrls";
+import { userOrderCountsAPI } from "../../../hooks/apiUrls";
 import useFetchData from "../../../hooks/useFetchData";
 
 import pending from '../../../assets/icons/dashboard/pending_orders_icon.svg';
@@ -14,7 +14,7 @@ import Loading from "../../../components/Loading";
 import "./index.css";
 
 function OrderCounts() {
-    const { data, loading, error } = useFetchData(orderCountsAPI);
+    const { data, loading, error } = useFetchData(userOrderCountsAPI);
 
     return (
         (loading)

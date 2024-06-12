@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import useFetchData from "../../../../hooks/useFetchData";
-import { orderCountsAPI } from "../../../../hooks/apiUrls";
+import { userOrderCountsAPI } from "../../../../hooks/apiUrls";
 
 import "./index.css";
 import Loading from "../../../../components/Loading"
@@ -12,7 +12,7 @@ import nftOrdersChart from "./assets/dashboard_orders_nft_chart.svg";
 import keeperOrdersChart from "./assets/dashboard_orders_keeper_chart.svg";
 
 function Orders() {
-    const { loading, data, error } = useFetchData(orderCountsAPI);
+    const { loading, data, error } = useFetchData(userOrderCountsAPI);
 
     return (
         (loading)

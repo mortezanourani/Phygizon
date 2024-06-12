@@ -1,4 +1,3 @@
-import { addToCart, removeFromCart } from "../../API";
 import useCart from "../../hooks/useCart";
 
 import './index.css';

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { headers, profileInfoApPI } from "./apiUrls";
+import { headers, userProfileInfoAPI } from "./apiUrls";
 import axios from "axios";
 
 function useProfileInfo() {
@@ -8,7 +8,7 @@ function useProfileInfo() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get(profileInfoApPI, { headers })
+        axios.get(userProfileInfoAPI, { headers })
             .then((response) => {
                 const profileInfo = response.data;
                 setData(profileInfo);

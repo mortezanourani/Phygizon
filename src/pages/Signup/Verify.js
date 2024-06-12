@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { userRegisterCheckCodeAPI, userRegisterSendCodeAPI } from "../../hooks/apiUrls";
 
 const Verify = () => {
     const [type, setType] = useState(null);
@@ -14,7 +15,7 @@ const Verify = () => {
     }
 
     useEffect(() => {
-        axios.post('https://phygizone.darkube.app/v1/user/register/send_code/',
+        axios.post(userRegisterSendCodeAPI,
             {
                 'send_code_type': 'sms'
             },
@@ -43,7 +44,7 @@ const Verify = () => {
         }
 
         if (e.target.nextSibling === null) {
-            axios.post('https://phygizone.darkube.app/v1/user/register/check_code/',
+            axios.post(userRegisterCheckCodeAPI,
                 {
                     'random_key': key,
                     'random_code': inputCode

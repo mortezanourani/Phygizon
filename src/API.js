@@ -1,22 +1,26 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
 
-export const baseUrl = 'https://phygizone.darkube.app/v1';
-export const apiHeaders = {
-    "accept": "application/json",
-    "Authorization": localStorage.getItem("Authorization"),
-    "Content-Type": "application/json"
-};
+import {
+    headers,
+    addToWishlistAPI,
+    categoriesAPI,
+    getWishlistAPI,
+    productsAPI,
+    userProfileInfoAPI,
+    removeFromWishlistAPI,
+    userOrdersAPI,
+    orderPaymentsAPI,
+    addressAPI,
+    saveOrderPaymentAPI
+} from "./hooks/apiUrls";
 
 /* Get User ID */
 export const GetUserId = () => {
     const [userId, setUserId] = useState(0);
 
     useEffect(() => {
-        axios.get(baseUrl + '/user/profile/info', {
-            headers: apiHeaders,
-        })
+        axios.get(userProfileInfoAPI, { headers })
             .then(response => {
                 if (response.status === 200) {
                     setUserId(response.data.id);
@@ -36,9 +40,7 @@ export const GetDashboard = () => {
     const [avatar, setAvatar] = useState(null);
 
     useEffect(() => {
-        axios.get(baseUrl + '/user/profile/info/', {
-            headers: apiHeaders,
-        })
+        axios.get(userProfileInfoAPI, { headers })
             .then(response => {
                 if (response.status === 200) {
                     const data = response.data;
@@ -68,9 +70,7 @@ export const Settings = () => {
 
 
     useEffect(() => {
-        axios.get(baseUrl + '/user/profile/info/', {
-            headers: apiHeaders,
-        }).then(response => {
+        axios.get(userProfileInfoAPI, { headers }).then(response => {
             if (response.status === 200) {
                 let data = response.data;
                 setAvatar(data.avatar);
@@ -95,11 +95,8 @@ export const Settings = () => {
 
 /* api: user_address_create */
 export const UpdateSettings = (data) => {
-    axios.patch(baseUrl + '/user/profile/info/',
-        data,
-        {
-            headers: apiHeaders,
-        }).then(response => {
+    axios.patch(userProfileInfoAPI, data, { headers })
+        .then(response => {
             if (response.status === 200) {
                 window.location.replace('/dashboard/settings/');
             }
@@ -121,7 +118,7 @@ export const CategoryProducts = (catId) => {
             throw new Error({ message: 'Error: Category id is required.' });
         }
 
-        axios.get(baseUrl + '/product/categories/' + catId)
+        axios.get(categoriesAPI + catId)
             .then(response => {
                 if (response.status === 200) {
                     setCategoryName(response.data.name);
@@ -131,7 +128,7 @@ export const CategoryProducts = (catId) => {
             .catch(error => {
                 alert(error.response.status);
             }).finally(() => {
-                axios.get(baseUrl + '/product/categories/' + catId + '/products/')
+                axios.get(categoriesAPI + catId + "/products/")
                     .then(response => {
                         if (response.status === 200) {
                             setCategoryProducts(response.data.results);
@@ -177,7 +174,7 @@ export const Product = (id) => {
     const [specifications, setSpecifications] = useState([]);
 
     useEffect(() => {
-        axios.get(baseUrl + '/product/products/' + id + '/')
+        axios.get(productsAPI + id + "/")
             .then(response => {
                 if (response.status === 200) {
                     setName(response.data.name);
@@ -229,13 +226,7 @@ export const Product = (id) => {
 
 /* api: prodcut_wishlist_add_to_wishlist */
 export const addToWishlist = (id) => {
-    axios.post(baseUrl + '/product/wishlist/add_to_wishlist/',
-        {
-            'product': id
-        },
-        {
-            headers: apiHeaders,
-        })
+    axios.post(addToWishlistAPI, { 'product': id }, { headers })
         .then(response => {
             if (response.status === 201 || 200) {
                 return alert('Product added to your wishlist.');
@@ -254,9 +245,7 @@ export const WishList = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get(baseUrl + '/product/wishlist/get_wishlist/', {
-            headers: apiHeaders
-        })
+        axios.get(getWishlistAPI, { headers })
             .then(response => {
                 if (response.status === 200) {
                     setProducts(response.data.items);
@@ -271,13 +260,7 @@ export const WishList = () => {
 
 /* api: product_wishlist_remove_from_wishlist */
 export const removeFromWishList = (id) => {
-    axios.post(baseUrl + '/product/wishlist/remove_from_wishlist/',
-        {
-            'product': id
-        },
-        {
-            headers: apiHeaders,
-        })
+    axios.post(removeFromWishlistAPI, { 'product': id }, { headers })
         .then(response => {
             if (response.status === 204 || 200) {
                 alert('Product removed from your wishlist.');
@@ -294,7 +277,7 @@ export const Products = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get(baseUrl + "/product/products/");
+                const response = await axios.get(productsAPI);
                 if (response.status === 200) {
                     setCount(response.data.count);
                     setProducts(response.data.results);
@@ -317,9 +300,7 @@ export const GetOrders = () => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        axios.get(baseUrl + '/user/orders/', {
-            headers: apiHeaders,
-        })
+        axios.get(userOrdersAPI, { headers })
             .then(response => {
                 if (response.status === 200) {
                     setCount(response.data.count);
@@ -353,23 +334,22 @@ export const OrderDetails = (id) => {
     const [updateDate, setUpdateDate] = useState(null);
 
     useEffect(() => {
-        axios.get(baseUrl + '/user/orders/' + id, {
-            headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                const data = response.data;
-                setStatus(data.order_status);
-                setNumber(data.order_number);
-                settax(data.tax);
-                setShippingPrice(data.shipping_price);
-                setDiscount(data.discount);
-                setAddress(data.address);
-                setTotalPrice(data.total_price);
-                setItems(data.items);
-                setInsertDate(data.insert_dt);
-                setUpdateDate(data.update_dt);
-            }
-        }).catch(() => { });
+        axios.get(userOrdersAPI + id, { headers })
+            .then(response => {
+                if (response.status === 200) {
+                    const data = response.data;
+                    setStatus(data.order_status);
+                    setNumber(data.order_number);
+                    settax(data.tax);
+                    setShippingPrice(data.shipping_price);
+                    setDiscount(data.discount);
+                    setAddress(data.address);
+                    setTotalPrice(data.total_price);
+                    setItems(data.items);
+                    setInsertDate(data.insert_dt);
+                    setUpdateDate(data.update_dt);
+                }
+            }).catch(() => { });
     }, [id]);
 
     return {
@@ -394,9 +374,7 @@ export const Payments = () => {
     const [methods, setMethods] = useState([]);
 
     useEffect(() => {
-        axios.get(baseUrl + '/order/payments/', {
-            headers: apiHeaders,
-        })
+        axios.get(orderPaymentsAPI, { headers })
             .then(response => {
                 if (response.status === 200) {
                     setCount(response.data.count);
@@ -424,9 +402,7 @@ export const Addresses = () => {
     const [addresses, setAddresses] = useState([]);
 
     useEffect(() => {
-        axios.get(baseUrl + '/user/address/', {
-            headers: apiHeaders,
-        })
+        axios.get(addressAPI, { headers })
             .then(response => {
                 if (response.status === 200) {
                     setCount(response.data.count);
@@ -449,15 +425,14 @@ export const GetAddress = (id) => {
     const [address, setAddress] = useState({});
 
     useEffect(() => {
-        axios.get(baseUrl + '/user/address/' + id, {
-            headers: apiHeaders,
-        }).then(response => {
-            if (response.status === 200) {
-                setAddress(response.data);
-            }
-        }).catch(error => {
-            alert(error.response.status);
-        });
+        axios.get(addressAPI + id, { headers })
+            .then(response => {
+                if (response.status === 200) {
+                    setAddress(response.data);
+                }
+            }).catch(error => {
+                alert(error.response.status);
+            });
     }, [id]);
 
     return address;
@@ -465,10 +440,8 @@ export const GetAddress = (id) => {
 
 /* api: user_address_create */
 export const SetAddress = (address) => {
-    axios.post(baseUrl + '/user/address/', address,
-        {
-            headers: apiHeaders,
-        }).then(response => {
+    axios.post(addressAPI, address, { headers })
+        .then(response => {
             if (response.status === 201) {
                 window.location.replace('/dashboard/address/');
             }
@@ -477,10 +450,8 @@ export const SetAddress = (address) => {
 
 /* api: user_address_update */
 export const UpdateAddress = (id, address) => {
-    axios.patch(baseUrl + '/user/address/' + id, address,
-        {
-            headers: apiHeaders,
-        }).then(response => {
+    axios.patch(addressAPI + id, address, { headers })
+        .then(response => {
             if (response.status === 200) {
                 window.location.replace('/dashboard/address/');
             }
@@ -491,28 +462,17 @@ export const UpdateAddress = (id, address) => {
 
 /* api: user_address_partial_update */
 export const DeleteAddress = (id) => {
-    axios.patch(baseUrl + '/user/address/' + id + '/',
-        {
-            is_active: false
-        },
-        {
-            headers: apiHeaders,
-        })
+    axios.patch(addressAPI + id + "/", { is_active: false }, { headers })
         .then(() => {
-            window.location.replace('/dashboard/address/');
+            window.location.replace("/dashboard/address/");
         })
         .catch(() => { });
 };
 
 /* api: order_payments_save_payment */
 export const Pay = (methodCode) => {
-    axios.post(baseUrl + '/order/payments/save_payment/',
-        {
-            "payment_method_code": methodCode,
-        },
-        {
-            headers: apiHeaders,
-        }).then(response => {
+    axios.post(saveOrderPaymentAPI, { "payment_method_code": methodCode, }, { headers })
+        .then(response => {
             if (response.status === 200) {
                 window.location.replace('/dashboard/orders/')
             }
