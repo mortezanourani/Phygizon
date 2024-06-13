@@ -1,14 +1,14 @@
-
 import "./index.css";
 
 import filterButtonIcon from "./assets/button_filter_icon.svg";
-import PaymentsTable from "./PaymentsTable";
 
-function SellerFinancePaymentHistory() {
+import ProductsTable from "./ProductsTable";
+
+function SellerProducts() {
     return (
-        <div className="seller-finance-payment-history">
+        <div className="seller-products">
             <div className="seller-export-section">
-                <lable>History of transactions related to the sale of your products in Phygizon</lable>
+                <lable>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</lable>
                 <div className="seller-export-menu">
                     <button className="btn ghost xl export">Export</button>
                     <button className="btn ghost gray xl filter">
@@ -17,9 +17,9 @@ function SellerFinancePaymentHistory() {
                 </div>
             </div>
 
-            <PaymentsTable />
+            <ProductsTable />
         </div>
     );
-};
+}
 
-export default SellerFinancePaymentHistory;
+export default SellerProducts;

@@ -1,57 +1,46 @@
 
-import Badge from "../../../../components/Badge";
 import "./index.css";
 
-function PaymentsTable(props) {
+import Badge from "../../../components/Badge";
+
+function ProductsTable(props) {
     return (
         <div>
             <div className="table-container">
-                <table className="seller-payment-histoy-table">
+                <table className="seller-products-table">
                     <tr>
-                        <th>Order</th>
-                        <th>Payment Type</th>
-                        <th>Ammount</th>
+                        <th>Product</th>
+                        <th>Price ($)</th>
+                        <th>Discount ($)</th>
                         <th>Status</th>
+                        <th>Total</th>
+                        <th>Sales Amount</th>
+                        <th>Date</th>
                         <th>Attach</th>
-                        <th>Time</th>
+                        <th>More Action</th>
                     </tr>
                     <tr>
-                        <td className="order-number">
-                            245612
+                        <td className="product-name">
+                            <img src="/images/products/canon_eos_2000d.png" alt="" />
+                            Canon EOS 2000d
                         </td>
-                        <td className="payment-type">Wallet</td>
-                        <td className="payment-amount">$3.00</td>
+                        <td className="product-price">1,000.00</td>
+                        <td className="product-discount">900</td>
                         <td>
-                            <Badge type="completed" />
+                            <Badge type="available" />
                         </td>
-                        <td></td>
-                        <td className="payment-time">2023-05-21 10:23:14</td>
-                    </tr>
-                    <tr>
-                        <td className="order-number">
-                            245765
-                        </td>
-                        <td className="payment-type">Wallet</td>
-                        <td className="payment-amount">$13.00</td>
-                        <td>
-                            <Badge type="waiting" />
-                        </td>
+                        <td className="product-amount">11</td>
+                        <td className="prodcut-amount">8</td>
+                        <td className="prodcut-date">2023/11/06</td>
                         <td>
                             <Badge type="nft" />
                         </td>
-                        <td className="payment-time">2023-03-12 21:23:14</td>
-                    </tr>
-                    <tr>
-                        <td className="order-number">
-                            23968
-                        </td>
-                        <td className="payment-type">Paypal</td>
-                        <td className="payment-amount">$349.00</td>
                         <td>
-                            <Badge type="expired" />
+                            <button
+                                className="action-button"
+                                onClick={() => alert("actions")}
+                            ></button>
                         </td>
-                        <td></td>
-                        <td className="payment-time">2023-03-01 11:53:25</td>
                     </tr>
                 </table>
             </div>
@@ -76,4 +65,4 @@ function PaymentsTable(props) {
     );
 }
 
-export default PaymentsTable;
+export default ProductsTable;

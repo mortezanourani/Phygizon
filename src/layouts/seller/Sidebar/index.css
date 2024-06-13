@@ -95,7 +95,8 @@
                     button {
                         background: #1AA998;
 
-                        svg path {
+                        svg path,
+                        svg rect {
                             stroke: #eff8f5;
                         }
                     }

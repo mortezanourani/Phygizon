@@ -11,3 +11,14 @@
     align-items: stretch;
     gap: 24px;
 }
+
+@media screen and (max-width: 640px) {
+    .seller-finance {
+        padding: 0;
+        border-radius: 0;
+        background: none;
+        backdrop-filter: unset;
+        box-shadow: none;
+        margin: 0;
+    }
+}

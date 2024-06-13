@@ -1,0 +1,33 @@
+.badge-component {
+    &.available {
+        content: url("../../assets/icons/badge/available_content.svg");
+    }
+
+    &.notavailable {
+        content: url("../../assets/icons/badge/not_available_content.svg");
+    }
+
+    &.connect {
+        content: url("../../assets/icons/badge/connect_content.svg");
+    }
+
+    &.disconnect {
+        content: url("../../assets/icons/badge/disconnect_content.svg");
+    }
+
+    &.waiting {
+        content: url("../../assets/icons/badge/waiting_content.svg");
+    }
+
+    &.completed {
+        content: url("../../assets/icons/badge/completed_content.svg");
+    }
+
+    &.expired {
+        content: url("../../assets/icons/badge/expired_content.svg");
+    }
+
+    &.nft {
+        content: url("../../assets/icons/badge/nft_content.svg");
+    }
+}

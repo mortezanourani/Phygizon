@@ -10,7 +10,7 @@ function SellerLayout() {
     const user = useAuth();
     user.validateToken();
 
-    if (!user.token) return <Navigate to="/" />;
+    // if (!user.token) return <Navigate to="/" />;
 
     return (
         <div className="seller">
