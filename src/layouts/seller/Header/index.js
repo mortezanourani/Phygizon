@@ -1,24 +1,60 @@
-import cartIcon from "../../../assets/icons/dashboard/cart_icon.svg";
-import notificationIcon from "../../../assets/icons/dashboard/notifications_icon.svg";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import "./index.css";
 
-function Header() {
-    return (
-        <nav>
-            <form action="">
-                <div className="form-control">
-                    <img src="/images/icons/icon.search.svg" alt="" />
-                    <input type="search" name="" id="" placeholder="Search in products" />
-                </div>
-            </form>
+import searchIcon from "../../../assets/icons/search_icon.svg";
+import plusIcon from "../../../assets/icons/button/plus_icon.svg";
+import cartIcon from "../../../assets/icons/button/cart_button_icon.svg";
+import notificationIcon from "../../../assets/icons/button/notification_button_icon.svg";
 
-            <a href="/" className="btn xl text explore">Explore in Phygizon</a>
-            <a href="/cart/" className="btn xl icon cart">
-                <img src={cartIcon} alt="" />
-            </a>
-            <a href="/dashboard/notifications/" className="btn xl icon notifications">
-                <img src={notificationIcon} alt="" />
-            </a>
+function Header() {
+    const [productSearch, setProductSearch] = useState(null);
+
+    const handleProductSearch = (e) => {
+        e.preventDefault();
+
+        alert(productSearch);
+    }
+
+    return (
+        <nav className="seller-dashboard-header">
+            <form
+                className="search-bar"
+                onSubmit={handleProductSearch}>
+                <img src={searchIcon} alt="" />
+                <input
+                    type="search"
+                    placeholder="Search in products"
+                    onChange={(e) => setProductSearch(e.target.value)} />
+            </form>
+            <div className="seller-header-buttons">
+                <Link
+                    to="/">
+                    <button className="btn text new-product">
+                        <img src={plusIcon} alt="" />
+                        New Prodcut
+                    </button>
+                </Link>
+                <Link
+                    to="/">
+                    <button className="btn text explore">
+                        Explore in Phygizon
+                    </button>
+                </Link>
+                <Link
+                    to="/cart/">
+                    <button className="btn icon cart">
+                        <img src={cartIcon} alt="" />
+                    </button>
+                </Link>
+                <Link
+                    to="/dashboard/notifications/">
+                    <button className="btn icon notifications">
+                        <img src={notificationIcon} alt="" />
+                    </button>
+                </Link>
+            </div>
         </nav>
     );
 }
