@@ -68,7 +68,13 @@
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 24px;
-                padding: 10px 14px 10px 0;
+                padding: 10px 14px;
+            }
+
+            &:has(.input-prepend) {
+                input {
+                    padding-left: 0;
+                }
             }
 
             .input-append {

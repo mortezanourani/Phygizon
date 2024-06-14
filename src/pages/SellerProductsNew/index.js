@@ -2,8 +2,9 @@ import { useState } from "react";
 import StepProgressBar from "./StepProgressBar";
 
 import "./index.css";
-import "react-step-progress/dist/index.css";
+
 import SellerNewProductCategory from "./Step1";
+import SellerNewProductInfo from "./Step2";
 
 function SellerNewProduct() {
     const [step, setStep] = useState(1);
@@ -19,11 +20,12 @@ function SellerNewProduct() {
         switch (step) {
             case 1:
                 return <SellerNewProductCategory />;
-                break;
+
+            case 2:
+                return <SellerNewProductInfo />;
 
             default:
                 return <></>;
-                break;
         }
     }
     return (
