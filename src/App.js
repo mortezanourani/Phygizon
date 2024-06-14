@@ -28,15 +28,16 @@ import Wishlist from "./pages/Wishlist";
 
 import SellerLayout from "./layouts/seller";
 import SellerDashboard from "./pages/SellerDashboard";
+import SellerProducts from "./pages/SellerProducts";
+import SellerNewProduct from "./pages/SellerProductsNew";
+import SellerFinance from "./pages/SellerFinance";
+import SellerFinanceWallet from "./pages/SellerFinance/Wallet";
+import SellerFinancePaymentHistory from "./pages/SellerFinance/PaymentHistory";
 
 import UnderConstruction from "./components/UnderConstruction";
 import NotFound from './components/404';
 
 import Cart from "./pages/Cart";
-import SellerFinance from "./pages/SellerFinance";
-import SellerFinanceWallet from "./pages/SellerFinance/Wallet";
-import SellerFinancePaymentHistory from "./pages/SellerFinance/PaymentHistory";
-import SellerProducts from "./pages/SellerProducts";
 
 function App() {
     return (
@@ -80,6 +81,7 @@ function App() {
                     <Route element={<SellerLayout />}>
                         <Route exact path="/seller/dashboard/" element={<SellerDashboard />} />
                         <Route path="/seller/products/" element={<SellerProducts />} />
+                        <Route path="/seller/products/add/" element={<SellerNewProduct />} />
                         <Route element={<SellerFinance />}>
                             <Route path="/seller/finance/" element={<Navigate to="/seller/finance/wallet/" />} />
                             <Route path="/seller/finance/wallet/" element={<SellerFinanceWallet />} />

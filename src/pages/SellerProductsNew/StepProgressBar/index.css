@@ -1,0 +1,140 @@
+.step-progress-wrapper {
+    position: relative;
+}
+
+.step-progress-navigator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+
+    button {
+        width: 90px;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 12px;
+        gap: 4px;
+        background: #FFFFFF;
+        border: 1px solid #D0D5DD;
+        box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+        border-radius: 12px;
+
+        font-family: 'Hubot Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+
+        svg {
+            transform: scale(0.9);
+        }
+
+        &.step-progress-button-next,
+        &.step-progress-button-submit {
+            color: #FFFFFF;
+            background: #189A8A;
+            border: 1px solid #189A8A;
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+        }
+
+        &.step-progress-button-submit {
+            svg {
+                display: none;
+            }
+        }
+
+        &:disabled {
+            color: #98A2B3;
+
+            svg path {
+                stroke: #98A2B3;
+            }
+        }
+    }
+}
+
+.step-progress-steps {
+    padding: 0 75px;
+    width: 100%;
+    max-width: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 0;
+}
+
+@media screen and (max-width: 640px) {
+    .step-progress-navigator {
+        width: auto;
+        height: auto;
+        top: 0;
+        right: 0;
+        gap: 16px;
+
+        button {
+            font-size: 0;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            gap: 0;
+
+            &.step-progress-button-submit svg {
+                display: initial;
+            }
+        }
+    }
+
+    .step-progress-steps {
+        padding: 0;
+        justify-content: flex-start;
+
+        .step-progress-steps-step {
+            display: none;
+            align-items: flex-start;
+
+            .step-progress-step-title,
+            .step-progress-step-subtitle {
+                text-align: left;
+            }
+
+            &::before,
+            &::after {
+                display: none;
+            }
+
+            img {
+                display: none;
+            }
+
+            &.active {
+                display: flex;
+            }
+        }
+    }
+
+    .steps-progress-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 6px;
+        margin-top: 16px;
+        background: #D0D5DD;
+        border-radius: 9px;
+
+        .steps-progress-bar-line {
+            height: 6px;
+            background: #189A8A;
+            border-radius: 9px;
+            transition: width ease-in-out 200ms;
+        }
+    }
+}

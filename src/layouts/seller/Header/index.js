@@ -30,7 +30,7 @@ function Header() {
             </form>
             <div className="seller-header-buttons">
                 <Link
-                    to="/">
+                    to="/seller/products/add/">
                     <button className="btn text new-product">
                         <img src={plusIcon} alt="" />
                         New Prodcut
