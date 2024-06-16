@@ -1,0 +1,17 @@
+.seller-new-product-properties {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 32px;
+
+    .form-group .properties-container {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        min-height: 324px;
+
+        .form-group-col {
+            max-width: calc(33% - 13px);
+        }
+    }
+}

@@ -16,7 +16,7 @@ function SellerNewProductCategory() {
                             <span className="input-prepend icon">
                                 <img src={searchIcon} alt="" />
                             </span>
-                            <input type="search" placeholder="Search" />
+                            <input id="category" placeholder="Search" />
                         </div>
                     </div>
                 </div>
@@ -24,9 +24,9 @@ function SellerNewProductCategory() {
 
             <CategorySelector />
 
-            <hr />
+            {/* <hr /> */}
 
-            <div className="form-group">
+            {/* <div className="form-group">
                 <div className="form-group-row">
                     <div className="form-control">
                         <label>Sub Category</label>
@@ -41,7 +41,7 @@ function SellerNewProductCategory() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

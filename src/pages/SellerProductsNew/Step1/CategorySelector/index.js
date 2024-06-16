@@ -31,6 +31,15 @@ function CategorySelector() {
         });
     }
 
+    const handleSelectCategory = (e) => {
+        const type = e.target.tagName.toLowerCase();
+        if (type === "div") return;
+
+        const category = (type === "button") ? e.target.innerText : e.target.parentNode.innerText;
+        const categoryInput = document.getElementById("category");
+        categoryInput.value = category;
+    }
+
     return (
         <div className="category-selector">
             <div className="category-selector-navigator">
@@ -46,7 +55,7 @@ function CategorySelector() {
                 </button>
             </div>
 
-            <div className="category-selector-container">
+            <div className="category-selector-container" onClick={handleSelectCategory}>
                 <div className="categories-wrapper">
                     <button className="category-card">
                         <img src="/images/icons/icon.cat.8.svg" alt="" />

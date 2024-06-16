@@ -1,0 +1,7 @@
+.seller-new-product-specifications {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 32px;
+}

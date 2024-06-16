@@ -56,6 +56,16 @@
             flex-grow: 1;
             flex-basis: 100%;
         }
+
+        p {
+            font-family: 'Hubot Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            margin: auto 0;
+            color: #344054;
+        }
     }
 
     .form-control {
@@ -116,21 +126,49 @@
             }
 
             input,
+            select,
             textarea {
                 outline: none;
                 border: none;
                 background: none;
                 font-family: 'Hubot Sans';
                 font-style: normal;
-                font-weight: 400;
+                font-weight: 500;
                 font-size: 16px;
                 line-height: 24px;
+                color: #101828;
+
                 padding: 10px 14px;
                 resize: none;
 
                 min-width: 0;
                 flex-grow: 1;
                 flex-basis: 100%;
+
+                appearance: none;
+                -webkit-appearance: none;
+                -ms-progress-appearance: none;
+
+                option span {
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 8px;
+                    border-radius: 99px;
+                }
+
+                &::placeholder {
+                    font-weight: 400;
+                }
+            }
+
+            input:disabled::placeholder {
+                color: #101828;
+            }
+
+            select+.input-append {
+                position: absolute;
+                z-index: -1;
+                right: 0;
             }
 
             &:has(textarea) {
@@ -182,6 +220,12 @@
                         &::after {
                             content: url("../../assets/icons/button/multiitem_item_remove_icon.svg");
                         }
+
+                        span {
+                            width: 16px;
+                            height: 16px;
+                            border-radius: 99px;
+                        }
                     }
 
                     &:not(:has(button)) {
@@ -216,6 +260,17 @@
                     &.calendar-button {
                         background: url("../../assets/icons/button/calendar_button_icon.svg");
                     }
+                }
+
+                p {
+                    font-family: 'Hubot Sans';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 24px;
+
+                    color: #344054;
+                    padding: 10px 14px;
                 }
             }
         }

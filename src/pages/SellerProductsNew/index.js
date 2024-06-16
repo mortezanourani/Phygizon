@@ -5,6 +5,8 @@ import "./index.css";
 
 import SellerNewProductCategory from "./Step1";
 import SellerNewProductInfo from "./Step2";
+import SellerNewProductProperties from "./Step3";
+import SellerNewProductSpecifications from "./Step4";
 
 function SellerNewProduct() {
     const [step, setStep] = useState(1);
@@ -23,6 +25,12 @@ function SellerNewProduct() {
 
             case 2:
                 return <SellerNewProductInfo />;
+
+            case 3:
+                return <SellerNewProductProperties />;
+
+            case 4:
+                return <SellerNewProductSpecifications />;
 
             default:
                 return <></>;
