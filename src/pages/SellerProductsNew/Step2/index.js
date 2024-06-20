@@ -1,26 +1,12 @@
 import "./index.css";
 
 import companyIcon from "./assets/company_icon.svg";
+import { ItemsInput, MultilineInput, SelectInput, TextInput } from "../../../components/Input";
+import { useState } from "react";
 
-function SellerNewProductInfo() {
-    const handleAddTag = (e) => {
-        if (e.key === 'Enter') {
-            const tagText = e.target.value.trim();
-            if (!tagText) return;
-            const tag = document.createElement('button');
-            tag.classList.add("input-item");
-            tag.innerText = tagText;
-            const tagsContainer = e.target.previousSibling;
-            tagsContainer.appendChild(tag);
-            e.target.value = "";
-        }
-    }
-
-    const handleremoveTag = (e) => {
-        const target = e.target.tagName.toLowerCase();
-        if (target !== "button") return;
-        const tag = e.target;
-        tag.remove();
+function SellerNewProductInfo({ data, updateData }) {
+    const handleChange = (name, value) => {
+        updateData({ ...data, [name]: value });
     }
 
     return (
@@ -29,59 +15,59 @@ function SellerNewProductInfo() {
                 <h3 className="form-group-title">General Information</h3>
                 <div className="form-group-row">
                     <div className="form-group-col">
-                        <div className="form-control">
-                            <label>Title</label>
-                            <div className="input-wrapper">
-                                <input placeholder="Select" />
-                            </div>
-                        </div>
+                        <TextInput
+                            id="title"
+                            name="title"
+                            label="Title"
+                            placeholder="Select"
+                            value={data?.title}
+                            onChange={(e) => handleChange('title', e.target.value)} />
                     </div>
                     <div className="form-group-col">
                     </div>
                 </div>
                 <div className="form-group-row">
-                    <div className="form-control">
-                        <label>Description</label>
-                        <div className="input-wrapper">
-                            <textarea placeholder="Enter a description"></textarea>
-                        </div>
-                    </div>
-                    <div className="form-control">
-                        <label>Tag</label>
-                        <div className="input-wrapper">
-                            <div className="items-container" onClick={handleremoveTag}>
-                                <button className="input-item">Ladies Handbag</button>
-                                <button className="input-item">Handbag</button>
-                            </div>
-                            <input placeholder="Enter tags" onKeyDown={handleAddTag} />
-                        </div>
-                    </div>
+                    <MultilineInput
+                        id="description"
+                        name="description"
+                        label="Description"
+                        placeholder="Enter description"
+                        value={data?.description}
+                        onChange={(e) => handleChange('description', e.target.value)} />
+
+                    <ItemsInput
+                        id="tags"
+                        name="tags"
+                        label="Tags"
+                        placeholder="Enter Tags"
+                        value={data?.tags}
+                        onChange={(e) => handleChange('tags', e.target.value)} />
                 </div>
             </div>
 
             <div className="form-group">
                 <h3 className="form-group-title">NFT and Requirement</h3>
                 <div className="form-group-row">
-                    <div className="form-control">
-                        <label>NFT</label>
-                        <div className="input-wrapper">
-                            <span className="input-prepend">https://</span>
-                            <input placeholder="Enter NFT URL" />
-                        </div>
-                    </div>
+                    <TextInput
+                        id="nft"
+                        name="nft_link"
+                        label="NFT"
+                        placeholder="Enter URL"
+                        prepend="https://"
+                        value={data?.nft_link}
+                        onChange={(e) => handleChange('nft_link', e.target.value)} />
+
                     <div className="form-group-row">
-                        <div className="form-control">
-                            <label>NFT Requirement</label>
-                            <div className="input-wrapper">
-                                <select>
-                                    <option value={true}>Is Required</option>
-                                    <option value={false}>Is Not Required</option>
-                                </select>
-                                <span className="input-append">
-                                    <button className="select-button"></button>
-                                </span>
-                            </div>
-                        </div>
+                        <SelectInput
+                            id="nft-required"
+                            name="nft_required"
+                            label="NFT Requirement"
+                            options={[
+                                { key: "Is Required", value: "ture" },
+                                { key: "Is not Required", value: "false" }]}
+                            value={data?.nft_required}
+                            onChange={(e) => handleChange('nft_required', e.target.value)} />
+
                         <div className="form-control"></div>
                     </div>
                 </div>

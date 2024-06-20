@@ -9,7 +9,8 @@ import SellerNewProductProperties from "./Step3";
 import SellerNewProductSpecifications from "./Step4";
 
 function SellerNewProduct() {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(3);
+    const [data, setData] = useState({});
 
     const handleBack = () => setStep(step - 1);
     const handleNext = () => setStep(step + 1);
@@ -21,16 +22,28 @@ function SellerNewProduct() {
     const renderContent = () => {
         switch (step) {
             case 1:
-                return <SellerNewProductCategory />;
+                return <SellerNewProductCategory
+                    data={data?.category}
+                    updateData={(category) =>
+                        setData({ ...data, category })} />;
 
             case 2:
-                return <SellerNewProductInfo />;
+                return <SellerNewProductInfo
+                    data={data?.info}
+                    updateData={(info) =>
+                        setData({ ...data, info })} />;
 
             case 3:
-                return <SellerNewProductProperties />;
+                return <SellerNewProductProperties
+                    data={data?.properties}
+                    updateData={(properties) =>
+                        setData({ ...data, properties })} />;
 
             case 4:
-                return <SellerNewProductSpecifications />;
+                return <SellerNewProductSpecifications
+                    data={data?.specifications}
+                    updateData={(specifications) =>
+                        setData({ ...data, specifications })} />;
 
             default:
                 return <></>;
@@ -46,6 +59,7 @@ function SellerNewProduct() {
             />
 
             <>
+                {JSON.stringify(data)}
                 {renderContent()}
             </>
         </div>

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import "./index.css";
 
-function CategorySelector() {
+function CategorySelector({ onChange }) {
     const [btnNextDisabled, setBtnNextDisabled] = useState(false);
     const [btnBackDisabled, setBtnBackDisabled] = useState(true);
 
@@ -31,13 +31,15 @@ function CategorySelector() {
         });
     }
 
-    const handleSelectCategory = (e) => {
+    const handleChange = (e) => {
         const type = e.target.tagName.toLowerCase();
         if (type === "div") return;
+        const category = (type !== "button")
+            ? e.target.parentNode.innerText
+            : e.target.innerText;
 
-        const category = (type === "button") ? e.target.innerText : e.target.parentNode.innerText;
-        const categoryInput = document.getElementById("category");
-        categoryInput.value = category;
+        e.target.value = category;
+        onChange(e);
     }
 
     return (
@@ -55,7 +57,7 @@ function CategorySelector() {
                 </button>
             </div>
 
-            <div className="category-selector-container" onClick={handleSelectCategory}>
+            <div className="category-selector-container" onClick={handleChange}>
                 <div className="categories-wrapper">
                     <button className="category-card">
                         <img src="/images/icons/icon.cat.8.svg" alt="" />

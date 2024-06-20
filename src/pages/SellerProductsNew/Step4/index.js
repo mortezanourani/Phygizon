@@ -1,53 +1,56 @@
+import { NumberInput, SelectInput, TextInput } from "../../../components/Input";
 import "./index.css";
 
-function SellerNewProductSpecifications() {
+function SellerNewProductSpecifications(props) {
     return (
         <div className="seller-new-product-specifications">
+            {JSON.stringify(props.value)}
+
             <div className="form-group">
                 <h3 className="form-group-title">Region</h3>
                 <div className="form-group-row">
-                    <div className="form-control">
-                        <label>Manufacturing Country</label>
-                        <div className="input-wrapper">
-                            <input placeholder="None" />
-                            <span className="input-append">
-                                <button className="select-button"></button>
-                            </span>
-                        </div>
-                    </div>
-                    <div className="form-control">
-                        <label>Country of Origin</label>
-                        <div className="input-wrapper">
-                            <input placeholder="None" />
-                            <span className="input-append">
-                                <button className="select-button"></button>
-                            </span>
-                        </div>
-                    </div>
+                    <SelectInput
+                        id="manufacturing-country"
+                        name="manufacturing_country"
+                        title="Manufaturing Country"
+                        options={[
+                            { key: "Is Required", value: "ture" },
+                            { key: "Is not Required", value: "false" }]}
+                        value={props.value?.manufacturing_country}
+                        onChange={props.onChange} />
+
+                    <SelectInput
+                        id="country-of-origin"
+                        name="country_of_origin"
+                        title="Country of Origin"
+                        options={[
+                            { key: "Is Required", value: "ture" },
+                            { key: "Is not Required", value: "false" }]}
+                        value={props.value?.country_of_origin}
+                        onChange={props.onChange} />
                 </div>
 
                 <div className="form-group-row">
-                    <div className="form-control">
-                        <label>Region</label>
-                        <div className="input-wrapper">
-                            <input placeholder="None" />
-                        </div>
-                    </div>
-                    <div className="form-control">
-                        <label>Season of Use</label>
-                        <div className="input-wrapper">
-                            <select>
-                                <option>All Season</option>
-                                <option>Spring</option>
-                                <option>Summer</option>
-                                <option>Autumn</option>
-                                <option>Winter</option>
-                            </select>
-                            <span className="input-append">
-                                <button className="select-button"></button>
-                            </span>
-                        </div>
-                    </div>
+                    <TextInput
+                        id="region"
+                        name="region"
+                        title="Region"
+                        placeholder="Region"
+                        value={props.value?.region}
+                        onChange={props.onChange} />
+
+                    <SelectInput
+                        id="season-of-use"
+                        name="season_of_use"
+                        title="Season of Use"
+                        options={[
+                            { key: "All Season", value: "0" },
+                            { key: "Spring", value: "1" },
+                            { key: "Summer", value: "2" },
+                            { key: "Autumn", value: "3" },
+                            { key: "Winter", value: "4" }]}
+                        value={props.value?.season_of_use}
+                        onChange={props.onChange} />
                 </div>
             </div>
 
@@ -86,19 +89,22 @@ function SellerNewProductSpecifications() {
                 <h3 className="form-group-title">Product Delivery</h3>
                 <div className="form-group-row">
                     <div className="form-group-row sm-nowrap">
-                        <div className="form-control">
-                            <label>Preparation Time</label>
-                            <div className="input-wrapper">
-                                <input placeholder="Days" />
-                            </div>
-                        </div>
-                        <div className="form-control">
-                            <label>Shipping Cost</label>
-                            <div className="input-wrapper">
-                                <span className="input-prepend icon">$</span>
-                                <input placeholder="0.00" />
-                            </div>
-                        </div>
+                        <NumberInput
+                            id="preparation-time"
+                            name="preparation_time"
+                            title="Preparation Time"
+                            placeholder="Days Number"
+                            value={props.value?.preparation_time}
+                            onChange={props.onChange} />
+
+                        <NumberInput
+                            id="shipping-cost"
+                            name="shipping_cost"
+                            title="Shipping Cost"
+                            prepend="$"
+                            placeholder="0.00"
+                            value={props.value?.shipping_cost}
+                            onChange={props.onChange} />
                     </div>
                 </div>
 
@@ -124,13 +130,14 @@ function SellerNewProductSpecifications() {
                         </div>
                     </div>
                     <div className="form-group-row sm-nowrap">
-                        <div className="form-control">
-                            <label>Warranty Amount</label>
-                            <div className="input-wrapper">
-                                <span className="input-prepend icon">$</span>
-                                <input placeholder="Enter Number" />
-                            </div>
-                        </div>
+                        <NumberInput
+                            id="warranty-amount"
+                            name="warranty_amount"
+                            title="Warranty Amount"
+                            prepend="$"
+                            placeholder="0.00"
+                            value={props.value?.warranty_amount}
+                            onChange={props.onChange} />
                     </div>
                 </div>
             </div>
