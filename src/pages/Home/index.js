@@ -46,7 +46,7 @@ const Home = () => {
                             {
                                 brands.map(brand => (
                                     // <img className='brand' id={brand.name} src={brand.logo} alt="" />
-                                    <img className='brand' id={brand.name} src={"/images/brands/" + brand.id + ".svg"} alt="" />
+                                    <img className='brand' id={brand?.name} src={"/images/brands/" + brand.id + ".svg"} alt="" />
                                 ))
                             }
                         </div>

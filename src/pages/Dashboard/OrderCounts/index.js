@@ -25,7 +25,7 @@ function OrderCounts() {
             :
             <div className="orders">
                 <div className="card all">
-                    <h1>{data.total_orders?.total_order_count}</h1>
+                    <h1>{data?.total_orders.total_order_count}</h1>
                     <p>All Orders</p>
                     {/* <h3>22.94 MGC</h3>
                         <p>$7322.123</p>  */}
@@ -33,32 +33,32 @@ function OrderCounts() {
                 <div className="filters">
                     <OrderCount
                         title="Pending"
-                        count={data.total_orders.pending_orders_count}
+                        count={data?.total_orders.pending_orders_count}
                         icon={pending}
                     />
                     <OrderCount
                         title="Waiting"
-                        count={data.total_orders.waiting_orders_count}
+                        count={data?.total_orders.waiting_orders_count}
                         icon={waiting}
                     />
                     <OrderCount
                         title="Current"
-                        count={data.total_orders.current_orders_count}
+                        count={data?.total_orders.current_orders_count}
                         icon={current}
                     />
                     <OrderCount
                         title="Delivered"
-                        count={data.total_orders.delivered_orders_count}
+                        count={data?.total_orders.delivered_orders_count}
                         icon={delivered}
                     />
                     <OrderCount
                         title="Returned"
-                        count={data.total_orders.returned_orders_count}
+                        count={data?.total_orders.returned_orders_count}
                         icon={returned}
                     />
                     <OrderCount
                         title="Canceled"
-                        count={data.total_orders.canceled_orders_count}
+                        count={data?.total_orders.canceled_orders_count}
                         icon={canceled}
                     />
                 </div>

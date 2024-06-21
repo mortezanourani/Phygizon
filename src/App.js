@@ -38,6 +38,11 @@ import UnderConstruction from "./components/UnderConstruction";
 import NotFound from './components/404';
 
 import Cart from "./pages/Cart";
+import SellerNewProductCategory from "./pages/SellerProductsNew/Step1";
+import SellerNewProductInfo from "./pages/SellerProductsNew/Step2";
+import SellerNewProductMedia from "./pages/SellerProductsNew/Step3";
+import SellerNewProductProperties from "./pages/SellerProductsNew/Step4";
+import SellerNewProductSpecifications from "./pages/SellerProductsNew/Step5";
 
 function App() {
     return (
@@ -81,7 +86,14 @@ function App() {
                     <Route element={<SellerLayout />}>
                         <Route exact path="/seller/dashboard/" element={<SellerDashboard />} />
                         <Route path="/seller/products/" element={<SellerProducts />} />
-                        <Route path="/seller/products/add/" element={<SellerNewProduct />} />
+                        <Route element={<SellerNewProduct />}>
+                            <Route path="/seller/products/add/" element={<Navigate to="/seller/products/add/category/" />} />
+                            <Route path="/seller/products/add/category/" element={<SellerNewProductCategory />} />
+                            <Route path="/seller/products/add/info/" element={<SellerNewProductInfo />} />
+                            <Route path="/seller/products/add/media/" element={<SellerNewProductMedia />} />
+                            <Route path="/seller/products/add/properties/" element={<SellerNewProductProperties />} />
+                            <Route path="/seller/products/add/specifications/" element={<SellerNewProductSpecifications />} />
+                        </Route>
                         <Route element={<SellerFinance />}>
                             <Route path="/seller/finance/" element={<Navigate to="/seller/finance/wallet/" />} />
                             <Route path="/seller/finance/wallet/" element={<SellerFinanceWallet />} />

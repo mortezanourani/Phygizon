@@ -19,7 +19,7 @@ function WalletCard() {
     }, []);
 
     return (
-        (data.loading)
+        (data?.loading)
             ?
             <div className="wallet">
                 <Loading component />

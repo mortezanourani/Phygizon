@@ -15,7 +15,7 @@ const Dashboard = () => {
     const counts = data.ordersCounts;
 
     return (
-        (data.loading)
+        (data?.loading)
             ?
             <Loading />
             :

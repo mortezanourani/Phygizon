@@ -1,52 +1,56 @@
-
 import "./index.css";
+
+import StepProgressBar from "../StepProgressBar";
 
 import CategorySelector from "./CategorySelector";
 
 import searchIcon from "../../../assets/icons/search_icon.svg";
 import { SearchInput } from "../../../components/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function SellerNewProductCategory({ data, updateData }) {
+function SellerNewProductCategory() {
+    const navigate = useNavigate();
+    const [product, setProduct] = useState(JSON.parse(localStorage.getItem('sellerNewProductJSON')));
+
+    useEffect(() => {
+        localStorage.setItem('sellerNewProductJSON', JSON.stringify(product));
+    }, [product]);
+
     const handleChange = (e) => {
-        updateData(e.target.value);
+        setProduct({ ...product, 'category': e.target.value });
+    }
+
+    const handleSubmit = () => {
+        if (product?.id) {
+            // Call seller_product_update to change category
+        }
+
+        navigate("/seller/products/add/info/");
     }
 
     return (
-        <div className="seller-new-product-category">
-            <div className="form-group">
-                <div className="form-group-row">
-                    <SearchInput
-                        id="category"
-                        name="category"
-                        label="Category"
-                        value={data}
-                        onChange={handleChange} />
-                </div>
-            </div>
+        <>
+            <StepProgressBar
+                step={1}
+                handleSubmit={handleSubmit} />
 
-            <CategorySelector
-                onChange={handleChange} />
-
-            {/* <hr /> */}
-
-            {/* <div className="form-group">
-                <div className="form-group-row">
-                    <div className="form-control">
-                        <label>Sub Category</label>
-                        <div className="input-wrapper">
-                            <span className="input-prepend icon">
-                                <img src={searchIcon} alt="" />
-                            </span>
-                            <input placeholder="Search" />
-                            <span className="input-append">
-                                <button className="select-button"></button>
-                            </span>
-                        </div>
+            <div className="seller-new-product-category">
+                <div className="form-group">
+                    <div className="form-group-row">
+                        <SearchInput
+                            id="category"
+                            name="category"
+                            label="Category"
+                            value={product?.category}
+                            onChange={handleChange} />
                     </div>
                 </div>
-            </div> */}
-        </div>
+
+                <CategorySelector
+                    onChange={handleChange} />
+            </div>
+        </>
     )
 }
 

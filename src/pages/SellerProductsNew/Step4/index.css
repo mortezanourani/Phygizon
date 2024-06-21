@@ -1,7 +1,28 @@
-.seller-new-product-specifications {
+.seller-new-product-properties {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
     gap: 32px;
+
+    .form-group .properties-container {
+        justify-content: stretch;
+        flex-wrap: wrap;
+        min-height: 324px;
+
+        .form-group-col {
+            flex: 1 1 30%;
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .seller-new-product-properties {
+        .form-group .properties-container {
+            .form-group-col {
+                max-width: 100%;
+                min-height: 244px;
+            }
+        }
+    }
 }
