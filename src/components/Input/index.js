@@ -233,7 +233,75 @@ function SelectInput({ id, name, className, label, disabled, options, value, onC
     );
 }
 
-function MultiSelectInput({ id, name, placeholder, className, label, disabled, options, value, onChange }) {
+function ItemSelectInput({ id, name, className, label, disabled, options, prepend, value, onChange }) {
+    const optionsMenuRef = useRef(null);
+
+    className = (!className) ? "form-control" :
+        "form-control" + ` ${className}`;
+
+    const handleCollapsed = () => {
+        optionsMenuRef.current.classList.toggle("collapsed");
+    }
+
+    const handleChange = (e) => {
+        onChange(e);
+        handleCollapsed();
+    }
+
+    return (
+        <div className={className}>
+            <label>{label}</label>
+            <div className="input-wrapper select">
+                <button
+                    id={id}
+                    name={name}
+                    disabled={disabled}
+                    onClick={handleCollapsed} >
+                    {
+                        (prepend && value) ?
+                            createElement(
+                                'img',
+                                {
+                                    className: "option-prepend",
+                                    src: JSON.parse(value)[prepend],
+                                    style: { background: JSON.parse(value)[prepend] }
+                                },
+                            ) : null
+                    }
+                    {JSON.parse(value)?.name ?? "Select"}
+                </button>
+                <div className="options" ref={optionsMenuRef}>
+                    <div className="options-container">
+                        {
+                            options?.map((option) =>
+                                createElement(
+                                    'button',
+                                    {
+                                        name: name,
+                                        value: JSON.stringify(option),
+                                        onClick: handleChange
+                                    },
+                                    (prepend) ?
+                                        createElement(
+                                            'img',
+                                            {
+                                                className: "option-prepend",
+                                                src: JSON.parse(option)[prepend],
+                                                style: { background: JSON.parse(option)[prepend] }
+                                            },
+                                        ) : null,
+                                    JSON.parse(option).name
+                                )
+                            )
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function MultiSelectInput({ id, name, placeholder, className, label, disabled, options, prepend, value, onChange }) {
     const optionsMenuRef = useRef(null);
 
     className = (!className) ? "form-control" :
@@ -246,9 +314,14 @@ function MultiSelectInput({ id, name, placeholder, className, label, disabled, o
     const handleAddItem = (e) => {
         let items = (value) ? JSON.parse(value) : [];
         items.push(e.target.value);
+        const oldValue = e.target.value;
         e.target.value = JSON.stringify(items);
         onChange(e);
         handleCollapsed();
+
+        setTimeout(() => {
+            e.target.value = oldValue;
+        }, 10);
     }
 
     const handleremoveItem = (e) => {
@@ -267,21 +340,23 @@ function MultiSelectInput({ id, name, placeholder, className, label, disabled, o
                 createElement(
                     "button",
                     {
-                        key: index,
                         name: name,
                         id: index,
                         value: JSON.stringify(item),
                         className: 'input-item',
                         onClick: handleremoveItem,
                     },
-                    createElement(
-                        "span",
-                        {
-                            style: { background: JSON.parse(item).value }
-                        }
-                    ),
-                    JSON.parse(item).key
-                ));
+                    (prepend) ?
+                        createElement(
+                            'img',
+                            {
+                                src: JSON.parse(item)[prepend],
+                                style: { background: JSON.parse(item)[prepend] }
+                            },
+                        ) : null,
+                    JSON.parse(item).name
+                )
+        );
     }
 
     return (
@@ -302,18 +377,20 @@ function MultiSelectInput({ id, name, placeholder, className, label, disabled, o
                                 createElement(
                                     'button',
                                     {
-                                        key: option.key,
                                         name: name,
                                         value: JSON.stringify(option),
                                         onClick: handleAddItem
                                     },
-                                    createElement(
-                                        'span',
-                                        {
-                                            className: "option-prepend",
-                                            style: { background: option.value }
-                                        },
-                                    ), option.key
+                                    (prepend) ?
+                                        createElement(
+                                            'img',
+                                            {
+                                                className: "option-prepend",
+                                                src: option[prepend],
+                                                style: { background: option[prepend] }
+                                            },
+                                        ) : null,
+                                    option.name
                                 )
                             )
                         }
@@ -336,5 +413,6 @@ export {
     MultilineInput,
     ItemsInput,
     SelectInput,
+    ItemSelectInput,
     MultiSelectInput
 };

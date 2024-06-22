@@ -105,10 +105,11 @@
                     content: url("../../assets/icons/button/multiitem_item_remove_icon.svg");
                 }
 
-                span {
-                    display: none;
+                img {
+                    display: block;
                     width: 16px;
                     height: 16px;
+                    aspect-ratio: 1;
                     border-radius: 99px;
                 }
             }
@@ -145,6 +146,10 @@
             z-index: inherit;
 
             >button {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
                 outline: none;
                 border: none;
                 background: none;
@@ -158,6 +163,15 @@
                 color: #101828;
                 text-wrap: nowrap;
                 padding: 10px 14px;
+
+                img {
+                    display: block;
+                    width: 16px;
+                    height: 16px;
+                    margin-right: 6px;
+                    aspect-ratio: 1;
+                    border-radius: 99px;
+                }
 
                 &::before {
                     position: absolute;
@@ -234,7 +248,7 @@
                     }
 
                     .option-prepend {
-                        display: none;
+                        display: block;
                         width: 16px;
                         height: 16px;
                         margin-right: 6px;
@@ -291,18 +305,6 @@
                 line-height: 24px;
                 color: #475467;
             }
-        }
-    }
-
-    &.prepend .input-wrapper {
-
-        .items-container .input-item span {
-            display: block;
-        }
-
-        &.select .options .option-prepend {
-            display: block;
-            margin-right: 6px;
         }
     }
 }

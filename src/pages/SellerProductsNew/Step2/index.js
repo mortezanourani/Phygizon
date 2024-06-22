@@ -43,7 +43,6 @@ function SellerNewProductInfo() {
                 step={2}
                 handleSubmit={handleSubmit} />
 
-            {JSON.stringify(product)}
             <div className="seller-new-product-info">
                 <div className="form-group">
                     <h3 className="form-group-title">General Information</h3>
