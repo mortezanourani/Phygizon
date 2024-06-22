@@ -4,7 +4,7 @@ export const headers = {
     "Content-Type": "application/json"
 };
 
-export const baseUrl = "https://api-phg-dev.rz-game.com/v1";
+export const baseUrl = "base_url";
 
 export const homeAPI = baseUrl + "/product/homepage/";
 export const categoriesAPI = baseUrl + "/product/categories/";
